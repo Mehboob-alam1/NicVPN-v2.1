@@ -31,7 +31,7 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 
         maven {
-            url 'https://artifactory.appodeal.com/appodeal'
+            url "https://artifactory.appodeal.com/appodeal"
         }
         maven { url "https://jitpack.io" }
     }

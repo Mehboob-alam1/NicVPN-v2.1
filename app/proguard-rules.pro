@@ -1,8 +1,36 @@
+-dontskipnonpubliclibraryclasses
+-dontskipnonpubliclibraryclassmembers
+
+-optimizationpasses 7
+-dontpreverify
+-forceprocessing
+
+-allowaccessmodification
+-optimizations
+-dontoptimize
+#-keeppackagenames
+-dontnote
+-dontwarn
+-ignorewarnings
+-optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/var
+-optimizations !code/simplification/cast,!code/simplification/advanced,!field/*,!class/merging/*,!method/removal/parameter,!method/propagation/parameter
+-optimizations !code/allocation/variable
+-optimizations !method/inlining/*
+-optimizations !code/simplification/arithmetic
+-keepattributes *Annotation*
 -repackageclasses 'o'
--keepattributes SourceFile,LineNumberTable        # Keep file names and line numbers.
--keep public class * extends java.lang.Exception  # Optional: Keep custom exceptions.
+-obfuscationdictionary 'C:\Users\Administrator\Documents\work\NICVPN_V2_SHELL\dicdex.txt'
+-classobfuscationdictionary 'C:\Users\Administrator\Documents\work\NICVPN_V2_SHELL\dicdex.txt'
+-packageobfuscationdictionary 'C:\Users\Administrator\Documents\work\NICVPN_V2_SHELL\dicdex.txt'
+-mergeinterfacesaggressively
+-overloadaggressively
+-verbose
+-keepattributes Signature
 
 
+-keepattributes SourceFile,LineNumberTable
+-renamesourcefileattribute ''
 # prevent Crashlytics obfuscation
 -keep class com.crashlytics.** { *; }
 -dontwarn com.crashlytics.**
