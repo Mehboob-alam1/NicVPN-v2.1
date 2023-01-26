@@ -1,0 +1,11 @@
+/build/
+/debug/
+release/
+/src/test/
+/src/androidTest/
+/.cxx/
+.externalNativeBuild
+*~
+/libs/applovin-sdk-9.8.0.aar
+../../../.DS_Store
+../../.DS_Store

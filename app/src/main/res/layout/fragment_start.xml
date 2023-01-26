@@ -1,0 +1,371 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp"
+
+    tools:context="com.nicadevelop.nicavpn.StartFragment">
+
+    <RelativeLayout
+        android:id="@+id/banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:id="@+id/tvSKey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+
+                    android:gravity="center_horizontal"
+                    android:visibility="gone" />
+
+
+
+
+
+
+                <RelativeLayout
+                    android:id="@+id/open_server_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_rounded_light_grey_bg"
+                    android:gravity="center"
+                    android:paddingVertical="5dp">
+
+                    <ImageView
+                        android:id="@+id/flag_icon_list"
+                        android:layout_width="30dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleY="1.2"
+                        android:src="@drawable/germany" />
+                    <ImageView
+                        android:id="@+id/location_globe_2"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:contentDescription="@string/app_name"
+                        android:rotation="90"
+                        android:src="@drawable/next_arrrow" />
+
+                    <TextView
+                        android:id="@+id/server_country_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/montserrat"
+                        android:maxLines="1"
+                        android:text="@string/select_server"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+
+
+
+
+
+
+                <include
+                    android:id="@+id/layoutPayload"
+                    layout="@layout/layout_payload"
+                    android:animateLayoutChanges="true"
+                    android:visibility="gone" />
+
+                <include
+                    android:id="@+id/layoutFastDns"
+                    layout="@layout/layout_fast_dns"
+                    android:animateLayoutChanges="true"
+                    android:visibility="visible" />
+
+                <include
+                    android:id="@+id/layoutDnsTT"
+                    layout="@layout/layout_dns_tt"
+                    android:animateLayoutChanges="true"
+                    android:visibility="gone" />
+
+                <include
+                    android:id="@+id/layoutV2RayNG"
+                    layout="@layout/layout_custom_v2ray"
+                    android:animateLayoutChanges="true"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/txtEFCustomMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp"
+                    android:layout_marginTop="16dp"
+                    android:outlineAmbientShadowColor="@color/design_default_color_error"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textSize="17sp"
+                    android:visibility="gone"
+                    tools:layout_editor_absoluteY="10dp" />
+
+
+
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/server_bg"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+
+                        <TextView
+                            android:textColor="@color/white"
+                            android:id="@+id/txt_fastdns"
+                            android:text="FastDNS"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                        <TextView
+                            android:textColor="@color/white"
+                            android:id="@+id/txt_dnstt"
+                            android:text="@string/DNSTT_connection"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:textColor="@color/white"
+                            android:id="@+id/txt_openvpn"
+                            android:text="OpenVPN"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:textColor="@color/white"
+                            android:id="@+id/txt_v2ray"
+                            android:text="V2Ray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/udpandtcp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="25dp"
+                        >
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="120dp"
+                            android:layout_height="35dp"
+                            android:id="@+id/v2ray_udp"
+                            android:background="@drawable/selected_port_bg"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="UDP"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/white"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="120dp"
+                            android:layout_height="35dp"
+                            android:id="@+id/v2ray_tcp"
+                            android:background="@drawable/port_bg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TCP"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/white"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                </LinearLayout>
+                <include
+                    android:id="@+id/layoutHost"
+                    layout="@layout/layout_host"
+                    android:visibility="gone"
+                    android:animateLayoutChanges="true" />
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/time_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="20dp">
+
+
+                    <ProgressBar
+                        android:id="@+id/timeLeftProgress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:max="100"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toTopOf="@id/timeLeft" />
+
+                    <TextView
+                        android:id="@+id/timeLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:lines="2"
+                        android:textColor="@color/red"
+                        android:text="@string/time_left"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/timeLeft_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:lines="2"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:textColor="@color/red"
+                        android:text="00:00:00"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@id/timeLeft"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/moreTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_background"
+                        android:minHeight="0dp"
+                        android:padding="8dp"
+                        android:text="@string/more_time"
+                        android:textAllCaps="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/connectionMethodContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+
+
+                    <Spinner
+                        android:id="@+id/spConnectionMethod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:spinnerMode="dialog"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

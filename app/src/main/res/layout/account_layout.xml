@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/layout_divider"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_main"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/margin_16dp"
+                    android:layout_marginRight="@dimen/margin_16dp"
+                    android:gravity="start|center"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <ImageView
+                        android:id="@+id/back_icon"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1.5"
+                        android:src="@drawable/cross"
+                        android:visibility="visible"
+                        tools:ignore="ContentDescription"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8.5"
+                        android:gravity="center|start"
+                        android:text="@string/my_account"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                </LinearLayout>
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/accountTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_8dp"
+            android:layout_marginRight="@dimen/margin_8dp"
+            android:enabled="false"
+            android:hint="@string/account_type"
+            android:textColorHint="@color/colorWhite">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_8dp"
+                android:layout_marginRight="@dimen/margin_8dp"
+                android:background="#6C6464"
+                android:enabled="false"
+                android:text="@string/default_acount_type"
+                android:textColor="@color/colorWhite"
+                android:textCursorDrawable="@color/colorWhite" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/devicesTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_8dp"
+            android:layout_marginRight="@dimen/margin_8dp"
+            android:enabled="false"
+            android:hint="@string/devices"
+            android:textColorHint="@color/colorWhite">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_8dp"
+                android:layout_marginRight="@dimen/margin_8dp"
+                android:enabled="false"
+                android:background="#6C6464"
+                android:text="@string/default_devices"
+                android:textColor="@color/colorWhite" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/validUntilTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_8dp"
+            android:layout_marginRight="@dimen/margin_8dp"
+            android:enabled="false"
+            android:hint="@string/valid_until"
+            android:textColorHint="@color/colorWhite">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_8dp"
+                android:layout_marginRight="@dimen/margin_8dp"
+                android:enabled="false"
+                android:background="#6C6464"
+                android:text="@string/default_valid_until"
+                android:textColor="@color/colorWhite" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/resotrePurchaseButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/restore_purchase"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

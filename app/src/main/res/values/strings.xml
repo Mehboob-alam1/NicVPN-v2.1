@@ -1,0 +1,704 @@
+<resources>
+    <string name="app_name">NicVPN</string>
+    <string name="app_name_full">NicVPN</string>
+    <string name="action_settings">Power boot</string>
+    <string name="notification_desc">NicVPN Connected</string>
+    <string name="notification_channel">Service Notification</string>
+
+
+    <string name="action_import">Import</string>
+    <string name="action_export">Export</string>
+    <string name="action_Restore">Reset Configuration</string>
+    <string name="action_delete_log">Delete Log</string>
+
+    <string name="data_export_successful">Successful exported configurations!!</string>
+    <string name="data_export_error">[!] Data exported error!!!</string>
+
+    <string name="permission_denied">Permission denied!!!</string>
+    <string name="files_not_ready">SD Card not ready</string>
+    <string name="allowedexiste">[!] Not allowed, an imported configuration exists.</string>
+    <string name="file_invalid">Please try to open the file from the application manually (Oh this file does not belong to this application oh it is from previous versions).!!!</string>
+    <string name="dns_field">Complete the DNS host field</string>
+    <string name="enter_file_name">File name</string>
+    <string name="enter_valid_file_name">Please enter a valid file name</string>
+    <string name="the_file_already_exists">The entered file already exists, do you want to overwrite?</string>
+    <string name="dialog_save">Save</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_choose">Choose</string>
+
+    <string-array name="tabs_array">
+        <item></item>
+    </string-array>
+
+    <!-- Main fragment -->
+    <string name="run_status_loading">Loading…</string>
+    <string name="run_status_not_running">Start Proxy</string>
+    <string name="run_status_running">Connected Proxy</string>
+    <string name="run_status_starting">Starting…</string>
+    <string name="run_status_stopping">[!] Destroyed…</string>
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="delete">Delete</string>
+
+    <!-- Start tunnel shortcut -->
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ADS_APPLICATION_ID">ca-app-pub-9958394453187811~4390982328</string>
+
+    <string name="alert_root_title">[!] Root Detected</string>
+    <string name="alert_root_message">This application does not work with rooted devices. Please reinstall the operating system (Official) Error (ARM).</string>
+
+    <string name="try_again">Please try again later.</string>
+    <string name="about_us">Information</string>
+    <string name="import_server">Congratulations! Imported Server</string>
+    <string name="ip_label">Connected to IP</string>
+    <string name="information_label">Information</string>
+    <string name="host_field">Please complete the host field</string>
+    <string name="warning_label">[!] WARNING</string>
+    <string name="software_modified">Oh! You are using an unofficial android version or it is root! Please reinstall the operating system (Official) Error (22s2d)</string>
+    <string name="malicious_apps">Oh! We have detected a malicious application, we recommend to uninstall</string>
+    <string name="developer_mode">Oh! Your device has developer mode activate, please turn off this mode on settings options</string>
+    <string name="usb_connected"> Oh! Your connected USB device, not allowed</string>
+    <string name="rooted_device"> Oh! You are using an unofficial android version or it is root! Please reinstall the operating system (Official) Error (443322r1222d)</string>
+    <string name="wifi_connection"> Oh! We have detected that you have connected to a Wi-Fi network, to continue using this application please disconnect from any Wi-Fi network</string>
+    <string name="ip_connected_default">Connected to IP 0.0.0.0</string>
+    <string name="import_ss">Import SS</string>
+    <string name="guide_install">Guide Install</string>
+    <string name="creator_label">© 2020 - 2021 UnknownDev</string>
+    <string name="ping_label">Reconnection timeout:</string>
+    <string name="host_label">Host</string>
+    <string name="server_label">Server:</string>
+    <string name="server_port_label">Port:</string>
+    <string name="use_a_custom_ping">Select the reconnection time by (S)</string>
+    <string name="pref_desc_stunnel_version_failed">Failed to check version</string>
+    <string name="user_not_found">This device is not registered on NdCheckMate servers</string>
+    <string name="share_vpn">Oh! Wi-Fi sharing not allowed on this VPN</string>
+
+
+    // Nav_menus
+    <string name="idkey">Key</string>
+    <string name="payload">Generator Payload</string>
+    <string name="bug_finder">Bug finder</string>
+    <string name="idProfile">[!] User (disabled)</string>
+    <string name="idMoreAPP">More APP</string>
+    <string name="idFeedback">Bug Report</string>
+    <string name="idPolicy">Policy</string>
+    <string name="idTerms">Terms</string>
+    <string name="idLicense">License</string>
+
+    <string name="idabout">About</string>
+    <string name="ic_stars">Assessment</string>
+    <string name="advance_settings">Advance Settings</string>
+    <string name="advance_settings_vpn">VPN Settings</string>
+    <string name="sendFeedback">Send Feedback</string>
+    <string name="makeDonation">Make a Donation</string>
+
+
+    <string name="OPENMENU">OPEN</string>
+    <string name="CLOSEDMENU">CLOSED</string>
+
+    <string name="dialog_rate_title">Rate the application on Google Play!</string>
+    <string name="dialog_rate_positive_button">Go to Google Play</string>
+    <string name="dialog_rate_negative_button">Not now</string>
+
+    <string name="dialog_new_version_title">New Version</string>
+    <string name="dialog_new_version_content">New version of the application in playstore or in official telegram: https://t.me/DiamProxy</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="connection_method">Protocol</string>
+
+    <string name="dialog_key_auth">Key Auth!</string>
+    <string name="dialog_key_auth_button">Copy</string>
+    <string name="dialog_key_auth_copied">Copied Successful</string>
+
+    <string name="direct_connection">Direct</string>
+    <string name="http_connection">TLS Over HTTP</string>
+    <string name="payload_connection">Payload</string>
+    <string name="dns_connection">HTTP Over DNS</string>
+    <string name="fastdns_connection">FastDNS</string>
+    <string name="DNSTT_connection">DNSTT</string>
+    <string name="open_vpn_connection">OpenVPN</string>
+    <string name="custom_v2ray_icc_connection">V2Ray</string>
+    <string name="UDP_connection">UDP MODE [Developing]</string>
+
+    <string-array name="connection_methods">
+        <item>@string/fastdns_connection</item>
+        <item>@string/DNSTT_connection</item>
+        <item>@string/open_vpn_connection</item>
+        <item>@string/custom_v2ray_icc_connection</item>
+    </string-array>
+
+    <string name="prof_default">Servletkeyauth: NicaDevelop-01</string>
+    <string name="notify_title">Key proxy activated</string>
+    <string name="notify_msg">Connected to ｢%s｣</string>
+
+    <string name="dns_label">URL Host</string>
+
+    <string name="payload_config_msg">Please complete the payload config field</string>
+    <string name="payload_field">[!] Please type the payload</string>
+    <string name="payload_stop">STOP</string>
+    <string name="payload_start">START</string>
+    <string name="payload_v2ray_icc">Import config from clipboard</string>
+
+    <!-- #LOG-->
+    <string name="network_connected">Authentic server key successfully</string>
+    <string name="SSLCONNECTFULL">Local IP:</string>
+    <string name="IntentServiceRUN">Injection method running</string>
+    <string name="IntentServiceSTOP">[!] Injection method destroyed!!</string>
+    <string name="stopTunnelService">[!] Service stopped!!</string>
+    <string name="Startvpn">VPN started</string>
+    <string name="Stopvpn">[!] VPN destroyed!!</string>
+    <string name="test">[!] VPN destroyed!!</string>
+    <string name="okheaders">HTTP/1.1 200 (OK) PROXY Connection Established</string>
+
+
+    <!--CLIENTSERV-->
+    <string name="connectionsize">Connection size:</string>
+    <string name="listeningon">Waiting VPN listening</string>
+    <string name="error">[!] Error message: </string>
+    <string name="close">::: Connection Closed ::: </string>
+
+    <!--Connection-->
+    <string name="HTTPHeaderERROR">[!] HTTP Header app read error: </string>
+    <string name="HTTPHeaderreaderror">::: THREAD LOST :::</string>
+    <string name="closeD">Buffer Size</string>
+    <string name="errorC">[!] Error: </string>
+    <string name="Configurationsent">Configuration sent</string>
+    <string name="completesendsettings">Complete send settings</string>
+    <string name="PINGenerator">Ping generated: </string>
+    <string name="fingerprintID">ID Client Fingerprint: </string>
+    <string name="Estaok" translatable="false">HTTP/1.1 200 (OK) PROXY Connection Established</string>
+    <string name="EstaokVPN" translatable="false">::: HTTP/1.1 200 (OK) Connection Established :::</string>
+    <string name="verifynet" translatable="false">::: INTERNET CONNECTED :::</string>
+    <string name="Connectionpack">Packages: </string>
+    Connectionpack
+
+    <!--HTTProcessManager-->
+    <string name="getConfiguredPing">Seconds: </string>
+    <string name="destroyForcibly">[!] Destroy Forcibly!!!</string>
+    <string name="destroy">Destroy</string>
+    <string name="Reconectando">Sending</string>
+    <string name="Desconectado">Disconnected!!!</string>
+
+    <string name="enter_custom_dns">Enter the DNS Server</string>
+    <string name="activate_udp">Enable UDP</string>
+    <string name="maskingIP">IP masking</string>
+    <string name="mblockIPexport">Block IP / PORT</string>
+    <string name="enter_valid_dns">Please enter a valid DNS Server</string>
+    <string name="creator_labelcreditos">Credits: UnknownDev</string>
+
+
+    <string-array name="inject_methods_arrays">
+        <item>Normal</item>
+        <item>Front Inject</item>
+        <item>Back Inject</item>
+    </string-array>
+    <string-array name="request">
+        <item>GET</item>
+        <item>POST</item>
+        <item>HEAD</item>
+        <item>OPTIONS</item>
+        <item>PUT</item>
+        <item>DELETE</item>
+        <item>TRACE</item>
+        <item>PATCH</item>
+    </string-array>
+    <string-array name="request_methods_arrays">
+        <item>CONNECT</item>
+        <item>GET</item>
+        <item>HEAD</item>
+        <item>OPTIONS</item>
+        <item>PATCH</item>
+        <item>DELETE</item>
+        <item>POST</item>
+        <item>PROPATCH</item>
+        <item>PUT</item>
+        <item>TRACE</item>
+    </string-array>
+    <string-array name="userAgent">
+        <item>Default</item>
+        <item>Firefox</item>
+        <item>Chrome</item>
+        <item>Opera Mini</item>
+        <item>Puffin</item>
+        <item>Safari</item>
+        <item>UCBrowser</item>
+    </string-array>
+
+    <string name="enter_message">Enter a message</string>
+    <string name="import_configuration">Import Configuration</string>
+    <string name="imported_configuration">Configuration imported successful!!!</string>
+
+    <string name="policy_title">Policy and privacy</string>
+    <string name="policy_text">
+        <![CDATA[
+            <p><strong>Important information read me.</strong></p>
+            <p>NicVPN: Apply a CheckMate to any firewalls, secure application Unblock websites, applications and content | Speed ​​up your connection | Keep your activities safe, secure and private.</p>
+            <p>Our application does not extract any type of information of any kind you are not interested in. For this reason our application for your security Google Play Store before an application is published or in each update, in the application store they verify they perform a validation of the source code of the application and then it is approved, Google does not allow applications that extract information, viruses, scan, hacks or any other type of these from these.</p>
+            <br/>
+            <p>For this reason, if you receive a third party message, ignore this type of comments, also remembering with the help of Google Play Protect, it is an excellent detector of applications Google Play Store is already active by default on all phones.</p>
+            <br/>
+            <p><strong>Google Play Protect:</strong></p>
+            <p>* Check the security of Google Play Store apps before downloading them.</p>
+            <p>* Scans device activity to detect potentially harmful apps from other sources, known as malicious software.</p>
+            <p>* Warns you about any potentially harmful apps it has found and removes it from your device.</p>
+            <p>* Alerts you to any app that violates our Unwanted Software Policy by hiding or misrepresenting important information.</p>
+            <p>* It sends you privacy alerts about apps that can obtain user permissions to access your personal information, which constitutes a breach of our Developer Policy.</p>
+            <p>More information:</p>
+            <p>https://support.google.com/accounts/answer/2812853</p>
+        ]]>
+    </string>
+    <string name="ping_latency">AVG Network Latency:</string>
+    <string name="file_imported">The selected configuration is already imported</string>
+    <string name="imported_configuration_active">Payload cannot be generated because it has an Active Imported configuration</string>
+    <string name="connection_active">Connection Active</string>
+    <string name="connection_active_msg">You cannot access the settings with an active connection</string>
+    <string name="facebook_app_id">EAAFO2pzQzCwBAAyEZACiHPqUOzabZCJAbOjgyZALmC65ERxk6ZAFqF5WDzvUEOZCi7AKCqi24YcVRkJJRO2mQVZCnkVcZBAbZAHNBKkjcYTOhq4SvWOdl2XkfLZARZBMMiEmZBFVlYC5Ll9lQ22ivo6XihCwQgrvrfdaoQ3ZCLwrnvETJo3qFm2oFyFO</string>
+
+    <string name="sendinjectormethod">Sending Injection Method Waiting...</string>
+    <string name="stopinjectormethod">Stopping Injection Method Proxy...</string>
+
+    <!-- OpenVPN Related Strings -->
+    <string name="status_connected">Connected</string>
+    <string name="status_preparing">Preparing</string>
+    <string name="status_retry">Retrying connection</string>
+    <string name="status_wait">Waiting for network</string>
+    <string name="status_auth">Authenticating</string>
+    <string name="status_connecting">Connecting</string>
+    <string name="status_disconnected">Disconnected</string>
+    <string name="status_auth_failed">Authentication Failed</string>
+
+    <string name="todo">TODO</string>
+    <string name="account_type">Account Type</string>
+    <string name="default_acount_type">Free</string>
+    <string name="devices">Devices</string>
+    <string name="valid_until">Valid Until</string>
+    <string name="my_account">My Account</string>
+    <string name="default_devices">1/1 Devices</string>
+    <string name="default_valid_until">XX.XX.XXXX</string>
+    <string name="restore_purchase">Restore Purchase</string>
+
+    <string name="company">Company</string>
+    <string name="contact">Contact</string>
+    <string name="rate_the_app">Rate the app</string>
+    <string name="love_this_app">Love this app? Let us Know in the Google Play Store how we can make it even better</string>
+    <string name="share">Share</string>
+    <string name="share_the_app">Share the app with your friends and family</string>
+    <string name="version">Version</string>
+    <string name="signin_to_continue">Sign In to continue</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="dnt_have_acc">Don\'t have an account?</string>
+    <string name="welcomeback">Welcome</string>
+    <string name="update">UPDATE</string>
+    <string name="email">Email</string>
+    <string name="website">Website</string>
+    <string name="about">About Us</string>
+
+
+    <string name="no_keystore_cert_selected">You must select a User certificate</string>
+    <string name="no_ca_cert_selected">You must select a CA certificate</string>
+    <string name="no_error_found">No error found</string>
+    <string name="ipv4_format_error">Error parsing the IPv4 address</string>
+    <string name="custom_route_format_error">Error parsing the custom routes</string>
+    <string name="route_rejected">Route rejected by Android</string>
+    <string name="cancel_connection">YES</string>
+    <string name="title_cancel">Cancellation!</string>
+    <string name="cancel_connection_query">Are You Sure To Cancel/Disconnect Connection?</string>
+    <string name="tun_error_helpful">On some custom ICS images the permission on /dev/tun might be wrong, or the tun module might be missing completely. For CM9 images try the fix ownership option under general settings</string>
+    <string name="tun_open_error">Failed to open the tun interface</string>
+    <string name="last_openvpn_tun_config">Opening tun interface:</string>
+    <string name="local_ip_info">Local IPv4: %1$s/%2$d IPv6: %3$s MTU: %4$d</string>
+    <string name="dns_server_info">DNS Server: %1$s, Domain: %2$s</string>
+    <string name="routes_info_incl">Routes: %1$s %2$s</string>
+    <string name="routes_info_excl">Routes excluded: %1$s %2$s</string>
+    <string name="routes_debug">VpnService routes installed: %1$s %2$s</string>
+    <string name="ip_not_cidr">Got interface information %1$s and %2$s, assuming second address is peer address of remote. Using /32 netmask for local IP. Mode given by OpenVPN is \"%3$s\".</string>
+    <string name="route_not_cidr">Cannot make sense of %1$s and %2$s as IP route with CIDR netmask, using /32 as netmask.</string>
+    <string name="route_not_netip">Corrected route %1$s/%2$s to %3$s/%2$s</string>
+    <string name="keychain_access">Cannot access the Android Keychain Certificates. This can be caused by a firmware upgrade or by restoring a backup of the app/app settings. Please edit the VPN and reselect the certificate under basic settings to recreate the permission to access the certificate.</string>
+    <string name="copied_entry">Copied log entry to clip board</string>
+    <string name="opentun_no_ipaddr">Refusing to open tun device without IP information</string>
+    <string name="pkcs12_file_encryption_key">PKCS12 File Encryption Key</string>
+    <string name="private_key_password">Private Key Password</string>
+    <string name="password">Password</string>
+    <string name="building_configration">Building configuration…</string>
+    <string name="netstatus">Network Status: %s</string>
+    <string name="keychain_nocacert">No CA Certificate returned while reading from Android keystore. Authentication will probably fail.</string>
+    <string name="mobile_info">%10$s %9$s running on %3$s %1$s (%2$s), Android %6$s (%7$s) API %4$d, ABI %5$s, (%8$s)</string>
+    <string name="error_rsa_sign">Error signing with Android keystore key %1$s: %2$s</string>
+    <string name="error_extapp_sign">Error signing with external authenticator app (%3$s): %1$s: %2$s</string>
+    <string name="warn_no_dns">No DNS servers being used. Name resolution may not work. Consider setting custom DNS Servers. Please also note that Android will keep using your proxy settings specified for your mobile/Wi-Fi connection when no DNS servers are set.</string>
+    <string name="dns_add_error">Could not add DNS Server \"%1$s\", rejected by the system: %2$s</string>
+    <string name="ip_add_error">Could not configure IP Address \"%1$s\", rejected by the system: %2$s</string>
+    <string name="getproxy_error">Error getting proxy settings: %s</string>
+    <string name="using_proxy">Using proxy %1$s %2$s</string>
+    <string name="minidump_generated">OpenVPN crashed unexpectedly. Please consider using the send Minidump option in the main menu</string>
+    <string name="notifcation_title">NicVPN - %s</string>
+    <string name="notifcation_title_ssh">SSH - %s</string>
+    <string name="session_ipv4string">%1$s - %2$s</string>
+    <string name="session_ipv6string">%1$s - %3$s, %2$s</string>
+    <string name="state_connecting">Connecting</string>
+    <string name="state_wait">Waiting for server reply</string>
+    <string name="state_auth">Authenticating</string>
+    <string name="state_get_config">Getting client configuration</string>
+    <string name="state_assign_ip">Assigning IP addresses</string>
+    <string name="state_add_routes">Adding routes</string>
+    <string name="state_connected">Connected</string>
+    <string name="state_disconnected">Disconnect</string>
+    <string name="state_reconnecting">Reconnecting</string>
+    <string name="state_exiting">Exiting</string>
+    <string name="state_noprocess">Not running</string>
+    <string name="state_resolve">Resolving host names</string>
+    <string name="state_tcp_connect">Connecting (TCP)</string>
+    <string name="state_auth_failed">Authentication failed</string>
+    <string name="state_nonetwork">Waiting for usable network</string>
+    <string name="state_waitorbot">Waiting for Orbot to start</string>
+    <string name="statusline_bytecount">↓%2$s %1$s - ↑%4$s %3$s</string>
+    <string name="notifcation_title_notconnect">Not connected</string>
+    <string name="jelly_keystore_alphanumeric_bug">Some versions of Android 4.1 have problems if the name of the keystore certificate contains non alphanumeric characters (like spaces, underscores or dashes). Try to reimport the certificate without special characters</string>
+    <string name="built_by">built by %s</string>
+    <string name="debug_build">debug build</string>
+    <string name="official_build">official build</string>
+    <string name="prompt">%1$s attempts to control %2$s</string>
+    <string name="remote_warning">By proceeding, you are giving the application permission to completely control OpenVPN for Android and to intercept all network traffic.<b>Do NOT accept unless you trust the application.</b> Otherwise, you run the risk of having your data compromised by malicious software."</string>
+    <string name="remote_trust">I trust this application.</string>
+    <string name="screenoff_pause">Pausing connection in screen off state: less than %1$s in %2$ss</string>
+    <string name="screen_nopersistenttun">Warning: Persistent tun not enabled for this VPN. Traffic will use the normal Internet connection when the screen is off.</string>
+    <string name="pauseVPN">Pause VPN</string>
+    <string name="resumevpn">Resume VPN</string>
+    <string name="state_userpause">VPN pause requested by user</string>
+    <string name="state_screenoff">VPN paused - screen off</string>
+    <string name="cannotparsecert">Cannot display certificate information</string>
+    <string name="permission_icon_app">Icon of app trying to use OpenVPN for Android</string>
+    <string name="logCleared">Log cleared.</string>
+    <string name="keyChainAccessError">KeyChain Access error: %s</string>
+    <string name="unhandled_exception">Unhandled exception: %1$s\n\n%2$s</string>
+    <string name="unhandled_exception_context">%3$s: %1$s\n\n%2$s</string>
+    <string name="ip_looks_like_subnet">Vpn topology \"%3$s\" specified but ifconfig %1$s %2$s looks more like an IP address with a network mask. Assuming \"subnet\" topology.</string>
+    <string name="allowed_vpn_apps_info">Allowed VPN apps: %1$s</string>
+    <string name="disallowed_vpn_apps_info">Disallowed VPN apps: %1$s</string>
+    <string name="app_no_longer_exists">Package %s is no longer installed, removing it from app allow/disallow list</string>
+    <string name="remote_no_server_selected">You need to define and enable at least one remote server.</string>
+    <string name="ignore_multicast_route">Ignoring multicast route: %s</string>
+    <string name="service_restarted">Restarting OpenVPN Service (App crashed probably crashed or killed for memory pressure)</string>
+    <string name="no_allowed_app">No allowed app added. Adding ourselves (%s) to have at least one app in the allowed app list to not allow all apps</string>
+    <string name="abi_mismatch">Preferred native ABI precedence of this device (%1$s) and ABI reported by native libraries (%2$s) mismatch</string>
+    <string name="permission_revoked">VPN permission revoked by OS (e.g. other VPN program started), stopping VPN</string>
+    <string name="missing_tlsauth">tls-auth file is missing</string>
+    <string name="missing_certificates">Missing user certificate or user certifcate key file</string>
+    <string name="missing_ca_certificate">Missing CA certificate</string>
+    <string name="reread_log">Reread (%d) log items from log cache file</string>
+    <string name="state_waitconnectretry">Waiting %ss seconds between connection attempt</string>
+    <string name="deprecated_tls_remote">Config uses option tls-remote that was deprecated in 2.3 and finally removed in 2.4</string>
+    <string name="bits_per_second">%.0f bit/s</string>
+    <string name="kbits_per_second">%.1f kbit/s</string>
+    <string name="mbits_per_second">%.1f Mbit/s</string>
+    <string name="gbits_per_second">%.1f Gbit/s</string>
+    <string name="volume_byte">%.0f B</string>
+    <string name="volume_kbyte">%.1f kB</string>
+    <string name="volume_mbyte">%.1f MB</string>
+    <string name="volume_gbyte">%.1f GB</string>
+    <string name="channel_name_background">Connection statistics</string>
+    <string name="channel_description_background">Ongoing statistics of the established OpenVPN connection</string>
+    <string name="channel_name_status">Connection status change</string>
+    <string name="channel_description_status">Status changes of the OpenVPN connection (Connecting, authenticating,…)</string>
+    <string name="all_app_prompt">An external app tries to control %s. The app requesting access cannot be determined. Allowing this app grants ALL apps access.</string>
+    <string name="openvpn3_nostatickeys">The OpenVPN 3 C++ implementation does not support static keys. Please change to OpenVPN 2.x under general settings.</string>
+    <string name="openvpn3_pkcs12">Using PKCS12 files directly with OpenVPN 3 C++ implementation is not supported. Please import the pkcs12 files into the Android keystore or change to OpenVPN 2.x under general settings.</string>
+    <string name="openvpn3_socksproxy">OpenVPN 3 C++ implementation does not support connecting via Socks proxy</string>
+    <string name="no_orbotfound">Orbot application cannot be found. Please install Orbot or use manual Socks v5 integration.</string>
+    <string name="error_orbot_and_proxy_options">Cannot use extra http-proxy-option statement and Orbot integration at the same time</string>
+    <string name="channel_name_userreq">User interaction required</string>
+    <string name="channel_description_userreq">OpenVPN connection requires a user input, e.g. two factor authentication</string>
+    <string name="openurl_requested">Open URL to continue VPN authentication</string>
+    <string name="crtext_requested">Answer challenge to continue VPN authentication</string>
+    <string name="state_auth_pending">Authentication pending</string>
+    <string name="unknown_state">Unknown state</string>
+
+    <string name="automatic_server_name">AUTO</string>
+    <string name="automatic_server_desc">Automatic Server</string>
+
+    <string name="fastdns_messange"><p><strong>FastDNS Beta:</strong></p>
+        <p><strong>Our connection method both as a server and as a client is on a beta basis at times our servers can be terribly slow or like many errors, we are currently working hard to make it very fast, and finish our beta phase. Possibly our servers are slow due to large numbers of users connected, soon we will have fast servers that support large numbers of users.</strong></p></string>
+    <string name="dnstt_messange">This connection method can be terribly slow, you can navigate a maximum of 2-3 mb of velocity. The recommended mode that is used is the connection only if it is the only method that works for you. (Use our VPN Segments tool to speed it up a little more, these values will depend on your connection, we recommend using a value between 1 and 20, this option is found in the VPN configuration)</string>
+
+    <string name="fix_background_service_title">Battery Optimization</string>
+    <string name="fix_background_service_message">We recommend removing the battery restrictions this may cause disconnection in the background after a long time, remove the restrictions now to avoid disconnection from the VPN -> Don\'t optimize) or simply tap here!</string>
+    <string name="settings_warning_not_marshmallow">The android device is not a Marshmallow</string>
+
+
+    <string name="app_widget_name">Switch</string>
+    <string name="app_tile_name">Switch</string>
+    <string name="app_tile_first_use">First use of this feature, please use the app to add server</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="migration_success">Data migration success!</string>
+    <string name="migration_fail">Data migration failed!</string>
+
+    <!-- Notifications -->
+    <string name="notification_action_stop_v2ray">Stop</string>
+    <string name="toast_permission_denied">Unable to obtain the permission</string>
+    <string name="notification_action_more">click for more</string>
+    <string name="toast_services_start">Start Services</string>
+    <string name="toast_services_stop">Stop Services</string>
+    <string name="toast_services_success">Start Services Success</string>
+    <string name="toast_services_failure">Start Services Failure</string>
+
+    <!--ServerActivity-->
+    <string name="title_server">Configuration file</string>
+    <string name="menu_item_add_config">Add config</string>
+    <string name="menu_item_save_config">Save config</string>
+    <string name="menu_item_del_config">Delete config</string>
+    <string name="menu_item_import_config_qrcode">Import config from QRcode</string>
+    <string name="menu_item_import_config_clipboard">Import config from Clipboard</string>
+    <string name="menu_item_import_config_manually_vmess">Type manually[Vmess]</string>
+    <string name="menu_item_import_config_manually_ss">Type manually[Shadowsocks]</string>
+    <string name="menu_item_import_config_manually_socks">Type manually[Socks]</string>
+    <string name="menu_item_import_config_custom">custom config</string>
+    <string name="menu_item_import_config_custom_clipboard">Import custom config from Clipboard</string>
+    <string name="menu_item_import_config_custom_local">Import custom config from locally</string>
+    <string name="menu_item_import_config_custom_url">Import custom config from URL</string>
+    <string name="menu_item_import_config_custom_url_scan">Import custom config scan URL</string>
+    <string name="del_config_comfirm">Confirm delete？</string>
+    <string name="server_lab_remarks">remarks</string>
+    <string name="server_lab_address">address</string>
+    <string name="server_lab_port">port</string>
+    <string name="server_lab_id">id</string>
+    <string name="server_lab_alterid">alterId</string>
+    <string name="server_lab_security">security</string>
+    <string name="server_lab_network">Network</string>
+    <string name="server_lab_more_function">more function</string>
+    <string name="server_lab_head_type">head type</string>
+    <string name="server_lab_mode_type">gRPC mode</string>
+    <string name="server_lab_request_host">request host(host/ws host/h2 host)/QUIC security</string>
+    <string name="server_lab_path">path(ws path/h2 path)/QUIC key/kcp seed/gRPC serviceName</string>
+    <string name="server_lab_stream_security">tls</string>
+    <string name="server_lab_allow_insecure">allowInsecure</string>
+    <string name="server_lab_address3">address</string>
+    <string name="server_lab_port3">port</string>
+    <string name="server_lab_id3">password</string>
+    <string name="server_lab_security3">security</string>
+    <string name="toast_success">Success</string>
+    <string name="toast_failure">Failure</string>
+    <string name="toast_none_data">There is nothing</string>
+    <string name="toast_incorrect_protocol">Incorrect protocol</string>
+    <string name="toast_decoding_failed">Decoding failed</string>
+    <string name="title_file_chooser">Select a Config File</string>
+    <string name="toast_require_file_manager">Please install a File Manager.</string>
+    <string name="server_customize_config">Customize Config</string>
+    <string name="toast_config_file_invalid">Invalid Config</string>
+    <string name="server_lab_content">Content</string>
+    <string name="toast_none_data_clipboard">There is no data in the clipboard</string>
+    <string name="toast_invalid_url">Invalid URL</string>
+    <string name="server_lab_need_inbound">Ensure inbound has socks=10808,http=10809</string>
+
+    <!-- PerAppProxyActivity -->
+    <string name="msg_dialog_progress">Loading</string>
+    <string name="menu_item_select_all">Select all</string>
+    <string name="msg_enter_keywords">Enter keywords</string>
+    <string name="switch_bypass_apps_mode">Bypass Mode</string>
+    <string name="menu_item_select_proxy_app">Auto select proxy app</string>
+    <string name="msg_downloading_content">Downloading content</string>
+
+
+    <!-- Preferences -->
+    <string name="title_settings">Settings</string>
+    <string name="title_advanced">Advanced Settings</string>
+    <string name="title_vpn_settings">VPN Settings</string>
+    <string name="title_pref_per_app_proxy">Per-app proxy</string>
+    <string name="summary_pref_per_app_proxy">Per-app proxy mode only support Android 5.0 Lollipop or higher</string>
+
+    <string name="title_pref_mux_enabled">Enable Mux</string>
+    <string name="summary_pref_mux_enabled">Enable maybe speed up network and switch network maybe flash</string>
+
+    <string name="title_pref_speed_enabled">Enable SpeedMeter</string>
+    <string name="summary_pref_speed_enabled">Display current speed in the notification.\nNotification icon would change based on
+        usage.</string>
+
+    <string name="title_pref_local_dns_enabled">Enable local DNS</string>
+    <string name="summary_pref_local_dns_enabled">DNS processed by core‘s DNS module (Recommended, if need routing Bypassing LAN and
+        mainland address)</string>
+
+    <string name="title_pref_fake_dns_enabled">Enable FakeDNS</string>
+    <string name="summary_pref_fake_dns_enabled">local DNS returns fake IP address (faster, but it may not work for some apps)</string>
+
+    <string name="title_pref_forward_ipv6">IPv6 Enable</string>
+    <string name="summary_pref_forward_ipv6">Redirect IPv6 traffic to remote.</string>
+
+    <string name="title_pref_routing">Routing</string>
+    <string name="title_pref_routing_domain_strategy">Domain strategy</string>
+    <string name="title_pref_routing_mode">Routing mode</string>
+    <string name="title_pref_routing_custom">Custom routing</string>
+
+    <string name="title_pref_donate">Donate</string>
+    <string name="summary_pref_donate">Donate developer</string>
+    <string name="donate_detail">Add some experimental advanced features</string>
+
+    <string name="title_pref_remote_dns">Remote DNS (Optional)</string>
+    <string name="summary_pref_remote_dns">DNS</string>
+
+    <string name="title_pref_vpn_dns">DNS Resolver (IPv4/v6)</string>
+
+    <string name="title_pref_domestic_dns">Domestic DNS (Optional)</string>
+    <string name="summary_pref_domestic_dns">DNS</string>
+
+    <string name="title_pref_socks_port">SOCKS5 proxy port</string>
+    <string name="summary_pref_socks_port">SOCKS5 proxy port</string>
+
+    <string name="title_pref_http_port">HTTP proxy port</string>
+    <string name="summary_pref_http_port">HTTP proxy port</string>
+
+    <string name="title_pref_local_dns_port">Local DNS port</string>
+    <string name="title_concurrency">Segments VPN</string>
+    <string name="summary_segments">This helps to send more requests between client and server according to your ISP this can speed up the connection, We recommend 1 to 20 segment by default this 6, when putting a lot it can be slower or cut the connection.</string>
+    <string name="summary_pref_local_dns_port">Local DNS port</string>
+
+    <string name="title_pref_feedback">Feedback</string>
+    <string name="summary_pref_feedback">Feedback enhancements or bugs to GitHub</string>
+    <string name="summary_pref_tg_group">Join Telegram Group</string>
+    <string name="toast_tg_app_not_found">Telegram app not found</string>
+
+    <string name="title_pref_promotion">Promotion</string>
+    <string name="summary_pref_promotion">Promotion,click for details(Donation can be removed)</string>
+
+    <string name="title_mode">Mode</string>
+    <string name="title_mode_help">Click me for more help</string>
+
+    <string name="donate_error_setup">Error Setup:</string>
+    <string name="donate_error_inventory">Error querying inventory</string>
+    <string name="donate_error_purchase1">Error Purchase:</string>
+    <string name="donate_error_purchase2">Error Purchase,Authenticity verification failed.</string>
+    <string name="donate_success_purchase">Thank you for your donation!</string>
+    <string name="donate_item_click">Donate</string>
+    <string name="donate_item_paypal">Paypal</string>
+
+    <string name="title_logcat">Logcat</string>
+    <string name="logcat_copy">Copy</string>
+    <string name="logcat_delete">Delete</string>
+    <string name="title_export_all">Export non-custom configs to clipboard</string>
+    <string name="title_sub_setting">Subscription setting</string>
+    <string name="sub_setting_remarks">remarks</string>
+    <string name="sub_setting_url">url</string>
+    <string name="title_sub_update">Update subscription</string>
+    <string name="title_ping_all_server">Tcping all configuration</string>
+
+    <string name="tasker_start_service">Start Service</string>
+    <string name="tasker_setting_confirm">Confirm</string>
+
+    <string name="routing_settings_title">Routing Settings</string>
+    <string name="routing_settings_tips">Separated by commas(,),remember to save</string>
+    <string name="routing_settings_save">Save</string>
+    <string name="routing_settings_delete">Clear</string>
+    <string name="routing_settings_scan_replace">Scan and replace</string>
+    <string name="routing_settings_scan_append">Scan and append</string>
+    <string name="routing_settings_default_rules"> set default routing rules</string>
+
+    <string name="connection_test_pending">Check Connectivity</string>
+    <string name="connection_test_testing">Testing…</string>
+    <string name="connection_test_available">Success: HTTPS handshake took %dms</string>
+    <string name="connection_test_error">Fail to detect internet connection: %s</string>
+    <string name="connection_test_fail">Internet Unavailable</string>
+    <string name="connection_test_error_status_code">Error code: #%d</string>
+    <string name="connection_connected">Connected, tap to check connection</string>
+    <string name="connection_not_connected">Not connected</string>
+
+    <string-array name="share_method">
+        <item>QRcode</item>
+        <item>Export to clipboard</item>
+        <item>Export full configuration to clipboard</item>
+    </string-array>
+
+    <string-array name="routing_tag">
+        <item>proxy URL or IP</item>
+        <item>direct URL or IP</item>
+        <item>blocked URL or IP</item>
+    </string-array>
+
+    <string-array name="routing_mode">
+        <item>Global</item>
+        <item>Bypassing the LAN address</item>
+        <item>Bypass mainland address</item>
+        <item>Bypassing LAN and mainland address</item>
+    </string-array>
+    <string name="title_pref_proxy_sharing_enabled">Proxy sharing</string>
+    <string name="summary_pref_proxy_sharing_enabled">Bind inbound to 0.0.0.0</string>
+    <string name="toast_warning_pref_proxysharing">Other devices can connect to proxy by your ip address through socks/http protocol\nHttp  Proxy: http://yourIP:10809\nSocks Proxy: socks(4/5)://yourIP:10808\nOnly enable in trusted network to avoid unauthorized connection</string>
+    <string name="toast_warning_pref_proxysharing_short">Proxy sharing enabled\nMake sure you are in a trusted network</string>
+    <string name="toast_malformed_josn">Config malformed</string>
+
+    <string-array name="mode_entries">
+        <item>VPN</item>
+        <item>Proxy only</item>
+    </string-array>
+
+    <string name="reconnect">Please reconnect the connection</string>
+    <string name="MSG_OPEN_FILE_MANUALLY">Error importing this file, this error will be corrected in the next update....</string>
+    <string name="select_server">Select Server</string>
+    <string name="privacy_policy">Privacy Policy</string>
+
+
+
+    <string name="menu_item_import_config_manually_vless">Type manually[VLESS]</string>
+
+    <string name="menu_item_import_config_manually_trojan">Type manually[Trojan]</string>
+
+    <string name="server_lab_stream_fingerprint" translatable="false">uTLS</string>
+    <string name="server_lab_stream_alpn" translatable="false">alpn</string>
+
+    <string name="server_lab_sni">SNI</string>
+
+    <string name="server_lab_id4">Password(Optional)</string>
+    <string name="server_lab_security4">User(Optional)</string>
+    <string name="server_lab_encryption">encryption</string>
+    <string name="server_lab_flow">flow</string>
+
+    <string name="server_lab_request_host6">Host(SNI)(Optional)</string>
+    <string name="toast_asset_copy_failed">File copy failed, please use File Manager</string>
+    <string name="menu_item_add_file">Add files</string>
+    <string name="menu_item_download_file">Download files</string>
+
+
+    <string name="menu_item_search">Search</string>
+    <string name="menu_item_export_proxy_app">Export to Clipboard</string>
+    <string name="menu_item_import_proxy_app">Import from Clipboard</string>
+
+
+
+    <string name="title_pref_sniffing_enabled">Enable Sniffing</string>
+    <string name="summary_pref_sniffing_enabled">Try sniff domain from the packet (default on)</string>
+
+    <string name="title_pref_prefer_ipv6">Prefer IPv6</string>
+    <string name="summary_pref_prefer_ipv6">Prefer IPv6 address and routes</string>
+
+    <string name="title_pref_allow_insecure">allowInsecure</string>
+    <string name="summary_pref_allow_insecure">When TLS, the default allowInsecure</string>
+
+
+
+    <string name="title_pref_confirm_remove">Delete configuration file confirmation</string>
+    <string name="summary_pref_confirm_remove">Whether to delete the configuration file requires a second confirmation by the user</string>
+
+
+
+    <string name="title_core_loglevel">Log Level</string>
+
+    <string name="title_language">Language</string>
+
+
+    <string name="logcat_clear">Clear</string>
+    <string name="title_service_restart">Service restart</string>
+    <string name="title_del_all_config">Delete all config</string>
+    <string name="title_del_invalid_config">Delete invalid config(Test first)</string>
+    <string name="sub_setting_enable">enable update</string>
+    <string name="title_real_ping_all_server">Real delay all configuration</string>
+    <string name="title_user_asset_setting">Geo asset files</string>
+    <string name="title_sort_by_test_results">Sorting by test results</string>
+    <string name="title_filter_config">Filter configuration file</string>
+    <string name="filter_config_all">All subscription groups</string>
+    <string name="time_left">Time Left:</string>
+    <string name="more_time">More Time</string>
+    <string name="no">NO</string>
+
+
+</resources>
+

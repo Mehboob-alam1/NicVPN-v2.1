@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/maps"
+    android:fitsSystemWindows="true"
+    tools:context="com.nicadevelop.nicavpn.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:id="@+id/sys_data"
+        app:elevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tool"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <LinearLayout
+                android:id="@+id/men_btn_click"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/menu_btn"
+                android:layout_width="25dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/ic_menu"
+                android:contentDescription="@string/app_name_full"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/vip_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_vip_white"
+                android:contentDescription="@string/app_name_full"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="@color/white" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/tool" />
+    </RelativeLayout>
+
+
+
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/appbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="?attr/colorPrimary"-->
+<!--            app:titleTextColor="@color/white">-->
+
+<!--        </androidx.appcompat.widget.Toolbar>-->
+
+<!--        -->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/sys_data"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.appodeal.ads.BannerView
+            android:id="@+id/appodealBannerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <com.nicadevelop.nicavpn.NonSwipeableViewPager
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!--        <androidx.viewpager.widget.ViewPager-->
+        <!--            android:id="@+id/container"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:visibility="visible"/>-->
+
+        <RelativeLayout
+            android:id="@+id/main_vpn_mode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/overColor"
+                android:foregroundGravity="center">
+
+                <Button
+                    android:id="@+id/btnStartVpnMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:animateLayoutChanges="true"
+                    android:text="@string/payload_start" />
+
+                <TextView
+                    android:id="@+id/browser3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:outlineAmbientShadowColor="@color/design_default_color_error"
+                    android:text="Powered By NicVPN"
+                    android:textAllCaps="false" />
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

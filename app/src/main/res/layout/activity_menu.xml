@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/maps"/>
+
+    <ImageView
+        android:id="@+id/cross_icon"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/iap_close_white_big"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/appicon"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cross_icon"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:fontFamily="@font/bold"
+        android:text="NicVPN"
+        android:textColor="#E8E4E4"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_logo" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+        <TextView
+            android:id="@+id/btn_myAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/normal"
+            android:text="My Account"
+            android:textColor="#E8E4E4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_upgradePlan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/normal"
+            android:text="Upgrade My Plan"
+            android:textColor="#E8E4E4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_tellFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/normal"
+            android:text="Tell your friends"
+            android:textColor="#E8E4E4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_proxyApps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/normal"
+            android:text="Selected Proxy Apps"
+            android:textColor="#E8E4E4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_contactUS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/normal"
+            android:text="Contact us"
+            android:textColor="#E8E4E4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_aboutUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/normal"
+            android:text="About us"
+            android:textColor="#E8E4E4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/normal"
+            android:text="Privacy Policy"
+            android:textColor="#E8E4E4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/normal"
+            android:text="Settings"
+            android:textColor="#E8E4E4"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

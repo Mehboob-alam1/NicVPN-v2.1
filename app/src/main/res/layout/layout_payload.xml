@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/spPayloadServerPortCont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/server_label" />
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/open_server_list"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:background="@drawable/shape_rounded_light_grey_bg"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingVertical="5dp">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/flag_icon"-->
+<!--                    android:layout_width="30dp"-->
+<!--                    android:layout_height="15dp"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:scaleY="1.2"-->
+<!--                    android:src="@drawable/germany" />-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/location_globe_2"-->
+<!--                    android:layout_width="10dp"-->
+<!--                    android:layout_height="10dp"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginEnd="20dp"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:rotation="90"-->
+<!--                    android:src="@drawable/next_arrrow" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/server_country"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:fontFamily="@font/montserrat"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:text="@string/select_server"-->
+<!--                    android:textColor="@color/blue"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:textStyle="bold" />-->
+<!--            </RelativeLayout>-->
+
+
+
+
+<!--            <Spinner-->
+<!--                android:id="@+id/spPayloadServer"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="58dp"-->
+<!--                android:spinnerMode="dialog"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="10dp" />-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/server_port_label" />
+
+            <Spinner
+                android:id="@+id/spPayloadServerPort"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:spinnerMode="dialog"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/input_layout_payload"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColorHint="@color/colorAccent"
+        app:boxStrokeColor="@color/colorAccent">
+
+        <EditText
+            android:id="@+id/etPayload"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="top"
+            android:hint="@string/payload_field"
+            android:inputType="text|textMultiLine" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnHttpRequestStart"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:background="@drawable/vpn_disconnected_icon"
+        android:layout_gravity="center_horizontal"/>
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/btnHttpRequestStart"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:textColor="#FD0000"-->
+<!--        android:background="@drawable/custom_button"-->
+<!--        android:text="@string/payload_start" />-->
+
+
+
+</LinearLayout>

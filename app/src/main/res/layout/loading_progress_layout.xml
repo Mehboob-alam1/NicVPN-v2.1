@@ -1,0 +1,53 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/textDialog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Loading Servers..."
+        android:textColor="#000"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textDialog"
+        android:layout_marginTop="20dp"
+        android:layout_centerInParent="true"
+
+        >
+
+        <TextView
+            android:id="@+id/textDialog1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please wait!"
+            android:textColor="#6E6262"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/imageDialog"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:layout_marginRight="18dp"
+            />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageDialog"
+            android:indeterminate="true"
+            android:layout_alignParentLeft="true"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="visible"
+            android:indeterminateTint="#536DFE"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

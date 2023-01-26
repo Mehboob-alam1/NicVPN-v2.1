@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#23253a</color>
+    <color name="colorPrimaryDark">#23253a</color>
+    <color name="colorPrimarynegro">#23253a</color>
+    <color name="colorAccent">#23253a</color>
+    <color name="overColor">#5A5A5A</color>
+    <color name="red">#FD0000</color>
+    <color name="colorsfunds">#DFDFDF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorgreen">#5D4EFB</color>
+    <color name="gray_mid">#c5c5c5</color>
+    <color name="text_color">#fff</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="cardBackground">#BDBDBD</color>
+
+    <color name="colorPrimary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="primary">#1EA1FF</color>
+    <color name="primary_focused">#0048FF</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="colorPing">#185534</color>
+    <color name="warning_text">#FF9909</color>
+    <color name="colorSubscription">#247BA0</color>
+
+    <color name="colorSelected">#F2F7FA</color>
+    <color name="colornonSelected">#E91E63</color>
+
+
+
+
+
+
+
+
+
+    <color name="colorPingRed">#FF0099</color>
+    <color name="colorUnselected">#999999</color>
+    <color name="colorBlack">#212121</color>
+
+
+    <color name="colorBg">#FFFFFF</color>
+    <color name="colorText">#000000</color>
+
+    <color name="colorPrimaryByDark">#2B2B2B</color>
+    <color name="colorPrimaryDarkByDark">#161616</color>
+    <color name="colorAccentByDark">#12976F</color>
+    <color name="colorBgByDark">#252525</color>
+    <color name="colorTextByDark">#CCCCCC</color>
+
+
+</resources>

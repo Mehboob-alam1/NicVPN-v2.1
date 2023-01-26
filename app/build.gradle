@@ -1,0 +1,224 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.michaelrocks.paranoid'
+apply plugin: 'top.niunaijun.blackobfuscator'
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
+
+android {
+    signingConfigs {
+        test {
+            keyAlias 'diamproxy'
+            keyPassword 'yahoo410'
+            storePassword 'yahoo410'
+            storeFile file('D:\\Code work\\Tunnel Otros Codigos\\todo\\diamproxymodulo\\diamproxy\\app\\keystore\\DiamProxy.jks')
+        }
+    }
+    sourceSets {
+        main.res.srcDirs = ['src/main/res', 'src/other_variant_source/res']
+    }
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def version = variant.versionName
+            def buildType = variant.buildType.name
+            def buildName = "Rel"
+            if (buildType == 'debug') {
+                buildName = "dev"
+            }
+            outputFileName = "Nic-VPN-${version}.apk"
+        }
+    }
+
+    BlackObfuscator {
+        enabled true
+        depth 2
+        obfClass = ["com.nicadevelop.nicavpn.MainActivity",
+                    "com.nicadevelop.nicavpn.Constants", "com.nicadevelop.nicavpn.tools.Utils",
+                    "com.nicadevelop.nicavpn.MyApplication", "com.nicadevelop.nicavpn.Constant.Constant",
+                    "com.nicadevelop.nicavpn.tools.**", "com.nicadevelop.nicavpn.System",
+                    "com.nicadevelop.nicavpn.tools.Utils", "com.nicadevelop.nicavpn.tools.SafetyNetUtils",
+                    "com.nicadevelop.nicavpn.tools.RemovePackages", "com.nicadevelop.nicavpn.tools.RemovePackages",
+                    "com.nicadevelop.nicavpn.tools.LogUtil", "com.nicadevelop.nicavpn.tools.Base64",
+                    "com.nicadevelop.nicavpn.tools.sharedPreferences.ConfigCert", "com.nicadevelop.nicavpn.tools.sharedPreferences.DmPrefsKeys",]
+    }
+
+    compileSdkVersion 32
+
+    defaultConfig {
+        applicationId "com.nicadevelop.nicavpn"
+        minSdkVersion 22
+        targetSdkVersion 32
+        versionCode 101
+        versionName "1.5"
+        multiDexEnabled = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+        externalNativeBuild.ndkBuild {
+            abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+            arguments("-j${Runtime.getRuntime().availableProcessors()}")
+        }
+
+        ndk {
+            abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        disable 'MissingTranslation'
+        abortOnError false
+    }
+
+
+
+    defaultConfig {
+        buildConfigField("String", "SAFETYNET_API_KEY", "\"${safetynet_api_key}\"")
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField("boolean", "IS_VPN_MODE", "false")
+            buildConfigField("boolean", "IS_USE_ADS", "true")
+        }
+
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled true
+            shrinkResources true
+            buildConfigField("boolean", "IS_VPN_MODE", "false")
+            buildConfigField("boolean", "IS_USE_ADS", "true")
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+
+
+
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/notice.txt'
+
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    ndkVersion '20.0.5594570'
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation project(path: ':dnstunnel')
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'com.squareup.okio:okio:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'com.google.firebase:firebase-analytics:19.0.0'
+    implementation 'com.google.android.gms:play-services-ads:20.4.0'
+    implementation "com.google.android.gms:play-services-safetynet:17.0.1"
+    implementation 'com.scottyab:rootbeer-lib:0.0.7'
+    implementation 'com.google.firebase:firebase-core:19.0.0'
+    implementation 'com.google.firebase:firebase-config:21.0.1'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:28.0.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.irozon.justbar:justbar:1.0.1'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.github.florent37:runtime-permission-kotlin:1.1.2'
+
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.8'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
+    implementation 'com.github.kevinsawicki:http-request:6.0'
+    implementation 'com.github.marcoscgdev:DialogSheet:2.1.2'
+    implementation 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
+
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.explorestack:consent:1.0.5'
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.appodeal.ads:sdk:2.11.0.+'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.android.billingclient:billing:4.0.0'
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+    implementation 'io.github.inflationx:viewpump:2.0.3'
+    implementation 'com.codemybrainsout.rating:ratingdialog:1.0.8'
+
+
+    implementation group: 'io.michaelrocks', name: 'paranoid-gradle-plugin', version: '0.3.2'
+
+
+    //NEWW
+    // Androidx
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.2'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
+
+    // Androidx ktx
+    implementation 'androidx.activity:activity-ktx:1.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+
+    implementation 'com.tencent:mmkv-static:1.2.12'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'io.reactivex:rxjava:1.3.4'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
+    implementation 'me.dm7.barcodescanner:core:1.9.8'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
+    implementation 'com.github.jorgecastilloprz:fabprogresscircle:1.01@aar'
+    implementation 'me.drakeet.support:toastcompat:1.1.0'
+    implementation 'com.blacksquircle.ui:editorkit:2.1.1'
+    implementation 'com.blacksquircle.ui:language-base:2.1.1'
+    implementation 'com.blacksquircle.ui:language-json:2.1.1'
+    implementation 'androidx.work:work-runtime-ktx:2.7.0'
+}
+
+apply plugin: 'com.google.gms.google-services'
+

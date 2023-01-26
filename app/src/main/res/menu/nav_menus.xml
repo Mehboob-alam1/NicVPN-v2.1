@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/payload"
+            android:icon="@drawable/ic_payload"
+            android:title="@string/payload" />
+
+        <item
+            android:id="@+id/advance_settings_vpn"
+            android:icon="@drawable/ic_settingsvn"
+            android:title="@string/advance_settings_vpn" />
+
+        <item
+            android:id="@+id/advance_settings"
+            android:icon="@drawable/ic_build_config"
+            android:title="@string/advance_settings" />
+    </group>
+    <group
+        android:id="@+id/group3"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/MoreAPP"
+            android:icon="@drawable/ic_moreapps"
+            android:title="@string/idMoreAPP" />
+
+        <item
+            android:id="@+id/telegram"
+            android:icon="@drawable/telegram"
+            android:title="Telegram" />
+    </group>
+
+    <group
+        android:id="@+id/group4"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/start"
+            android:icon="@drawable/ic_stars"
+            android:title="@string/ic_stars" />
+        <!--        <item
+                    android:id="@+id/makeDonation"
+                    android:icon="@drawable/ic_baseline_payment_24"
+                    android:title="@string/makeDonation" />-->
+    </group>
+
+    <group
+        android:id="@+id/group6"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/about"
+            android:visible="false"
+            android:icon="@drawable/ic_inf"
+            android:title="@string/idabout" />
+
+        <item
+            android:id="@+id/policy"
+            android:icon="@drawable/ic_about"
+            android:title="@string/idPolicy" />
+
+        <item
+            android:id="@+id/terms"
+            android:icon="@drawable/ic_terms"
+            android:title="@string/idTerms" />
+
+        <item
+            android:id="@+id/license"
+            android:icon="@drawable/ic_license"
+            android:title="@string/idLicense" />
+
+    </group>
+
+</menu>
