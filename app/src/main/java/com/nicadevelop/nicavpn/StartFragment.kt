@@ -219,13 +219,12 @@ class StartFragment : Fragment() {
                             if (customSni != "") customSni = Constants.SNI_LABEL + customSni
 
 
-                            if (isDnsConnection(requireContext()) ||
-                                isDirectConnection(requireContext()) ||
-                                isFDnsConnection(requireContext()) ||
-                                isOpenVpnConnection(requireContext()) ||
-                                isUdpModeConnection(requireContext())
-                            )
-                                customSni = ""
+                            if (isDnsConnection(requireContext()) || isDirectConnection(
+                                    requireContext()
+                                ) || isFDnsConnection(requireContext()) || isOpenVpnConnection(
+                                    requireContext()
+                                ) || isUdpModeConnection(requireContext())
+                            ) customSni = ""
 
                             HTTProcessManager.setupConfig(
                                 requireContext(), Constants.DEF_CONFIG
@@ -479,12 +478,10 @@ class StartFragment : Fragment() {
                 rbDOH!!.isChecked = true
             }
 
-            txtEFCustomMsg!!.text =
-                DmSharedPreferences.getInstance(requireContext())!!
-                    .getString(
-                        DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG,
-                        DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG_DEFAULT
-                    )
+            txtEFCustomMsg!!.text = DmSharedPreferences.getInstance(requireContext())!!.getString(
+                    DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG,
+                    DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG_DEFAULT
+                )
         }
 
         rbUDP!!.setOnClickListener { v ->
@@ -524,15 +521,8 @@ class StartFragment : Fragment() {
                         charSequence.toString() == Constants.DEAFULT_HOST_NICKNAME -> {
                             charSequence = Constants.DEAFULT_HOST
                         }
-                        charSequence.toString() == Constants.DEFAULT_HOST_NICKNAME_2 -> {
-                            charSequence = Constants.DEAFULT_HOST_2
-                        }
-                        charSequence.toString() == Constants.DEFAULT_HOST_NICKNAME_3 -> {
-                            charSequence = Constants.DEAFULT_HOST_3
-                        }
                     }
-                    DmSharedPreferences
-                        .getInstance(requireContext())!!
+                    DmSharedPreferences.getInstance(requireContext())!!
                         .putString(DmPrefsKeys.SHARED_PREFERENCES_SNI, charSequence.toString())
                 }
             }
@@ -546,8 +536,7 @@ class StartFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!isImportFile(requireContext())) {
-                    DmSharedPreferences
-                        .getInstance(requireContext())!!
+                    DmSharedPreferences.getInstance(requireContext())!!
                         .putString(DmPrefsKeys.SHARED_PREFERENCES_DNS, s.toString())
                 }
             }
@@ -569,8 +558,7 @@ class StartFragment : Fragment() {
         etPayload!!.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (!isImportFile(requireContext())) {
-                    DmSharedPreferences
-                        .getInstance(requireContext())!!
+                    DmSharedPreferences.getInstance(requireContext())!!
                         .putString(DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG, s.toString())
                 }
             }
@@ -581,11 +569,8 @@ class StartFragment : Fragment() {
         })
 
         if (context != null) {
-            val ping = DmSharedPreferences
-                .getInstance(requireContext())!!
-                .getLong(
-                    DmPrefsKeys.SHARED_PREFERENCES_PING,
-                    DmPrefsKeys.SHARED_PREFERENCES_PING_DEFAULT
+            val ping = DmSharedPreferences.getInstance(requireContext())!!.getLong(
+                    DmPrefsKeys.SHARED_PREFERENCES_PING, DmPrefsKeys.SHARED_PREFERENCES_PING_DEFAULT
                 )
             val pingTmp = ping.toInt() / 1000
             seekBarPing!!.progress =
@@ -598,8 +583,7 @@ class StartFragment : Fragment() {
                 tvPing!!.text = ping.toString()
                 ping = (i * 1000) + DmPrefsKeys.SHARED_PREFERENCES_PING_DEFAULT
                 if (context != null) {
-                    DmSharedPreferences
-                        .getInstance(requireContext())!!
+                    DmSharedPreferences.getInstance(requireContext())!!
                         .putLong(DmPrefsKeys.SHARED_PREFERENCES_PING, ping.toLong())
                 }
             }
@@ -629,10 +613,7 @@ class StartFragment : Fragment() {
 
             spServerPort!!.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
+                    parent: AdapterView<*>?, view: View?, position: Int, id: Long
                 ) {
                     onServerPortSelectedListener(parent, position)
                 }
@@ -642,10 +623,7 @@ class StartFragment : Fragment() {
 
             spPayloadServerPort!!.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
+                    parent: AdapterView<*>?, view: View?, position: Int, id: Long
                 ) {
                     onServerPortSelectedListener(parent, position)
                 }
@@ -662,8 +640,7 @@ class StartFragment : Fragment() {
 
             }
             adapter = ArrayAdapter.createFromResource(
-                requireContext(),
-                array.connection_methods, layout.simple_spinner_item
+                requireContext(), array.connection_methods, layout.simple_spinner_item
             )
             adapter!!.setDropDownViewResource(layout.simple_spinner_dropdown_item)
             spConnectionMethod!!.adapter = adapter
@@ -724,21 +701,19 @@ class StartFragment : Fragment() {
                     udpandtcp!!.visibility = GONE
                     spConnectionMethod!!.setSelection(adapter!!.getPosition(getString(string.fastdns_connection)))
 
-                    item =
-                        requireContext().getString(string.fastdns_connection)
+                    item = requireContext().getString(string.fastdns_connection)
 
-                    typeConnection =
-                        if (item.toString()
-                                .trim() == requireContext().getString(string.fastdns_connection)
-                        ) {
-                            requireContext().getString(string.fastdns_connection)
-                        } else if (item.toString()
-                                .trim() == requireContext().getString(string.UDP_connection)
-                        ) {
-                            requireContext().getString(string.UDP_connection)
-                        } else {
-                            requireContext().getString(string.open_vpn_connection)
-                        }
+                    typeConnection = if (item.toString()
+                            .trim() == requireContext().getString(string.fastdns_connection)
+                    ) {
+                        requireContext().getString(string.fastdns_connection)
+                    } else if (item.toString()
+                            .trim() == requireContext().getString(string.UDP_connection)
+                    ) {
+                        requireContext().getString(string.UDP_connection)
+                    } else {
+                        requireContext().getString(string.open_vpn_connection)
+                    }
 
                     if (typeConnection!!.contains(requireContext().getString(string.fastdns_connection))) {
 
@@ -869,11 +844,9 @@ class StartFragment : Fragment() {
 
                     udpandtcp!!.visibility = GONE
 
-                    item =
-                        requireContext().getString(string.DNSTT_connection)
+                    item = requireContext().getString(string.DNSTT_connection)
 
-                    typeConnection =
-                        requireContext().getString(string.DNSTT_connection)
+                    typeConnection = requireContext().getString(string.DNSTT_connection)
 
                     txt_fastdns!!.setTextColor(resources.getColor(R.color.colornonSelected))
                     txt_dnstt!!.setTextColor(resources.getColor(R.color.colorSelected))
@@ -978,21 +951,19 @@ class StartFragment : Fragment() {
 
                     udpandtcp!!.visibility = VISIBLE
 
-                    item =
-                        requireContext().getString(string.open_vpn_connection)
+                    item = requireContext().getString(string.open_vpn_connection)
 
-                    typeConnection =
-                        if (item.toString()
-                                .trim() == requireContext().getString(string.fastdns_connection)
-                        ) {
-                            requireContext().getString(string.fastdns_connection)
-                        } else if (item.toString()
-                                .trim() == requireContext().getString(string.UDP_connection)
-                        ) {
-                            requireContext().getString(string.UDP_connection)
-                        } else {
-                            requireContext().getString(string.open_vpn_connection)
-                        }
+                    typeConnection = if (item.toString()
+                            .trim() == requireContext().getString(string.fastdns_connection)
+                    ) {
+                        requireContext().getString(string.fastdns_connection)
+                    } else if (item.toString()
+                            .trim() == requireContext().getString(string.UDP_connection)
+                    ) {
+                        requireContext().getString(string.UDP_connection)
+                    } else {
+                        requireContext().getString(string.open_vpn_connection)
+                    }
 
                     txt_fastdns!!.setTextColor(resources.getColor(R.color.colornonSelected))
                     txt_dnstt!!.setTextColor(resources.getColor(R.color.colornonSelected))
@@ -1122,8 +1093,7 @@ class StartFragment : Fragment() {
                     ).show()
                 } else {
                     item = requireContext().getString(string.custom_v2ray_icc_connection)
-                    typeConnection =
-                        requireContext().getString(string.custom_v2ray_icc_connection)
+                    typeConnection = requireContext().getString(string.custom_v2ray_icc_connection)
                     udpandtcp!!.visibility = VISIBLE
 
                     spConnectionMethod!!.setSelection(adapter!!.getPosition(getString(string.custom_v2ray_icc_connection)))
@@ -1164,10 +1134,7 @@ class StartFragment : Fragment() {
 
 
                 override fun onItemSelected(
-                    parent: AdapterView<*>,
-                    view: View?,
-                    position: Int,
-                    id: Long
+                    parent: AdapterView<*>, view: View?, position: Int, id: Long
                 ) {
                     item = parent.selectedItem.toString()
 
@@ -1181,8 +1148,7 @@ class StartFragment : Fragment() {
 
                     if (!isImportFile(requireContext())) {
                         setCustomDnsConnetion(
-                            requireContext(),
-                            DmPrefsKeys.SHARED_PREFERENCES_DNS_CONNECTION_DEFAULT
+                            requireContext(), DmPrefsKeys.SHARED_PREFERENCES_DNS_CONNECTION_DEFAULT
                         )
                     } else {
                         item = getTypeConnection(requireContext())
@@ -1213,10 +1179,8 @@ class StartFragment : Fragment() {
                     /** Direct Connection */
                     if (item!!.trim { it <= ' ' } == requireContext().getString(
                             string.direct_connection
-                        )
-                            .trim { it <= ' ' }) {
-                        typeConnection =
-                            requireContext().getString(string.direct_connection)
+                        ).trim { it <= ' ' }) {
+                        typeConnection = requireContext().getString(string.direct_connection)
 //                        serverList = ServerModelArrayList().serverList
 
                         api_model_updated = api_response()
@@ -1245,10 +1209,8 @@ class StartFragment : Fragment() {
                     /** TLS Over HTTP Connection */
                     else if (item!!.trim { it <= ' ' } == requireContext().getString(
                             string.http_connection
-                        )
-                            .trim { it <= ' ' }) {
-                        typeConnection =
-                            requireContext().getString(string.http_connection)
+                        ).trim { it <= ' ' }) {
+                        typeConnection = requireContext().getString(string.http_connection)
                         setResetSniDefault = false
 
 //                        serverList = ServerModelArrayList().serverList
@@ -1275,8 +1237,7 @@ class StartFragment : Fragment() {
                         layoutPayload!!.visibility = View.GONE
                         layoutFastDns!!.visibility = View.GONE
 
-                        if (!DmSharedPreferences.getInstance(requireContext())!!
-                                .getBoolean(
+                        if (!DmSharedPreferences.getInstance(requireContext())!!.getBoolean(
                                     DmPrefsKeys.SHARED_PREFERENCES_IS_IMPORT_CF,
                                     DmPrefsKeys.SHARED_PREFERENCES_IS_IMPORT_CF_DEFAULT
                                 )
@@ -1288,8 +1249,7 @@ class StartFragment : Fragment() {
                     /** Payload Connection */
                     else if (item!!.trim { it <= ' ' } == requireContext().getString(
                             string.payload_connection
-                        )
-                            .trim { it <= ' ' }) {
+                        ).trim { it <= ' ' }) {
                         setResetPayloadDefaul = false
                         if (choose_Server_preference != null) {
                             api_response_modelArrayList!!.clear()
@@ -1306,8 +1266,7 @@ class StartFragment : Fragment() {
                             }
                         }
 
-                        typeConnection =
-                            requireContext().getString(string.payload_connection)
+                        typeConnection = requireContext().getString(string.payload_connection)
 
                         layoutHost!!.visibility = View.GONE
                         layoutPayload!!.visibility = View.VISIBLE
@@ -1318,10 +1277,8 @@ class StartFragment : Fragment() {
                     /** HTTP Connection */
                     else if (item!!.trim { it <= ' ' } == requireContext().getString(
                             string.dns_connection
-                        )
-                            .trim { it <= ' ' }) {
-                        typeConnection =
-                            requireContext().getString(string.dns_connection)
+                        ).trim { it <= ' ' }) {
+                        typeConnection = requireContext().getString(string.dns_connection)
                         setResetDnsDefault = false
 //                        serverList = ServerModelArrayList().serverDirectList
 
@@ -1357,30 +1314,27 @@ class StartFragment : Fragment() {
                     /** Fast DNS, OpenVpn & UdpMode Connection */
                     else if (item!!.trim { it <= ' ' } == requireContext().getString(
                             string.fastdns_connection
-                        ) ||
-                        item!!.trim { it <= ' ' } == requireContext().getString(
+                        ) || item!!.trim { it <= ' ' } == requireContext().getString(
                             string.open_vpn_connection
-                        ) ||
-                        item!!.trim { it <= ' ' } == requireContext().getString(
+                        ) || item!!.trim { it <= ' ' } == requireContext().getString(
                             string.UDP_connection
-                        )
-                            .trim { it <= ' ' }) {
+                        ).trim { it <= ' ' }) {
 
                         server_country_list!!.text =
                             getBestServer_after_calculation(choose_Server_preference)!!.hostName
 
-                        typeConnection =
-                            if (item.toString()
-                                    .trim() == requireContext().getString(string.fastdns_connection)
-                            ) {
-                                requireContext().getString(string.fastdns_connection)
-                            } else if (item.toString()
-                                    .trim() == requireContext().getString(string.UDP_connection)
-                            ) {
-                                requireContext().getString(string.UDP_connection)
-                            } else {
-                                requireContext().getString(string.open_vpn_connection)
-                            }
+                        typeConnection = if (item.toString().trim() == requireContext().getString(
+                                string.fastdns_connection
+                            )
+                        ) {
+                            requireContext().getString(string.fastdns_connection)
+                        } else if (item.toString()
+                                .trim() == requireContext().getString(string.UDP_connection)
+                        ) {
+                            requireContext().getString(string.UDP_connection)
+                        } else {
+                            requireContext().getString(string.open_vpn_connection)
+                        }
 
 
 
@@ -1447,10 +1401,8 @@ class StartFragment : Fragment() {
                     /** DNS TT Connection */
                     else if (item!!.trim { it <= ' ' } == requireContext().getString(
                             string.DNSTT_connection
-                        )
-                            .trim { it <= ' ' }) {
-                        typeConnection =
-                            requireContext().getString(string.DNSTT_connection)
+                        ).trim { it <= ' ' }) {
+                        typeConnection = requireContext().getString(string.DNSTT_connection)
 //                        serverList = ServerModelArrayList().serverDnsTTList
 
                         server_country_list!!.text =
@@ -1484,8 +1436,7 @@ class StartFragment : Fragment() {
 
                     else if (item!!.trim { it <= ' ' } == requireContext().getString(
                             string.custom_v2ray_icc_connection
-                        ).trim { it <= ' ' }
-                    ) {
+                        ).trim { it <= ' ' }) {
                         server_country_list!!.text =
                             getBestServer_after_calculation(choose_Server_preference)!!.hostName
 
@@ -1501,30 +1452,25 @@ class StartFragment : Fragment() {
 
                     if (!isImportFile(requireContext())) {
                         if (setResetSniDefault) {
-                            DmSharedPreferences.getInstance(requireContext())!!
-                                .putString(
+                            DmSharedPreferences.getInstance(requireContext())!!.putString(
                                     DmPrefsKeys.SHARED_PREFERENCES_SNI,
                                     DmPrefsKeys.SHARED_PREFERENCES_SNI_DEFAULT
                                 )
                         }
                         if (setResetDnsDefault) {
-                            DmSharedPreferences.getInstance(requireContext())!!
-                                .putString(
+                            DmSharedPreferences.getInstance(requireContext())!!.putString(
                                     DmPrefsKeys.SHARED_PREFERENCES_DNS,
                                     DmPrefsKeys.SHARED_PREFERENCES_DNS_DEFAULT
                                 )
                         }
                         if (setResetPayloadDefaul) {
-                            DmSharedPreferences.getInstance(requireContext())!!
-                                .putString(
+                            DmSharedPreferences.getInstance(requireContext())!!.putString(
                                     DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG,
                                     DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG_DEFAULT
                                 )
                         }
-                        DmSharedPreferences.getInstance(requireContext())!!
-                            .putString(
-                                DmPrefsKeys.SHARED_PREFERENCES_TYPE_CONNECTION,
-                                typeConnection
+                        DmSharedPreferences.getInstance(requireContext())!!.putString(
+                                DmPrefsKeys.SHARED_PREFERENCES_TYPE_CONNECTION, typeConnection
                             )
                     }
 
@@ -1543,8 +1489,7 @@ class StartFragment : Fragment() {
             )
         ) {
             etPayload!!.isEnabled = false
-            btnHttpRequestStart!!.text =
-                requireContext().resources.getString(string.payload_stop)
+            btnHttpRequestStart!!.text = requireContext().resources.getString(string.payload_stop)
 
             spConnectionMethod!!.isEnabled = false
             open_server_list!!.isEnabled = false
@@ -1553,8 +1498,7 @@ class StartFragment : Fragment() {
 
         } else {
             etPayload!!.isEnabled = true
-            btnHttpRequestStart!!.text =
-                requireContext().resources.getString(string.payload_start)
+            btnHttpRequestStart!!.text = requireContext().resources.getString(string.payload_start)
 
 
 
@@ -1605,9 +1549,7 @@ class StartFragment : Fragment() {
                         //    return
                     }
                     if (!isImportFile(requireContext())) {
-                        DmSharedPreferences
-                            .getInstance(requireContext())!!
-                            .putString(
+                        DmSharedPreferences.getInstance(requireContext())!!.putString(
                                 DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG,
                                 etPayload!!.text.toString()
                             )
@@ -1615,8 +1557,7 @@ class StartFragment : Fragment() {
                     val mainActivity: MainActivity = activity as MainActivity
                     if (mainActivity.server == null) {
                         DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                            DmPrefsKeys.SHARED_PREFERENCES_STARTED_PAYLOAD,
-                            true
+                            DmPrefsKeys.SHARED_PREFERENCES_STARTED_PAYLOAD, true
                         )
                         etPayload!!.isEnabled = false
                         mainActivity.startBindService()
@@ -1629,8 +1570,7 @@ class StartFragment : Fragment() {
 
                     } else {
                         DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                            DmPrefsKeys.SHARED_PREFERENCES_STARTED_PAYLOAD,
-                            false
+                            DmPrefsKeys.SHARED_PREFERENCES_STARTED_PAYLOAD, false
                         )
 
                         etPayload!!.isEnabled = true
@@ -1684,14 +1624,12 @@ class StartFragment : Fragment() {
                 ) {
                     val mainActivity: MainActivity = activity as MainActivity
                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT,
-                        true
+                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT, true
                     )
 
                     val i = Intent(context, DnsService::class.java)
                     i.putExtra(
-                        "host",
-                        getBestServer_after_calculation(choose_Server_preference)!!.ip_dnstt
+                        "host", getBestServer_after_calculation(choose_Server_preference)!!.ip_dnstt
                     )
                     i.putExtra("extra", "53")
                     i.putExtra("dnstt_conn", DmPrefsMethods.getConnectionDnsTT())
@@ -1713,8 +1651,7 @@ class StartFragment : Fragment() {
                     mainActivity.startVpn()
 
 
-                    if (timer_connecting != null)
-                        timer_connecting!!.cancel()
+                    if (timer_connecting != null) timer_connecting!!.cancel()
 
                     timer_connecting = object : CountDownTimer(10000, 100) {
                         override fun onTick(millisUntilFinished: Long) {
@@ -1729,7 +1666,11 @@ class StartFragment : Fragment() {
                         }
 
                         override fun onFinish() {
-                            (activity as MainActivity).stopService(Intent(activity, Connection_Timer::class.java))
+                            (activity as MainActivity).stopService(
+                                Intent(
+                                    activity, Connection_Timer::class.java
+                                )
+                            )
                         }
                     }.start()
 
@@ -1756,20 +1697,17 @@ class StartFragment : Fragment() {
                     val alertView =
                         View.inflate(requireContext(), R.layout.dialog_medium_banner_layout, null)
                     //  showNativeAd(alertView)
-                    builder.setTitle("Do you want to disconnect?")
-                        .setView(alertView)
+                    builder.setTitle("Do you want to disconnect?").setView(alertView)
                     builder.setPositiveButton("Yes") { dialogInterface: DialogInterface?, i: Int ->
 
 
                         val mainActivity: MainActivity = activity as MainActivity
                         DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                            DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT,
-                            false
+                            DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT, false
                         )
 
                         val i = Intent(
-                            context,
-                            DnsService::class.java
+                            context, DnsService::class.java
                         )
                         requireContext().stopService(i)
                         mainActivity.stopVpn()
@@ -1787,14 +1725,17 @@ class StartFragment : Fragment() {
                         timer_layout!!.visibility = GONE
 
 
-                        (activity as MainActivity).stopService(Intent(activity, Connection_Timer::class.java))
+                        (activity as MainActivity).stopService(
+                            Intent(
+                                activity, Connection_Timer::class.java
+                            )
+                        )
 
                         timeLeft_val!!.text =
                             "00:" + getBestServer_after_calculation(choose_Server_preference)!!.timer_val.toString() + ":00"
 
 
-                    }
-                        .setNegativeButton(
+                    }.setNegativeButton(
                             "No"
                         ) { dialogInterface, i ->
                             //   loadNativeAd()
@@ -1820,8 +1761,7 @@ class StartFragment : Fragment() {
                 ) {
                     importClipboard()
                     Observable.timer(500, TimeUnit.MILLISECONDS)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
+                        .observeOn(AndroidSchedulers.mainThread()).subscribe {
                             DmSharedPreferences.getInstance(requireContext())!!
                                 .putBoolean(DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY, true)
 
@@ -1835,8 +1775,7 @@ class StartFragment : Fragment() {
                             }
 
 
-                            if (timer_connecting != null)
-                                timer_connecting!!.cancel()
+                            if (timer_connecting != null) timer_connecting!!.cancel()
 
                             timer_connecting = object : CountDownTimer(10000, 100) {
                                 override fun onTick(millisUntilFinished: Long) {
@@ -1857,8 +1796,7 @@ class StartFragment : Fragment() {
                                 override fun onFinish() {
                                     (activity as MainActivity).stopService(
                                         Intent(
-                                            activity,
-                                            Connection_Timer::class.java
+                                            activity, Connection_Timer::class.java
                                         )
                                     )
 
@@ -1871,16 +1809,14 @@ class StartFragment : Fragment() {
                     val alertView =
                         View.inflate(requireContext(), R.layout.dialog_medium_banner_layout, null)
                     //  showNativeAd(alertView)
-                    builder.setTitle("Do you want to disconnect?")
-                        .setView(alertView)
+                    builder.setTitle("Do you want to disconnect?").setView(alertView)
                     builder.setPositiveButton("Yes") { dialogInterface: DialogInterface?, i: Int ->
                         DmSharedPreferences.getInstance(requireContext())!!
                             .putBoolean(DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY, false)
 
                         (activity as MainActivity).stopService(
                             Intent(
-                                activity,
-                                Connection_Timer::class.java
+                                activity, Connection_Timer::class.java
                             )
                         )
                         mainActivity.stopVpn()
@@ -1889,8 +1825,7 @@ class StartFragment : Fragment() {
                         timeLeft_val!!.text =
                             "00:" + getBestServer_after_calculation(choose_Server_preference)!!.timer_val.toString() + ":00"
 
-                    }
-                        .setNegativeButton(
+                    }.setNegativeButton(
                             "No"
                         ) { dialogInterface, i ->
                             //   loadNativeAd()
@@ -1912,7 +1847,7 @@ class StartFragment : Fragment() {
                         var rewardAmount = rewardItem.amount
                         var rewardType = rewardItem.type
                         increase_time_and_update_view()
-                     //   Log.d(TAG, "User earned the reward.")
+                        //   Log.d(TAG, "User earned the reward.")
                     }
                 })
             } else {
@@ -1923,7 +1858,6 @@ class StartFragment : Fragment() {
                     TastyToast.WARNING
                 ).show()
             }
-
 
 
             //   increase_time_and_update_view()
@@ -1987,8 +1921,7 @@ class StartFragment : Fragment() {
                 if (json != null) {
                     if (!json.isEmpty() || json != "") {
                         return gson.fromJson<java.util.ArrayList<api_response>>(
-                            json,
-                            Api::class.java
+                            json, Api::class.java
                         )
                     }
                 }
@@ -2008,8 +1941,7 @@ class StartFragment : Fragment() {
             )
         ) {
             DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN,
-                true
+                DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN, true
             )
             createOpenVpnCert()
             //  btnFastDNSStart!!.text = requireContext().resources.getString(string.payload_stop)
@@ -2034,8 +1966,7 @@ class StartFragment : Fragment() {
             startActivity(intent)
 
             DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN,
-                false
+                DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN, false
             )
 //                disconnectOpenVpn()
 
@@ -2054,133 +1985,20 @@ class StartFragment : Fragment() {
         val serverIP = getConfiguredServer(requireContext()).split(':')[0]
 
 
-        val harcode_data = "##############################################################\n" +
-                "client\n" +
-                "dev tun\n" +
-                "proto udp\n" +
-                "remote " + " " + getBestServer_after_calculation(choose_Server_preference)!!.ip + " " + 443 + "\n" +
-                "connect-retry 1 1\n" +
-                "connect-timeout 10\n" +
-                "ping-restart 25\n" +
-                "nobind\n" +
-                "persist-key\n" +
-                "persist-tun\n" +
-                "shaper 12000000\n" +
-                "remote-cert-tls server\n" +
-                "auth SHA512\n" +
-                "cipher AES-128-OFB\n" +
-                "dhcp-option DNS 8.8.8.8\n" +
-                "dhcp-option DNS 8.8.4.4\n" +
-                "dhcp-option DNS 1.1.1.1\n" +
-                "register-dns\n" +
-                "#############################################################\n" +
-                "<ca>\n" +
-                "-----BEGIN CERTIFICATE-----\n" +
-                "MIIDQjCCAiqgAwIBAgIUHLSt6qW3f+z3lxscQdoAs77tac0wDQYJKoZIhvcNAQEL\n" +
-                "BQAwEzERMA8GA1UEAwwIQ2hhbmdlTWUwHhcNMjExMTE1MjMyODE4WhcNMzExMTEz\n" +
-                "MjMyODE4WjATMREwDwYDVQQDDAhDaGFuZ2VNZTCCASIwDQYJKoZIhvcNAQEBBQAD\n" +
-                "ggEPADCCAQoCggEBAMpmoKvLXtF9XWZVeQhm0XlvCq0ez18l5PFsoIs2HWhbsOkC\n" +
-                "btwiVKCMAwYav4sAW2Op/w1nmzs1BLgLjVP4v1B/efYDFFy8eJuDKWdObw/uNqxY\n" +
-                "9OYQXcLiDhNrE482xB4G9VsvAj7UgzdQPYYA9IkaMLC21oPfi5MHF48pmzdea58b\n" +
-                "xYoWuGLenFOyh45FQa1s7xafUEUJTZuhoQ+FPm/OrzvBTzyL0aHcIZu7g1BRicgb\n" +
-                "BnQSD6TsspttN9scLqG/ev4wVtkuPCeXq0ri7F9sSJp8RyOBBqRps0N0tohtEJ2c\n" +
-                "CCeLKjCng44ePH+Pef+ppLL99ct/b5Np4eKQp8sCAwEAAaOBjTCBijAdBgNVHQ4E\n" +
-                "FgQUClXaJR9/sA27bW+/3MuzmWsrhHMwTgYDVR0jBEcwRYAUClXaJR9/sA27bW+/\n" +
-                "3MuzmWsrhHOhF6QVMBMxETAPBgNVBAMMCENoYW5nZU1lghQctK3qpbd/7PeXGxxB\n" +
-                "2gCzvu1pzTAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIBBjANBgkqhkiG9w0BAQsF\n" +
-                "AAOCAQEAM8R30jEIHJ0o4JZuHbS3dLSasn92HG6EXSK6meodHwtXx1jS6A6kOEJI\n" +
-                "fg7nciEDgA6c3d2YCtQrvCkzjKpPyGWYSR0BPN7xfhmG57tClz3i87gV+OAT/Igg\n" +
-                "SV+v1x/fRgm5igUL0rhUJGOGqkpynUODircdQ8ecZIYQ20zbk3sHTb+ybRN2J5Aj\n" +
-                "0VCnDp6pt1Whw7W3/XCx8JOGXqPN8Cm8mYeaDbODFVqkqtLocX7RFJjBg/k9VJQi\n" +
-                "HDH2eiEibmLqx+J6NvrCyRJIhEANVov6vrWbK9fu7NmTF1roHtmQc4jy/k/Snrh+\n" +
-                "G9iEieYmoEQo1UKe7h0w1dp0PDTrEQ==\n" +
-                "-----END CERTIFICATE-----\n" +
-                "</ca>\n" +
-                "<cert>\n" +
-                "-----BEGIN CERTIFICATE-----\n" +
-                "MIIDTzCCAjegAwIBAgIRAN8krZG+6sHE7mJdZQJ2eXswDQYJKoZIhvcNAQELBQAw\n" +
-                "EzERMA8GA1UEAwwIQ2hhbmdlTWUwHhcNMjExMTE1MjMyODE4WhcNMzExMTEzMjMy\n" +
-                "ODE4WjARMQ8wDQYDVQQDDAZjbGllbnQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\n" +
-                "ggEKAoIBAQDK8nID29CTFMoriNPqWaW8E/zzKqBP2ie1oyxskIt9TxJEfp/+jNaV\n" +
-                "uDY3kX4OhusDvWNBYjOQpTx3IjgW0OaJfedeHtKo+vsJrzCn8PV354XKRfJceWVt\n" +
-                "5N8GRHErcm8sNNQTXERL6POnZdvVBMAxBFHx2TvF5iQ/S1PpLThBuz6VX7OBX424\n" +
-                "4rzIX51HfLsoKCzEa4okWgMU3Uz3gVW2x2j2i1BgqnxkYXfEDUlrg5N96drBgdxX\n" +
-                "xQkgFN/0d9AZFgyFWrzMIxfo2qbOF5DGZ54d+G5+qu8VRRwE7Sew68+5ic3tNAPx\n" +
-                "4lJPmlIQ1LCI9/sLs7lEfePfh6HQh+OhAgMBAAGjgZ8wgZwwCQYDVR0TBAIwADAd\n" +
-                "BgNVHQ4EFgQUD+cFgn4YLXTNLnmXWYLGyn69uUswTgYDVR0jBEcwRYAUClXaJR9/\n" +
-                "sA27bW+/3MuzmWsrhHOhF6QVMBMxETAPBgNVBAMMCENoYW5nZU1lghQctK3qpbd/\n" +
-                "7PeXGxxB2gCzvu1pzTATBgNVHSUEDDAKBggrBgEFBQcDAjALBgNVHQ8EBAMCB4Aw\n" +
-                "DQYJKoZIhvcNAQELBQADggEBAA2M6WhfrFX1gsZSHQWE8JwZz3FaWSovBVSCygG2\n" +
-                "C45ll0gvi2ZM+Q4/93zVY1iTCxv3CskppqRHWdxh9aPQApx9CwAk6q/q7/51IrpK\n" +
-                "UVGF9EFQtrI9liZK1nG7LZk8hImKK4d2zOsc52e5iJAfql8lSHSbknLiaQOuR8Mv\n" +
-                "T5TvLKrxiK5gvLbfYxH1yxlIsMxID+Sj9qKugm5NBlxG6poZRgVIIxWkogDN2V7P\n" +
-                "Wt4aeovGmTSpWZdvnTb9GTkAY4v/j5Ff8eyQ2jyya1Zt50bT/LV0ta5EIJWPRm7p\n" +
-                "W5KJtqWn1ObYmm2Jw6A5krJmdhvbJRe5b9RyipsMrVCaWSs=\n" +
-                "-----END CERTIFICATE-----\n" +
-                "</cert>\n" +
-                "<key>\n" +
-                "-----BEGIN PRIVATE KEY-----\n" +
-                "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDK8nID29CTFMor\n" +
-                "iNPqWaW8E/zzKqBP2ie1oyxskIt9TxJEfp/+jNaVuDY3kX4OhusDvWNBYjOQpTx3\n" +
-                "IjgW0OaJfedeHtKo+vsJrzCn8PV354XKRfJceWVt5N8GRHErcm8sNNQTXERL6POn\n" +
-                "ZdvVBMAxBFHx2TvF5iQ/S1PpLThBuz6VX7OBX4244rzIX51HfLsoKCzEa4okWgMU\n" +
-                "3Uz3gVW2x2j2i1BgqnxkYXfEDUlrg5N96drBgdxXxQkgFN/0d9AZFgyFWrzMIxfo\n" +
-                "2qbOF5DGZ54d+G5+qu8VRRwE7Sew68+5ic3tNAPx4lJPmlIQ1LCI9/sLs7lEfePf\n" +
-                "h6HQh+OhAgMBAAECggEBAMCUUabhtslrB/FJtLYD/aY8XWKuB1Pe0qGkxmn6u7Lc\n" +
-                "Dpyaf94/7PxDwob2c+T7GBYDaCVKN15Bvd/aw9i6wJiltaB1pTceeosVCBnFKFlw\n" +
-                "hF+OAk7ID3y5mvzKg41T2LTdKIV6n4Bc/KDTokhAatPYop3ZosPHAIxjQavZ8jFD\n" +
-                "97bQlL+g53rbqMu+NrZXhy9LO2bF90aZpmiPniNeIA1BpvDStcD4dxJvAb7KxUCJ\n" +
-                "Vu4rnSLDVAU4hPNFUw7WoYs+xaGu4MSwPobIV+F1hKTwIGYh0kRqJ4v8ibHBVb9b\n" +
-                "qK8Y3S93qHoMWDrDBAjaAKxIvAgrPnzVgWG28kLh8IUCgYEA+pHhgNTjS8rYN+5Q\n" +
-                "EK3Z7GddBOo/lURtZBrbp6pRLQTS4qx8JG4CHhmofNvnKrYChr0yncv+fyKWqKEj\n" +
-                "/hzl2cIsrRA97xoWd9cNTUE3YkREW3I4a0ktevcJ7+a9AFOGGPMb7KO16ttU1tag\n" +
-                "iNLEA20K+ktCeYUFFBaFB69guuMCgYEAz1hcfWdPLn0ZxZ5wA1Vt0GAvrFhpD7lk\n" +
-                "8h7WJNnPa3zVSsApoUsuiFeZPtJHr4JYm4j45AIteoofYUAC2WtIgZNxddD7ar27\n" +
-                "WkdQFzjirQOluhSus3nOM+NVB38ZJhcJZcSQ+dtkzF7Sh/QLlBD17vFdIWqatSEP\n" +
-                "uaVV2ptQGqsCgYAMebzvjCnw+R2A02W7HtzNz2urNfqKdQi5RjkPhQRbqHTTgmD/\n" +
-                "81Y5p29jIBPHZZ6ElODzSFfYfqFfrf47xbaP/AH7b+aVhAgAWX25Dfky9FEu+GXk\n" +
-                "uZUBHVGqVyOr43y2u0v1oUUKd3cm5zLA/TVzMjestJiPslbJZEGlW08GnwKBgHKC\n" +
-                "mEHhpkdEa9FKGQ6eRZGJLYr/ILbAatGU2itr5zOzs5Ae5F7hyIcf6dBaDaEOWaU8\n" +
-                "VkiGM1uzoHTzBx/QMjDtnwG0MsXWlvva2o6YqgdnNkW4WmtgX9MkP7duKBNzMYt0\n" +
-                "raRv2BFOZPMUgrh5TXly7z4fQ+W4ppieiPW8RNcVAoGBAMH5im+iaUVSwDD8O8R5\n" +
-                "q2EiaF5S8ZZWplYw0fwgdfLJEJ4ShPLp0UoOG5txQIfFCc0Bj3RAjmgGyv2EkUvN\n" +
-                "tu0/j+C4mri2oA8cNjnw4Blevsdit8Z1q8Z4ig49ygTp26Ft25Sx3N3RKzEIt8Z7\n" +
-                "rsQtiJDCHDWMaHiA7eLarVLI\n" +
-                "-----END PRIVATE KEY-----\n" +
-                "</key>\n" +
-                "<tls-crypt>\n" +
-                "-----BEGIN OpenVPN Static key V1-----\n" +
-                "e4a255ce4222d17ccc62b45d3780f2d9\n" +
-                "427ced706c8a71280d9a0f2ebddb25a9\n" +
-                "25e754d5c9baccd01d191d9875e6165e\n" +
-                "06ed7cb2fd0807ff201f904709c06a9e\n" +
-                "aac6127074c945f8307c0809f4f0b47a\n" +
-                "8e659f7e8e386a454f6d493cf57f1527\n" +
-                "c9652589afbd37dc2ea953f884f899ea\n" +
-                "dd61a595bbf1466148be9571e8825f4e\n" +
-                "8352df8b386fdd7225f60f23f51514df\n" +
-                "5cba3f9402a1f5d189f358a45564a19c\n" +
-                "15fe4a9fbf21bb92c4d41efd8ff5dc67\n" +
-                "ff988d8362b86ad8ab213be54579b36a\n" +
-                "2b957767dc50d1f8576e6b2251afdebb\n" +
-                "a1ad02250bede2d1bb779a88fcf8828c\n" +
-                "a138e48c0a6b391580525165739a5c81\n" +
-                "8bd037f4e1890a30014eee31ff8cefaf\n" +
-                "-----END OpenVPN Static key V1-----\n" +
-                "</tls-crypt>"
+        val harcode_data =
+            "##############################################################\n" + "client\n" + "dev tun\n" + "proto udp\n" + "remote " + " " + getBestServer_after_calculation(
+                choose_Server_preference
+            )!!.ip + " " + 443 + "\n" + "connect-retry 1 1\n" + "connect-timeout 10\n" + "ping-restart 25\n" + "nobind\n" + "persist-key\n" + "persist-tun\n" + "shaper 12000000\n" + "remote-cert-tls server\n" + "auth SHA512\n" + "cipher AES-128-OFB\n" + "dhcp-option DNS 8.8.8.8\n" + "dhcp-option DNS 8.8.4.4\n" + "dhcp-option DNS 1.1.1.1\n" + "register-dns\n" + "#############################################################\n" + "<ca>\n" + "-----BEGIN CERTIFICATE-----\n" + "MIIDQjCCAiqgAwIBAgIUHLSt6qW3f+z3lxscQdoAs77tac0wDQYJKoZIhvcNAQEL\n" + "BQAwEzERMA8GA1UEAwwIQ2hhbmdlTWUwHhcNMjExMTE1MjMyODE4WhcNMzExMTEz\n" + "MjMyODE4WjATMREwDwYDVQQDDAhDaGFuZ2VNZTCCASIwDQYJKoZIhvcNAQEBBQAD\n" + "ggEPADCCAQoCggEBAMpmoKvLXtF9XWZVeQhm0XlvCq0ez18l5PFsoIs2HWhbsOkC\n" + "btwiVKCMAwYav4sAW2Op/w1nmzs1BLgLjVP4v1B/efYDFFy8eJuDKWdObw/uNqxY\n" + "9OYQXcLiDhNrE482xB4G9VsvAj7UgzdQPYYA9IkaMLC21oPfi5MHF48pmzdea58b\n" + "xYoWuGLenFOyh45FQa1s7xafUEUJTZuhoQ+FPm/OrzvBTzyL0aHcIZu7g1BRicgb\n" + "BnQSD6TsspttN9scLqG/ev4wVtkuPCeXq0ri7F9sSJp8RyOBBqRps0N0tohtEJ2c\n" + "CCeLKjCng44ePH+Pef+ppLL99ct/b5Np4eKQp8sCAwEAAaOBjTCBijAdBgNVHQ4E\n" + "FgQUClXaJR9/sA27bW+/3MuzmWsrhHMwTgYDVR0jBEcwRYAUClXaJR9/sA27bW+/\n" + "3MuzmWsrhHOhF6QVMBMxETAPBgNVBAMMCENoYW5nZU1lghQctK3qpbd/7PeXGxxB\n" + "2gCzvu1pzTAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIBBjANBgkqhkiG9w0BAQsF\n" + "AAOCAQEAM8R30jEIHJ0o4JZuHbS3dLSasn92HG6EXSK6meodHwtXx1jS6A6kOEJI\n" + "fg7nciEDgA6c3d2YCtQrvCkzjKpPyGWYSR0BPN7xfhmG57tClz3i87gV+OAT/Igg\n" + "SV+v1x/fRgm5igUL0rhUJGOGqkpynUODircdQ8ecZIYQ20zbk3sHTb+ybRN2J5Aj\n" + "0VCnDp6pt1Whw7W3/XCx8JOGXqPN8Cm8mYeaDbODFVqkqtLocX7RFJjBg/k9VJQi\n" + "HDH2eiEibmLqx+J6NvrCyRJIhEANVov6vrWbK9fu7NmTF1roHtmQc4jy/k/Snrh+\n" + "G9iEieYmoEQo1UKe7h0w1dp0PDTrEQ==\n" + "-----END CERTIFICATE-----\n" + "</ca>\n" + "<cert>\n" + "-----BEGIN CERTIFICATE-----\n" + "MIIDTzCCAjegAwIBAgIRAN8krZG+6sHE7mJdZQJ2eXswDQYJKoZIhvcNAQELBQAw\n" + "EzERMA8GA1UEAwwIQ2hhbmdlTWUwHhcNMjExMTE1MjMyODE4WhcNMzExMTEzMjMy\n" + "ODE4WjARMQ8wDQYDVQQDDAZjbGllbnQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\n" + "ggEKAoIBAQDK8nID29CTFMoriNPqWaW8E/zzKqBP2ie1oyxskIt9TxJEfp/+jNaV\n" + "uDY3kX4OhusDvWNBYjOQpTx3IjgW0OaJfedeHtKo+vsJrzCn8PV354XKRfJceWVt\n" + "5N8GRHErcm8sNNQTXERL6POnZdvVBMAxBFHx2TvF5iQ/S1PpLThBuz6VX7OBX424\n" + "4rzIX51HfLsoKCzEa4okWgMU3Uz3gVW2x2j2i1BgqnxkYXfEDUlrg5N96drBgdxX\n" + "xQkgFN/0d9AZFgyFWrzMIxfo2qbOF5DGZ54d+G5+qu8VRRwE7Sew68+5ic3tNAPx\n" + "4lJPmlIQ1LCI9/sLs7lEfePfh6HQh+OhAgMBAAGjgZ8wgZwwCQYDVR0TBAIwADAd\n" + "BgNVHQ4EFgQUD+cFgn4YLXTNLnmXWYLGyn69uUswTgYDVR0jBEcwRYAUClXaJR9/\n" + "sA27bW+/3MuzmWsrhHOhF6QVMBMxETAPBgNVBAMMCENoYW5nZU1lghQctK3qpbd/\n" + "7PeXGxxB2gCzvu1pzTATBgNVHSUEDDAKBggrBgEFBQcDAjALBgNVHQ8EBAMCB4Aw\n" + "DQYJKoZIhvcNAQELBQADggEBAA2M6WhfrFX1gsZSHQWE8JwZz3FaWSovBVSCygG2\n" + "C45ll0gvi2ZM+Q4/93zVY1iTCxv3CskppqRHWdxh9aPQApx9CwAk6q/q7/51IrpK\n" + "UVGF9EFQtrI9liZK1nG7LZk8hImKK4d2zOsc52e5iJAfql8lSHSbknLiaQOuR8Mv\n" + "T5TvLKrxiK5gvLbfYxH1yxlIsMxID+Sj9qKugm5NBlxG6poZRgVIIxWkogDN2V7P\n" + "Wt4aeovGmTSpWZdvnTb9GTkAY4v/j5Ff8eyQ2jyya1Zt50bT/LV0ta5EIJWPRm7p\n" + "W5KJtqWn1ObYmm2Jw6A5krJmdhvbJRe5b9RyipsMrVCaWSs=\n" + "-----END CERTIFICATE-----\n" + "</cert>\n" + "<key>\n" + "-----BEGIN PRIVATE KEY-----\n" + "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDK8nID29CTFMor\n" + "iNPqWaW8E/zzKqBP2ie1oyxskIt9TxJEfp/+jNaVuDY3kX4OhusDvWNBYjOQpTx3\n" + "IjgW0OaJfedeHtKo+vsJrzCn8PV354XKRfJceWVt5N8GRHErcm8sNNQTXERL6POn\n" + "ZdvVBMAxBFHx2TvF5iQ/S1PpLThBuz6VX7OBX4244rzIX51HfLsoKCzEa4okWgMU\n" + "3Uz3gVW2x2j2i1BgqnxkYXfEDUlrg5N96drBgdxXxQkgFN/0d9AZFgyFWrzMIxfo\n" + "2qbOF5DGZ54d+G5+qu8VRRwE7Sew68+5ic3tNAPx4lJPmlIQ1LCI9/sLs7lEfePf\n" + "h6HQh+OhAgMBAAECggEBAMCUUabhtslrB/FJtLYD/aY8XWKuB1Pe0qGkxmn6u7Lc\n" + "Dpyaf94/7PxDwob2c+T7GBYDaCVKN15Bvd/aw9i6wJiltaB1pTceeosVCBnFKFlw\n" + "hF+OAk7ID3y5mvzKg41T2LTdKIV6n4Bc/KDTokhAatPYop3ZosPHAIxjQavZ8jFD\n" + "97bQlL+g53rbqMu+NrZXhy9LO2bF90aZpmiPniNeIA1BpvDStcD4dxJvAb7KxUCJ\n" + "Vu4rnSLDVAU4hPNFUw7WoYs+xaGu4MSwPobIV+F1hKTwIGYh0kRqJ4v8ibHBVb9b\n" + "qK8Y3S93qHoMWDrDBAjaAKxIvAgrPnzVgWG28kLh8IUCgYEA+pHhgNTjS8rYN+5Q\n" + "EK3Z7GddBOo/lURtZBrbp6pRLQTS4qx8JG4CHhmofNvnKrYChr0yncv+fyKWqKEj\n" + "/hzl2cIsrRA97xoWd9cNTUE3YkREW3I4a0ktevcJ7+a9AFOGGPMb7KO16ttU1tag\n" + "iNLEA20K+ktCeYUFFBaFB69guuMCgYEAz1hcfWdPLn0ZxZ5wA1Vt0GAvrFhpD7lk\n" + "8h7WJNnPa3zVSsApoUsuiFeZPtJHr4JYm4j45AIteoofYUAC2WtIgZNxddD7ar27\n" + "WkdQFzjirQOluhSus3nOM+NVB38ZJhcJZcSQ+dtkzF7Sh/QLlBD17vFdIWqatSEP\n" + "uaVV2ptQGqsCgYAMebzvjCnw+R2A02W7HtzNz2urNfqKdQi5RjkPhQRbqHTTgmD/\n" + "81Y5p29jIBPHZZ6ElODzSFfYfqFfrf47xbaP/AH7b+aVhAgAWX25Dfky9FEu+GXk\n" + "uZUBHVGqVyOr43y2u0v1oUUKd3cm5zLA/TVzMjestJiPslbJZEGlW08GnwKBgHKC\n" + "mEHhpkdEa9FKGQ6eRZGJLYr/ILbAatGU2itr5zOzs5Ae5F7hyIcf6dBaDaEOWaU8\n" + "VkiGM1uzoHTzBx/QMjDtnwG0MsXWlvva2o6YqgdnNkW4WmtgX9MkP7duKBNzMYt0\n" + "raRv2BFOZPMUgrh5TXly7z4fQ+W4ppieiPW8RNcVAoGBAMH5im+iaUVSwDD8O8R5\n" + "q2EiaF5S8ZZWplYw0fwgdfLJEJ4ShPLp0UoOG5txQIfFCc0Bj3RAjmgGyv2EkUvN\n" + "tu0/j+C4mri2oA8cNjnw4Blevsdit8Z1q8Z4ig49ygTp26Ft25Sx3N3RKzEIt8Z7\n" + "rsQtiJDCHDWMaHiA7eLarVLI\n" + "-----END PRIVATE KEY-----\n" + "</key>\n" + "<tls-crypt>\n" + "-----BEGIN OpenVPN Static key V1-----\n" + "e4a255ce4222d17ccc62b45d3780f2d9\n" + "427ced706c8a71280d9a0f2ebddb25a9\n" + "25e754d5c9baccd01d191d9875e6165e\n" + "06ed7cb2fd0807ff201f904709c06a9e\n" + "aac6127074c945f8307c0809f4f0b47a\n" + "8e659f7e8e386a454f6d493cf57f1527\n" + "c9652589afbd37dc2ea953f884f899ea\n" + "dd61a595bbf1466148be9571e8825f4e\n" + "8352df8b386fdd7225f60f23f51514df\n" + "5cba3f9402a1f5d189f358a45564a19c\n" + "15fe4a9fbf21bb92c4d41efd8ff5dc67\n" + "ff988d8362b86ad8ab213be54579b36a\n" + "2b957767dc50d1f8576e6b2251afdebb\n" + "a1ad02250bede2d1bb779a88fcf8828c\n" + "a138e48c0a6b391580525165739a5c81\n" + "8bd037f4e1890a30014eee31ff8cefaf\n" + "-----END OpenVPN Static key V1-----\n" + "</tls-crypt>"
 
 
         val vpnProfile: VpnProfile = ClientManager.generateOvpn(
-            context,
-            harcode_data,
-            getBestServer_after_calculation(choose_Server_preference)!!.city
+            context, harcode_data, getBestServer_after_calculation(choose_Server_preference)!!.city
         )
         // LINEA PARA QUE EL OPEN VPN NO INICIE SOLO EL SERVICIO
         ClientManager.startVPN(context, vpnProfile)
 
 
-        if (timer_connecting != null)
-            timer_connecting!!.cancel()
+        if (timer_connecting != null) timer_connecting!!.cancel()
 
         timer_connecting = object : CountDownTimer(20000, 100) {
             override fun onTick(millisUntilFinished: Long) {
@@ -2200,8 +2018,7 @@ class StartFragment : Fragment() {
             override fun onFinish() {
                 (activity as MainActivity).stopService(
                     Intent(
-                        activity,
-                        Connection_Timer::class.java
+                        activity, Connection_Timer::class.java
                     )
                 )
 
@@ -2214,127 +2031,17 @@ class StartFragment : Fragment() {
         val serverIP = getBestServer_after_calculation(choose_Server_preference)!!.ip
 
 
-        val fast_DNS_DATA = "client\n" +
-                "dev tun\n" +
-                "proto udp\n" +
-                "remote 127.0.0.1 2323\n" +
-                "resolv-retry infinite\n" +
-                "nobind\n" +
-                "persist-key\n" +
-                "persist-tun\n" +
-                "remote-cert-tls server\n" +
-                "auth SHA512\n" +
-                "cipher AES-128-OFB\n" +
-                "ignore-unknown-option block-outside-dns\n" +
-                "block-outside-dns\n" +
-                "verb 3\n" +
-                "route" + " " + serverIP + " 255.255.255.255 net_gateway\n" +
-                "<ca>\n" +
-                "-----BEGIN CERTIFICATE-----\n" +
-                "MIIDQjCCAiqgAwIBAgIUHLSt6qW3f+z3lxscQdoAs77tac0wDQYJKoZIhvcNAQEL\n" +
-                "BQAwEzERMA8GA1UEAwwIQ2hhbmdlTWUwHhcNMjExMTE1MjMyODE4WhcNMzExMTEz\n" +
-                "MjMyODE4WjATMREwDwYDVQQDDAhDaGFuZ2VNZTCCASIwDQYJKoZIhvcNAQEBBQAD\n" +
-                "ggEPADCCAQoCggEBAMpmoKvLXtF9XWZVeQhm0XlvCq0ez18l5PFsoIs2HWhbsOkC\n" +
-                "btwiVKCMAwYav4sAW2Op/w1nmzs1BLgLjVP4v1B/efYDFFy8eJuDKWdObw/uNqxY\n" +
-                "9OYQXcLiDhNrE482xB4G9VsvAj7UgzdQPYYA9IkaMLC21oPfi5MHF48pmzdea58b\n" +
-                "xYoWuGLenFOyh45FQa1s7xafUEUJTZuhoQ+FPm/OrzvBTzyL0aHcIZu7g1BRicgb\n" +
-                "BnQSD6TsspttN9scLqG/ev4wVtkuPCeXq0ri7F9sSJp8RyOBBqRps0N0tohtEJ2c\n" +
-                "CCeLKjCng44ePH+Pef+ppLL99ct/b5Np4eKQp8sCAwEAAaOBjTCBijAdBgNVHQ4E\n" +
-                "FgQUClXaJR9/sA27bW+/3MuzmWsrhHMwTgYDVR0jBEcwRYAUClXaJR9/sA27bW+/\n" +
-                "3MuzmWsrhHOhF6QVMBMxETAPBgNVBAMMCENoYW5nZU1lghQctK3qpbd/7PeXGxxB\n" +
-                "2gCzvu1pzTAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIBBjANBgkqhkiG9w0BAQsF\n" +
-                "AAOCAQEAM8R30jEIHJ0o4JZuHbS3dLSasn92HG6EXSK6meodHwtXx1jS6A6kOEJI\n" +
-                "fg7nciEDgA6c3d2YCtQrvCkzjKpPyGWYSR0BPN7xfhmG57tClz3i87gV+OAT/Igg\n" +
-                "SV+v1x/fRgm5igUL0rhUJGOGqkpynUODircdQ8ecZIYQ20zbk3sHTb+ybRN2J5Aj\n" +
-                "0VCnDp6pt1Whw7W3/XCx8JOGXqPN8Cm8mYeaDbODFVqkqtLocX7RFJjBg/k9VJQi\n" +
-                "HDH2eiEibmLqx+J6NvrCyRJIhEANVov6vrWbK9fu7NmTF1roHtmQc4jy/k/Snrh+\n" +
-                "G9iEieYmoEQo1UKe7h0w1dp0PDTrEQ==\n" +
-                "-----END CERTIFICATE-----\n" +
-                "</ca>\n" +
-                "<cert>\n" +
-                "-----BEGIN CERTIFICATE-----\n" +
-                "MIIDTzCCAjegAwIBAgIRAN8krZG+6sHE7mJdZQJ2eXswDQYJKoZIhvcNAQELBQAw\n" +
-                "EzERMA8GA1UEAwwIQ2hhbmdlTWUwHhcNMjExMTE1MjMyODE4WhcNMzExMTEzMjMy\n" +
-                "ODE4WjARMQ8wDQYDVQQDDAZjbGllbnQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\n" +
-                "ggEKAoIBAQDK8nID29CTFMoriNPqWaW8E/zzKqBP2ie1oyxskIt9TxJEfp/+jNaV\n" +
-                "uDY3kX4OhusDvWNBYjOQpTx3IjgW0OaJfedeHtKo+vsJrzCn8PV354XKRfJceWVt\n" +
-                "5N8GRHErcm8sNNQTXERL6POnZdvVBMAxBFHx2TvF5iQ/S1PpLThBuz6VX7OBX424\n" +
-                "4rzIX51HfLsoKCzEa4okWgMU3Uz3gVW2x2j2i1BgqnxkYXfEDUlrg5N96drBgdxX\n" +
-                "xQkgFN/0d9AZFgyFWrzMIxfo2qbOF5DGZ54d+G5+qu8VRRwE7Sew68+5ic3tNAPx\n" +
-                "4lJPmlIQ1LCI9/sLs7lEfePfh6HQh+OhAgMBAAGjgZ8wgZwwCQYDVR0TBAIwADAd\n" +
-                "BgNVHQ4EFgQUD+cFgn4YLXTNLnmXWYLGyn69uUswTgYDVR0jBEcwRYAUClXaJR9/\n" +
-                "sA27bW+/3MuzmWsrhHOhF6QVMBMxETAPBgNVBAMMCENoYW5nZU1lghQctK3qpbd/\n" +
-                "7PeXGxxB2gCzvu1pzTATBgNVHSUEDDAKBggrBgEFBQcDAjALBgNVHQ8EBAMCB4Aw\n" +
-                "DQYJKoZIhvcNAQELBQADggEBAA2M6WhfrFX1gsZSHQWE8JwZz3FaWSovBVSCygG2\n" +
-                "C45ll0gvi2ZM+Q4/93zVY1iTCxv3CskppqRHWdxh9aPQApx9CwAk6q/q7/51IrpK\n" +
-                "UVGF9EFQtrI9liZK1nG7LZk8hImKK4d2zOsc52e5iJAfql8lSHSbknLiaQOuR8Mv\n" +
-                "T5TvLKrxiK5gvLbfYxH1yxlIsMxID+Sj9qKugm5NBlxG6poZRgVIIxWkogDN2V7P\n" +
-                "Wt4aeovGmTSpWZdvnTb9GTkAY4v/j5Ff8eyQ2jyya1Zt50bT/LV0ta5EIJWPRm7p\n" +
-                "W5KJtqWn1ObYmm2Jw6A5krJmdhvbJRe5b9RyipsMrVCaWSs=\n" +
-                "-----END CERTIFICATE-----\n" +
-                "</cert>\n" +
-                "<key>\n" +
-                "-----BEGIN PRIVATE KEY-----\n" +
-                "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDK8nID29CTFMor\n" +
-                "iNPqWaW8E/zzKqBP2ie1oyxskIt9TxJEfp/+jNaVuDY3kX4OhusDvWNBYjOQpTx3\n" +
-                "IjgW0OaJfedeHtKo+vsJrzCn8PV354XKRfJceWVt5N8GRHErcm8sNNQTXERL6POn\n" +
-                "ZdvVBMAxBFHx2TvF5iQ/S1PpLThBuz6VX7OBX4244rzIX51HfLsoKCzEa4okWgMU\n" +
-                "3Uz3gVW2x2j2i1BgqnxkYXfEDUlrg5N96drBgdxXxQkgFN/0d9AZFgyFWrzMIxfo\n" +
-                "2qbOF5DGZ54d+G5+qu8VRRwE7Sew68+5ic3tNAPx4lJPmlIQ1LCI9/sLs7lEfePf\n" +
-                "h6HQh+OhAgMBAAECggEBAMCUUabhtslrB/FJtLYD/aY8XWKuB1Pe0qGkxmn6u7Lc\n" +
-                "Dpyaf94/7PxDwob2c+T7GBYDaCVKN15Bvd/aw9i6wJiltaB1pTceeosVCBnFKFlw\n" +
-                "hF+OAk7ID3y5mvzKg41T2LTdKIV6n4Bc/KDTokhAatPYop3ZosPHAIxjQavZ8jFD\n" +
-                "97bQlL+g53rbqMu+NrZXhy9LO2bF90aZpmiPniNeIA1BpvDStcD4dxJvAb7KxUCJ\n" +
-                "Vu4rnSLDVAU4hPNFUw7WoYs+xaGu4MSwPobIV+F1hKTwIGYh0kRqJ4v8ibHBVb9b\n" +
-                "qK8Y3S93qHoMWDrDBAjaAKxIvAgrPnzVgWG28kLh8IUCgYEA+pHhgNTjS8rYN+5Q\n" +
-                "EK3Z7GddBOo/lURtZBrbp6pRLQTS4qx8JG4CHhmofNvnKrYChr0yncv+fyKWqKEj\n" +
-                "/hzl2cIsrRA97xoWd9cNTUE3YkREW3I4a0ktevcJ7+a9AFOGGPMb7KO16ttU1tag\n" +
-                "iNLEA20K+ktCeYUFFBaFB69guuMCgYEAz1hcfWdPLn0ZxZ5wA1Vt0GAvrFhpD7lk\n" +
-                "8h7WJNnPa3zVSsApoUsuiFeZPtJHr4JYm4j45AIteoofYUAC2WtIgZNxddD7ar27\n" +
-                "WkdQFzjirQOluhSus3nOM+NVB38ZJhcJZcSQ+dtkzF7Sh/QLlBD17vFdIWqatSEP\n" +
-                "uaVV2ptQGqsCgYAMebzvjCnw+R2A02W7HtzNz2urNfqKdQi5RjkPhQRbqHTTgmD/\n" +
-                "81Y5p29jIBPHZZ6ElODzSFfYfqFfrf47xbaP/AH7b+aVhAgAWX25Dfky9FEu+GXk\n" +
-                "uZUBHVGqVyOr43y2u0v1oUUKd3cm5zLA/TVzMjestJiPslbJZEGlW08GnwKBgHKC\n" +
-                "mEHhpkdEa9FKGQ6eRZGJLYr/ILbAatGU2itr5zOzs5Ae5F7hyIcf6dBaDaEOWaU8\n" +
-                "VkiGM1uzoHTzBx/QMjDtnwG0MsXWlvva2o6YqgdnNkW4WmtgX9MkP7duKBNzMYt0\n" +
-                "raRv2BFOZPMUgrh5TXly7z4fQ+W4ppieiPW8RNcVAoGBAMH5im+iaUVSwDD8O8R5\n" +
-                "q2EiaF5S8ZZWplYw0fwgdfLJEJ4ShPLp0UoOG5txQIfFCc0Bj3RAjmgGyv2EkUvN\n" +
-                "tu0/j+C4mri2oA8cNjnw4Blevsdit8Z1q8Z4ig49ygTp26Ft25Sx3N3RKzEIt8Z7\n" +
-                "rsQtiJDCHDWMaHiA7eLarVLI\n" +
-                "-----END PRIVATE KEY-----\n" +
-                "</key>\n" +
-                "<tls-crypt>\n" +
-                "-----BEGIN OpenVPN Static key V1-----\n" +
-                "e4a255ce4222d17ccc62b45d3780f2d9\n" +
-                "427ced706c8a71280d9a0f2ebddb25a9\n" +
-                "25e754d5c9baccd01d191d9875e6165e\n" +
-                "06ed7cb2fd0807ff201f904709c06a9e\n" +
-                "aac6127074c945f8307c0809f4f0b47a\n" +
-                "8e659f7e8e386a454f6d493cf57f1527\n" +
-                "c9652589afbd37dc2ea953f884f899ea\n" +
-                "dd61a595bbf1466148be9571e8825f4e\n" +
-                "8352df8b386fdd7225f60f23f51514df\n" +
-                "5cba3f9402a1f5d189f358a45564a19c\n" +
-                "15fe4a9fbf21bb92c4d41efd8ff5dc67\n" +
-                "ff988d8362b86ad8ab213be54579b36a\n" +
-                "2b957767dc50d1f8576e6b2251afdebb\n" +
-                "a1ad02250bede2d1bb779a88fcf8828c\n" +
-                "a138e48c0a6b391580525165739a5c81\n" +
-                "8bd037f4e1890a30014eee31ff8cefaf\n" +
-                "-----END OpenVPN Static key V1-----\n" +
-                "</tls-crypt>\n"
+        val fast_DNS_DATA =
+            "client\n" + "dev tun\n" + "proto udp\n" + "remote 127.0.0.1 2323\n" + "resolv-retry infinite\n" + "nobind\n" + "persist-key\n" + "persist-tun\n" + "remote-cert-tls server\n" + "auth SHA512\n" + "cipher AES-128-OFB\n" + "ignore-unknown-option block-outside-dns\n" + "block-outside-dns\n" + "verb 3\n" + "route" + " " + serverIP + " 255.255.255.255 net_gateway\n" + "<ca>\n" + "-----BEGIN CERTIFICATE-----\n" + "MIIDQjCCAiqgAwIBAgIUHLSt6qW3f+z3lxscQdoAs77tac0wDQYJKoZIhvcNAQEL\n" + "BQAwEzERMA8GA1UEAwwIQ2hhbmdlTWUwHhcNMjExMTE1MjMyODE4WhcNMzExMTEz\n" + "MjMyODE4WjATMREwDwYDVQQDDAhDaGFuZ2VNZTCCASIwDQYJKoZIhvcNAQEBBQAD\n" + "ggEPADCCAQoCggEBAMpmoKvLXtF9XWZVeQhm0XlvCq0ez18l5PFsoIs2HWhbsOkC\n" + "btwiVKCMAwYav4sAW2Op/w1nmzs1BLgLjVP4v1B/efYDFFy8eJuDKWdObw/uNqxY\n" + "9OYQXcLiDhNrE482xB4G9VsvAj7UgzdQPYYA9IkaMLC21oPfi5MHF48pmzdea58b\n" + "xYoWuGLenFOyh45FQa1s7xafUEUJTZuhoQ+FPm/OrzvBTzyL0aHcIZu7g1BRicgb\n" + "BnQSD6TsspttN9scLqG/ev4wVtkuPCeXq0ri7F9sSJp8RyOBBqRps0N0tohtEJ2c\n" + "CCeLKjCng44ePH+Pef+ppLL99ct/b5Np4eKQp8sCAwEAAaOBjTCBijAdBgNVHQ4E\n" + "FgQUClXaJR9/sA27bW+/3MuzmWsrhHMwTgYDVR0jBEcwRYAUClXaJR9/sA27bW+/\n" + "3MuzmWsrhHOhF6QVMBMxETAPBgNVBAMMCENoYW5nZU1lghQctK3qpbd/7PeXGxxB\n" + "2gCzvu1pzTAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIBBjANBgkqhkiG9w0BAQsF\n" + "AAOCAQEAM8R30jEIHJ0o4JZuHbS3dLSasn92HG6EXSK6meodHwtXx1jS6A6kOEJI\n" + "fg7nciEDgA6c3d2YCtQrvCkzjKpPyGWYSR0BPN7xfhmG57tClz3i87gV+OAT/Igg\n" + "SV+v1x/fRgm5igUL0rhUJGOGqkpynUODircdQ8ecZIYQ20zbk3sHTb+ybRN2J5Aj\n" + "0VCnDp6pt1Whw7W3/XCx8JOGXqPN8Cm8mYeaDbODFVqkqtLocX7RFJjBg/k9VJQi\n" + "HDH2eiEibmLqx+J6NvrCyRJIhEANVov6vrWbK9fu7NmTF1roHtmQc4jy/k/Snrh+\n" + "G9iEieYmoEQo1UKe7h0w1dp0PDTrEQ==\n" + "-----END CERTIFICATE-----\n" + "</ca>\n" + "<cert>\n" + "-----BEGIN CERTIFICATE-----\n" + "MIIDTzCCAjegAwIBAgIRAN8krZG+6sHE7mJdZQJ2eXswDQYJKoZIhvcNAQELBQAw\n" + "EzERMA8GA1UEAwwIQ2hhbmdlTWUwHhcNMjExMTE1MjMyODE4WhcNMzExMTEzMjMy\n" + "ODE4WjARMQ8wDQYDVQQDDAZjbGllbnQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\n" + "ggEKAoIBAQDK8nID29CTFMoriNPqWaW8E/zzKqBP2ie1oyxskIt9TxJEfp/+jNaV\n" + "uDY3kX4OhusDvWNBYjOQpTx3IjgW0OaJfedeHtKo+vsJrzCn8PV354XKRfJceWVt\n" + "5N8GRHErcm8sNNQTXERL6POnZdvVBMAxBFHx2TvF5iQ/S1PpLThBuz6VX7OBX424\n" + "4rzIX51HfLsoKCzEa4okWgMU3Uz3gVW2x2j2i1BgqnxkYXfEDUlrg5N96drBgdxX\n" + "xQkgFN/0d9AZFgyFWrzMIxfo2qbOF5DGZ54d+G5+qu8VRRwE7Sew68+5ic3tNAPx\n" + "4lJPmlIQ1LCI9/sLs7lEfePfh6HQh+OhAgMBAAGjgZ8wgZwwCQYDVR0TBAIwADAd\n" + "BgNVHQ4EFgQUD+cFgn4YLXTNLnmXWYLGyn69uUswTgYDVR0jBEcwRYAUClXaJR9/\n" + "sA27bW+/3MuzmWsrhHOhF6QVMBMxETAPBgNVBAMMCENoYW5nZU1lghQctK3qpbd/\n" + "7PeXGxxB2gCzvu1pzTATBgNVHSUEDDAKBggrBgEFBQcDAjALBgNVHQ8EBAMCB4Aw\n" + "DQYJKoZIhvcNAQELBQADggEBAA2M6WhfrFX1gsZSHQWE8JwZz3FaWSovBVSCygG2\n" + "C45ll0gvi2ZM+Q4/93zVY1iTCxv3CskppqRHWdxh9aPQApx9CwAk6q/q7/51IrpK\n" + "UVGF9EFQtrI9liZK1nG7LZk8hImKK4d2zOsc52e5iJAfql8lSHSbknLiaQOuR8Mv\n" + "T5TvLKrxiK5gvLbfYxH1yxlIsMxID+Sj9qKugm5NBlxG6poZRgVIIxWkogDN2V7P\n" + "Wt4aeovGmTSpWZdvnTb9GTkAY4v/j5Ff8eyQ2jyya1Zt50bT/LV0ta5EIJWPRm7p\n" + "W5KJtqWn1ObYmm2Jw6A5krJmdhvbJRe5b9RyipsMrVCaWSs=\n" + "-----END CERTIFICATE-----\n" + "</cert>\n" + "<key>\n" + "-----BEGIN PRIVATE KEY-----\n" + "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDK8nID29CTFMor\n" + "iNPqWaW8E/zzKqBP2ie1oyxskIt9TxJEfp/+jNaVuDY3kX4OhusDvWNBYjOQpTx3\n" + "IjgW0OaJfedeHtKo+vsJrzCn8PV354XKRfJceWVt5N8GRHErcm8sNNQTXERL6POn\n" + "ZdvVBMAxBFHx2TvF5iQ/S1PpLThBuz6VX7OBX4244rzIX51HfLsoKCzEa4okWgMU\n" + "3Uz3gVW2x2j2i1BgqnxkYXfEDUlrg5N96drBgdxXxQkgFN/0d9AZFgyFWrzMIxfo\n" + "2qbOF5DGZ54d+G5+qu8VRRwE7Sew68+5ic3tNAPx4lJPmlIQ1LCI9/sLs7lEfePf\n" + "h6HQh+OhAgMBAAECggEBAMCUUabhtslrB/FJtLYD/aY8XWKuB1Pe0qGkxmn6u7Lc\n" + "Dpyaf94/7PxDwob2c+T7GBYDaCVKN15Bvd/aw9i6wJiltaB1pTceeosVCBnFKFlw\n" + "hF+OAk7ID3y5mvzKg41T2LTdKIV6n4Bc/KDTokhAatPYop3ZosPHAIxjQavZ8jFD\n" + "97bQlL+g53rbqMu+NrZXhy9LO2bF90aZpmiPniNeIA1BpvDStcD4dxJvAb7KxUCJ\n" + "Vu4rnSLDVAU4hPNFUw7WoYs+xaGu4MSwPobIV+F1hKTwIGYh0kRqJ4v8ibHBVb9b\n" + "qK8Y3S93qHoMWDrDBAjaAKxIvAgrPnzVgWG28kLh8IUCgYEA+pHhgNTjS8rYN+5Q\n" + "EK3Z7GddBOo/lURtZBrbp6pRLQTS4qx8JG4CHhmofNvnKrYChr0yncv+fyKWqKEj\n" + "/hzl2cIsrRA97xoWd9cNTUE3YkREW3I4a0ktevcJ7+a9AFOGGPMb7KO16ttU1tag\n" + "iNLEA20K+ktCeYUFFBaFB69guuMCgYEAz1hcfWdPLn0ZxZ5wA1Vt0GAvrFhpD7lk\n" + "8h7WJNnPa3zVSsApoUsuiFeZPtJHr4JYm4j45AIteoofYUAC2WtIgZNxddD7ar27\n" + "WkdQFzjirQOluhSus3nOM+NVB38ZJhcJZcSQ+dtkzF7Sh/QLlBD17vFdIWqatSEP\n" + "uaVV2ptQGqsCgYAMebzvjCnw+R2A02W7HtzNz2urNfqKdQi5RjkPhQRbqHTTgmD/\n" + "81Y5p29jIBPHZZ6ElODzSFfYfqFfrf47xbaP/AH7b+aVhAgAWX25Dfky9FEu+GXk\n" + "uZUBHVGqVyOr43y2u0v1oUUKd3cm5zLA/TVzMjestJiPslbJZEGlW08GnwKBgHKC\n" + "mEHhpkdEa9FKGQ6eRZGJLYr/ILbAatGU2itr5zOzs5Ae5F7hyIcf6dBaDaEOWaU8\n" + "VkiGM1uzoHTzBx/QMjDtnwG0MsXWlvva2o6YqgdnNkW4WmtgX9MkP7duKBNzMYt0\n" + "raRv2BFOZPMUgrh5TXly7z4fQ+W4ppieiPW8RNcVAoGBAMH5im+iaUVSwDD8O8R5\n" + "q2EiaF5S8ZZWplYw0fwgdfLJEJ4ShPLp0UoOG5txQIfFCc0Bj3RAjmgGyv2EkUvN\n" + "tu0/j+C4mri2oA8cNjnw4Blevsdit8Z1q8Z4ig49ygTp26Ft25Sx3N3RKzEIt8Z7\n" + "rsQtiJDCHDWMaHiA7eLarVLI\n" + "-----END PRIVATE KEY-----\n" + "</key>\n" + "<tls-crypt>\n" + "-----BEGIN OpenVPN Static key V1-----\n" + "e4a255ce4222d17ccc62b45d3780f2d9\n" + "427ced706c8a71280d9a0f2ebddb25a9\n" + "25e754d5c9baccd01d191d9875e6165e\n" + "06ed7cb2fd0807ff201f904709c06a9e\n" + "aac6127074c945f8307c0809f4f0b47a\n" + "8e659f7e8e386a454f6d493cf57f1527\n" + "c9652589afbd37dc2ea953f884f899ea\n" + "dd61a595bbf1466148be9571e8825f4e\n" + "8352df8b386fdd7225f60f23f51514df\n" + "5cba3f9402a1f5d189f358a45564a19c\n" + "15fe4a9fbf21bb92c4d41efd8ff5dc67\n" + "ff988d8362b86ad8ab213be54579b36a\n" + "2b957767dc50d1f8576e6b2251afdebb\n" + "a1ad02250bede2d1bb779a88fcf8828c\n" + "a138e48c0a6b391580525165739a5c81\n" + "8bd037f4e1890a30014eee31ff8cefaf\n" + "-----END OpenVPN Static key V1-----\n" + "</tls-crypt>\n"
 
 
         val vpnProfile: VpnProfile = ClientManager.generateOvpn(
-            context,
-            fast_DNS_DATA,
-            getBestServer_after_calculation(choose_Server_preference)!!.city
+            context, fast_DNS_DATA, getBestServer_after_calculation(choose_Server_preference)!!.city
         )
         // LINEA PARA QUE EL OPEN VPN NO INICIE SOLO EL SERVICIO
         ClientManager.startVPN(context, vpnProfile)
 
-        if (timer_connecting != null)
-            timer_connecting!!.cancel()
+        if (timer_connecting != null) timer_connecting!!.cancel()
 
         timer_connecting = object : CountDownTimer(20000, 100) {
             override fun onTick(millisUntilFinished: Long) {
@@ -2354,8 +2061,7 @@ class StartFragment : Fragment() {
             override fun onFinish() {
                 (activity as MainActivity).stopService(
                     Intent(
-                        activity,
-                        Connection_Timer::class.java
+                        activity, Connection_Timer::class.java
                     )
                 )
 
@@ -2408,7 +2114,11 @@ class StartFragment : Fragment() {
                                 var passStr: String? = null
 
                                 if (spConnectionMethod!!.selectedItem == null) {
-                                    spConnectionMethod!!.setSelection(adapter!!.getPosition(getString(string.fastdns_connection)))
+                                    spConnectionMethod!!.setSelection(
+                                        adapter!!.getPosition(
+                                            getString(string.fastdns_connection)
+                                        )
+                                    )
                                     passStr = spConnectionMethod!!.selectedItem.toString()
                                 } else {
                                     passStr = spConnectionMethod!!.selectedItem.toString()
@@ -2418,20 +2128,16 @@ class StartFragment : Fragment() {
                                     btnFastDNSStart!!.setImageResource(R.drawable.disconnected)
 
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY, false
                                     )
 
                                     val intent = Intent(context, DisconnectVPN::class.java)
@@ -2440,20 +2146,16 @@ class StartFragment : Fragment() {
                                 }
                                 if (passStr == "DNSTT") {
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY, false
                                     )
 
                                     btnDNSTTStart!!.setImageResource(R.drawable.disconnected)
@@ -2463,20 +2165,16 @@ class StartFragment : Fragment() {
                                 }
                                 if (passStr == "OpenVPN") {
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY, false
                                     )
 
                                     btnFastDNSStart!!.setImageResource(R.drawable.disconnected)
@@ -2486,20 +2184,16 @@ class StartFragment : Fragment() {
                                 }
                                 if (passStr == "V2Ray") {
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_OPEN_VPN, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_DNS_TT, false
                                     )
                                     DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY,
-                                        false
+                                        DmPrefsKeys.SHARED_PREFERENCES_STARTED_V2RAY, false
                                     )
 
                                     btnStartV2RayCC!!.setImageResource(R.drawable.disconnected)
@@ -2561,7 +2255,10 @@ class StartFragment : Fragment() {
                 val milliseconds = d.time
                 e("milli_times", "" + milliseconds)
 
-                val intent_service = Intent(requireActivity(), Connection_Timer::class.java).putExtra("milliseconds", milliseconds)
+                val intent_service =
+                    Intent(requireActivity(), Connection_Timer::class.java).putExtra(
+                        "milliseconds", milliseconds
+                    )
                 requireActivity().startService(intent_service)
 
             }
@@ -2576,7 +2273,8 @@ class StartFragment : Fragment() {
         val hours = (mTimeLeftInMillis / 1000).toInt() / 3600
         val minutes = (mTimeLeftInMillis / 1000 % 3600).toInt() / 60
         val seconds = (mTimeLeftInMillis / 1000).toInt() % 60
-        val timeLeftFormatted: String = String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds)
+        val timeLeftFormatted: String =
+            String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds)
         e("timeLeftFormatted_val", timeLeftFormatted)
         timeLeft_val!!.text = timeLeftFormatted
     }
@@ -2589,16 +2287,14 @@ class StartFragment : Fragment() {
             )
         ) {
             DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS,
-                true
+                DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS, true
             )
 
             val serverIP = getBestServer_after_calculation(choose_Server_preference)!!.ip
 
 
             val i = Intent(
-                context,
-                DnsService::class.java
+                context, DnsService::class.java
             )
             i.putExtra("host", serverIP)
             i.putExtra("extra", "53") // port of fastdns, no show required
@@ -2627,13 +2323,11 @@ class StartFragment : Fragment() {
 
 
             DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS,
-                false
+                DmPrefsKeys.SHARED_PREFERENCES_STARTED_FAST_DNS, false
             )
 
             val i = Intent(
-                context,
-                DnsService::class.java
+                context, DnsService::class.java
             )
             requireContext().stopService(i)
 
@@ -2662,16 +2356,14 @@ class StartFragment : Fragment() {
             )
         ) {
             DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_STARTED_UDP_MODE,
-                true
+                DmPrefsKeys.SHARED_PREFERENCES_STARTED_UDP_MODE, true
             )
 
             val serverIP = getConfiguredServer(requireContext()).split(':')[0]
 
 
             val i = Intent(
-                context,
-                DnsService::class.java
+                context, DnsService::class.java
             )
             i.putExtra("host", serverIP)
             i.putExtra("extra", "53") // port of udp mode, no show required
@@ -2698,13 +2390,11 @@ class StartFragment : Fragment() {
 
         } else {
             DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_STARTED_UDP_MODE,
-                false
+                DmPrefsKeys.SHARED_PREFERENCES_STARTED_UDP_MODE, false
             )
 
             val i = Intent(
-                context,
-                DnsService::class.java
+                context, DnsService::class.java
             )
             requireContext().stopService(i)
             mainActivity.stopVpn()
@@ -2777,14 +2467,13 @@ class StartFragment : Fragment() {
             }
         }
     }
+
     private fun importBatchConfig(server: String?) {
         val subid = "v2ray_ic_config"
         var count = AngConfigManager.importBatchConfig(server, subid, subid.isNullOrEmpty())
         if (count <= 0) {
             count = AngConfigManager.importBatchConfig(
-                com.v2ray.ang.util.Utils.decode(server!!),
-                subid,
-                subid.isNullOrEmpty()
+                com.v2ray.ang.util.Utils.decode(server!!), subid, subid.isNullOrEmpty()
             )
         }
         if (count > 0) {
@@ -2850,8 +2539,7 @@ class StartFragment : Fragment() {
     public fun stopPayloadProcess() {
         e(
             LogUtil.DIAM_PROXY_TAG,
-            "$TAG: " + DmSharedPreferences.getInstance(requireContext())!!
-                .getBoolean(
+            "$TAG: " + DmSharedPreferences.getInstance(requireContext())!!.getBoolean(
                     DmPrefsKeys.SHARED_PREFERENCES_STARTED_PAYLOAD,
                     DmPrefsKeys.SHARED_PREFERENCES_STARTED_PAYLOAD_DEFAULT
                 ).toString()
@@ -2961,40 +2649,28 @@ class StartFragment : Fragment() {
     }
 
     private fun setCustomDnsConnetion(context: Context, value: Boolean) {
-        DmSharedPreferences
-            .getInstance(context)!!
-            .putBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_DNS_CONNECTION,
-                value
+        DmSharedPreferences.getInstance(context)!!.putBoolean(
+                DmPrefsKeys.SHARED_PREFERENCES_DNS_CONNECTION, value
             )
     }
 
     private fun getDnsConnection(context: Context): Boolean {
-        return DmSharedPreferences
-            .getInstance(context)!!
-            .getBoolean(
+        return DmSharedPreferences.getInstance(context)!!.getBoolean(
                 DmPrefsKeys.SHARED_PREFERENCES_DNS_CONNECTION,
                 DmPrefsKeys.SHARED_PREFERENCES_DNS_CONNECTION_DEFAULT
             )
     }
 
     private fun getConfiguredServer(context: Context, withDnsConnection: Boolean = true): String {
-        var configuredServer: String = DmSharedPreferences
-            .getInstance(context)!!
-            .getString(
-                DmPrefsKeys.SHARED_PREFERENCES_SERVER,
-                DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
-            ).toString() + ":" +
-                DmSharedPreferences
-                    .getInstance(context)!!
-                    .getLong(
-                        DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT,
-                        DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT_DEFAULT
-                    )
+        var configuredServer: String = DmSharedPreferences.getInstance(context)!!.getString(
+                DmPrefsKeys.SHARED_PREFERENCES_SERVER, DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
+            ).toString() + ":" + DmSharedPreferences.getInstance(context)!!.getLong(
+                DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT,
+                DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT_DEFAULT
+            )
         if (withDnsConnection && getDnsConnection(context)) {
             configuredServer = DmSharedPreferences.getInstance(context)!!.getString(
-                DmPrefsKeys.SHARED_PREFERENCES_DNS,
-                DmPrefsKeys.SHARED_PREFERENCES_DNS_DEFAULT
+                DmPrefsKeys.SHARED_PREFERENCES_DNS, DmPrefsKeys.SHARED_PREFERENCES_DNS_DEFAULT
             ) + "." + configuredServer
         }
         return "67.205.169.117"
@@ -3002,39 +2678,23 @@ class StartFragment : Fragment() {
 
     @Suppress("DUPLICATE_LABEL_IN_WHEN")
     private fun getConfiguredSni(context: Context): String? {
-        var customHost = DmSharedPreferences
-            .getInstance(context)!!
-            .getString(
-                DmPrefsKeys.SHARED_PREFERENCES_SNI,
-                DmPrefsKeys.SHARED_PREFERENCES_SNI_DEFAULT
+        var customHost = DmSharedPreferences.getInstance(context)!!.getString(
+                DmPrefsKeys.SHARED_PREFERENCES_SNI, DmPrefsKeys.SHARED_PREFERENCES_SNI_DEFAULT
             )
         when (customHost) {
             Constants.DEAFULT_HOST -> customHost = Constants.DEAFULT_HOST_NICKNAME
-            Constants.DEAFULT_HOST_2 -> customHost = Constants.DEFAULT_HOST_NICKNAME_2
-            Constants.DEAFULT_HOST_3 -> customHost = Constants.DEFAULT_HOST_NICKNAME_3
-            Constants.DEAFULT_HOST_4 -> customHost = Constants.DEFAULT_HOST_NICKNAME_4
-            Constants.DEAFULT_HOST_5 -> customHost = Constants.DEFAULT_HOST_NICKNAME_5
-            Constants.DEAFULT_HOST_6 -> customHost = Constants.DEFAULT_HOST_NICKNAME_6
-            Constants.DEAFULT_HOST_7 -> customHost = Constants.DEFAULT_HOST_NICKNAME_7
-            Constants.DEAFULT_HOST_8 -> customHost = Constants.DEFAULT_HOST_NICKNAME_8
-            Constants.DEAFULT_HOST_9 -> customHost = Constants.DEFAULT_HOST_NICKNAME_9
         }
         return customHost
     }
 
     private fun getConfiguredDNS(context: Context): String? {
         if (etDns!!.text.isNotEmpty()) {
-            DmSharedPreferences
-                .getInstance(context)!!.putString(
-                    DmPrefsKeys.SHARED_PREFERENCES_DNS,
-                    etDns!!.text.toString()
+            DmSharedPreferences.getInstance(context)!!.putString(
+                    DmPrefsKeys.SHARED_PREFERENCES_DNS, etDns!!.text.toString()
                 )
         }
-        return DmSharedPreferences
-            .getInstance(context)!!
-            .getString(
-                DmPrefsKeys.SHARED_PREFERENCES_DNS,
-                DmPrefsKeys.SHARED_PREFERENCES_DNS_DEFAULT
+        return DmSharedPreferences.getInstance(context)!!.getString(
+                DmPrefsKeys.SHARED_PREFERENCES_DNS, DmPrefsKeys.SHARED_PREFERENCES_DNS_DEFAULT
             )
     }
 
@@ -3051,18 +2711,15 @@ class StartFragment : Fragment() {
             var type = DmPrefsMethods.DnsTtType.UDP.value
 
             when (view.getId()) {
-                R.id.rbUDP ->
-                    if (checked) {
-                        type = DmPrefsMethods.DnsTtType.UDP.value
-                    }
-                R.id.rbDOT ->
-                    if (checked) {
-                        type = DmPrefsMethods.DnsTtType.DOT.value
-                    }
-                R.id.rbDOH ->
-                    if (checked) {
-                        type = DmPrefsMethods.DnsTtType.DOH.value
-                    }
+                R.id.rbUDP -> if (checked) {
+                    type = DmPrefsMethods.DnsTtType.UDP.value
+                }
+                R.id.rbDOT -> if (checked) {
+                    type = DmPrefsMethods.DnsTtType.DOT.value
+                }
+                R.id.rbDOH -> if (checked) {
+                    type = DmPrefsMethods.DnsTtType.DOH.value
+                }
             }
             DmPrefsMethods.setConnectionDnsTT(type)
             return
@@ -3070,9 +2727,7 @@ class StartFragment : Fragment() {
     }
 
     private fun getConfiguredPayload(context: Context): String? {
-        return DmSharedPreferences
-            .getInstance(context)!!
-            .getString(
+        return DmSharedPreferences.getInstance(context)!!.getString(
                 DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG,
                 DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG_DEFAULT
             )
@@ -3126,15 +2781,16 @@ class StartFragment : Fragment() {
         if (requestCode == MainActivity.FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             data?.data?.also { documentUri ->
                 requireActivity().contentResolver.takePersistableUriPermission(
-                    documentUri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    documentUri, Intent.FLAG_GRANT_READ_URI_PERMISSION
                 )
 
                 val pathData = documentUri.toString()
                 if (!pathData.contains(Constants.EXT_FILE)) {
                     TastyToast.makeText(
                         requireContext(),
-                        getString(string.file_invalid), Toast.LENGTH_LONG, TastyToast.ERROR
+                        getString(string.file_invalid),
+                        Toast.LENGTH_LONG,
+                        TastyToast.ERROR
                     ).show()
                     return
                 }
@@ -3181,11 +2837,9 @@ class StartFragment : Fragment() {
             val fileData = if (pathData != null) {
                 Utils.readExternalFile(
                     pathData.replace(
-                        "/external_files",
-                        Environment.getExternalStorageDirectory().absolutePath
+                        "/external_files", Environment.getExternalStorageDirectory().absolutePath
                     ).replace(
-                        "/media",
-                        Environment.getExternalStorageDirectory().absolutePath
+                        "/media", Environment.getExternalStorageDirectory().absolutePath
                     )
                 ).toString(Charsets.UTF_8)
             } else {
@@ -3219,80 +2873,65 @@ class StartFragment : Fragment() {
             val connDnsTTHost = Utils.decryptValue(fileExtractedParts[12])
 
 
-            val fileIdTmp =
-                DmSharedPreferences.getInstance(requireContext())!!.getString(
-                    DmPrefsKeys.SHARED_PREFERENCES_FILE_NAME,
-                    DmPrefsKeys.SHARED_PREFERENCES_FILE_NAME_DEFAULT
-                )
+            val fileIdTmp = DmSharedPreferences.getInstance(requireContext())!!.getString(
+                DmPrefsKeys.SHARED_PREFERENCES_FILE_NAME,
+                DmPrefsKeys.SHARED_PREFERENCES_FILE_NAME_DEFAULT
+            )
 
             if (fileId.isNotEmpty() && fileId == fileIdTmp) {
                 TastyToast.makeText(
-                    context,
-                    getString(string.file_imported),
-                    Toast.LENGTH_LONG,
-                    TastyToast.SUCCESS
+                    context, getString(string.file_imported), Toast.LENGTH_LONG, TastyToast.SUCCESS
                 ).show()
                 return
             }
 
             DmSharedPreferences.getInstance(requireContext())!!.putString(
-                DmPrefsKeys.SHARED_PREFERENCES_FILE_NAME,
-                fileId
+                DmPrefsKeys.SHARED_PREFERENCES_FILE_NAME, fileId
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_IS_IMPORT_CF,
-                true
+                DmPrefsKeys.SHARED_PREFERENCES_IS_IMPORT_CF, true
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putString(
-                DmPrefsKeys.SHARED_PREFERENCES_TYPE_CONNECTION,
-                typeConfig
+                DmPrefsKeys.SHARED_PREFERENCES_TYPE_CONNECTION, typeConfig
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putString(
-                DmPrefsKeys.SHARED_PREFERENCES_SERVER,
-                server
+                DmPrefsKeys.SHARED_PREFERENCES_SERVER, server
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putLong(
-                DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT,
-                port
+                DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT, port
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putString(
-                DmPrefsKeys.SHARED_PREFERENCES_SNI,
-                host
+                DmPrefsKeys.SHARED_PREFERENCES_SNI, host
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putString(
-                DmPrefsKeys.SHARED_PREFERENCES_DNS,
-                dns
+                DmPrefsKeys.SHARED_PREFERENCES_DNS, dns
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
                 DmPrefsKeys.SHARED_PREFERENCES_DNS_CONNECTION,
                 (typeConfig.toLowerCase().trim() == requireContext().getString(
                     string.dns_connection
-                )
-                    .toLowerCase().trim())
+                ).toLowerCase().trim())
             )
 
             DmPrefsMethods.setCustomPing(useCustomPing)
 
             DmSharedPreferences.getInstance(requireContext())!!.putLong(
-                DmPrefsKeys.SHARED_PREFERENCES_PING,
-                ping
+                DmPrefsKeys.SHARED_PREFERENCES_PING, ping
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putString(
-                DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG,
-                payload
+                DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG, payload
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putString(
-                DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG,
-                customMsg
+                DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG, customMsg
             )
 
             DmSharedPreferences.getInstance(requireContext())!!.putBoolean(
@@ -3311,7 +2950,9 @@ class StartFragment : Fragment() {
         } catch (exception: Exception) {
             TastyToast.makeText(
                 requireContext(),
-                getString(string.file_invalid), Toast.LENGTH_LONG, TastyToast.ERROR
+                getString(string.file_invalid),
+                Toast.LENGTH_LONG,
+                TastyToast.ERROR
             ).show()
         }
     }
@@ -3359,13 +3000,11 @@ class StartFragment : Fragment() {
                 serverFasDNSCont!!.isEnabled = false
             }
 
-            val customMsg =
-                DmSharedPreferences.getInstance(requireContext())!!.getString(
-                    DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG,
-                    DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG_DEFAULT
-                )
-            if (!customMsg.isNullOrEmpty()
-            ) {
+            val customMsg = DmSharedPreferences.getInstance(requireContext())!!.getString(
+                DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG,
+                DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG_DEFAULT
+            )
+            if (!customMsg.isNullOrEmpty()) {
                 txtEFCustomMsg!!.text = customMsg
                 txtEFCustomMsg!!.visibility = View.VISIBLE
             }
@@ -3401,7 +3040,9 @@ class StartFragment : Fragment() {
     }
 
     override fun onStart() {
-        requireActivity().registerReceiver(broadcastReceiver, IntentFilter("com.nicadevelop.nicavpn.countdown_br"))
+        requireActivity().registerReceiver(
+            broadcastReceiver, IntentFilter("com.nicadevelop.nicavpn.countdown_br")
+        )
         super.onStart()
     }
 
@@ -3620,14 +3261,10 @@ fun Spinner.avoidDropdownFocus() {
         val popupWindowClass =
             if (isAppCompat) androidx.appcompat.widget.ListPopupWindow::class.java else android.widget.ListPopupWindow::class.java
 
-        val listPopup = spinnerClass
-            .getDeclaredField("mPopup")
-            .apply { isAccessible = true }
-            .get(this)
+        val listPopup =
+            spinnerClass.getDeclaredField("mPopup").apply { isAccessible = true }.get(this)
         if (popupWindowClass.isInstance(listPopup)) {
-            val popup = popupWindowClass
-                .getDeclaredField("mPopup")
-                .apply { isAccessible = true }
+            val popup = popupWindowClass.getDeclaredField("mPopup").apply { isAccessible = true }
                 .get(listPopup)
             if (popup is PopupWindow) {
                 popup.isFocusable = false

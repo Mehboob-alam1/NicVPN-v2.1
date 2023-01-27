@@ -23,6 +23,7 @@ public class Constant {
     public static String MAIN_API = "http://v2-panel.jaquemate-vpn.net/";
 
 
+    public static String Privacy_Policy = "https://unknowndev-vpn.tk/termsprivacy.html/";
     public static String SERVER_URL = MAIN_API + "api.php?action=get_serversobfs";
 
 
@@ -48,11 +49,6 @@ public class Constant {
     public static Boolean inter_switch = true;
     public static Boolean native_switch = true;
     public static Boolean reward_switch = true;
-
-
-    //Privacy Policy
-
-    public static String Privacy_Policy = "";
 
     //About
 

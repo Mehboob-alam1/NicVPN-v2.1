@@ -9,8 +9,6 @@
 -optimizations
 -dontoptimize
 #-keeppackagenames
--dontnote
--dontwarn
 -ignorewarnings
 -optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/var

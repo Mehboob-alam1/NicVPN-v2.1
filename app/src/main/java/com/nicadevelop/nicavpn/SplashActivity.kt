@@ -180,7 +180,7 @@ class SplashActivity : AppCompatActivity() {
             intent.putExtra("consent", hasConsent)
             startActivity(intent)
             finish()
-        }, 2300)
+        }, 1500)
     }
 
 

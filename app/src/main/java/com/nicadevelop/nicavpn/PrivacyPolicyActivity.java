@@ -65,7 +65,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
             }
         });
         privacy_policy.getSettings().setJavaScriptEnabled(true);
-        privacy_policy.loadUrl(Constant.MAIN_API+"privacy_policy.php");
+        privacy_policy.loadUrl(Constant.Privacy_Policy);
     }
 
     @Override

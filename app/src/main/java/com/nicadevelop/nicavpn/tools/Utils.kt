@@ -44,32 +44,6 @@ import com.appodeal.ads.Appodeal
 @Suppress("unused")
 object Utils {
     private const val TAG = "Utils."
-    const val AboutUS = "<p><strong>2019 - 2020, NicVPN</strong></p>\n" +
-            "<p><strong>(C) NicVPN is a trademark of UnknownDev Team.</strong></p>\n" +
-            "<p>WE RECOMMEND OUR USERS TO USE THE TLS / SSL METHOD, WHICH THANKS TO OUR PROTOCOL THIS METHOD IS ANTI SNIFFER SINCE TRAFFIC IS ENCRYPTED,\n" +
-            "\n" +
-            "ALL THIS SECURITY IS THANKS TO OUR REDESIGNED AND FAST PROTOCOL AND MAINTAINS A CONNECTION ALWAYS ALIVE</p>\n" +
-            "<p></p>\n" +
-            "This file contains the license for NicVPN, a free software project to\n" +
-            "provide anonymity on the Internet from a Google Android smartphone.\n" +
-            "<p>You agree not to reverse engineerr, decompiler, disassemble, modify, translate, make any attempt to discover the source code of this software, or create derivative works from this software. Redistribution of NicVPN binary forms and related documets, are permitted provided that redistributions of NicVPN binary forms and releted as well as a complete copy of this EUA.</p>\n" +
-            "<p><strong>Thank You!!</strong></p>\n" +
-            "<p><strong>EMAIL: unknowndev2016@gmail.com</strong></p>\n" +
-            "<p><strong>Features:</strong> NicVPN</p>\n" +
-            "<p>1. We use TCP over ICMP protocol to cover the complete connection between client and server, so our servers are susceptible to the same failures and vulnerabilities present in this technology</p>\n" +
-            "<p></p>\n" +
-            "<p>2.We do not guarantee total connection stability or total server availability, but we will do our best to make everything work well.</p>\n" +
-            "<p></p>\n" +
-            "<p>3. It is an application designed to allow people who want to protect their privacy on the Web.</p>\n" +
-            "<p><strong>Multiple proxy support:</strong><br />NicVPN supports <strong>HTTP / HTTPS / ICMP / DNS / UDP</strong> protocol.<br />A NicVPN process can use different protocols on different ports at the same time;<br />By combining different incoming and outgoing proxy servers, you can change the traffic format dynamically.</p>\n" +
-            "<p>Our PING option, helps us to avoid firewall, helps us to make the package more constant and faster.</p>\n" +
-            "<p><strong>      --Methods--</strong></p>\n" +
-            "<p>  * DIRECT <br /> * TLS OVER HTTP (Supports TLSv1, TLSv1.1, TLSv1.2 / SSLv3)<br /> * PAYLOAD<br />* HTTP OVER DNS<br /> * Support Netflix<br />\n" +
-            "<p><strong>      --Coming Soon--</strong></p>\n" +
-            "<br /> * PAYLOAD PX<br /><br /> * AND MORE<br />\n" +
-            "<p><strong>This presentation and software run the risk of its use. Do what you want with him, but accept full responsibility for your actions. The tools were created specifically to help, be careful.\n</strong></p>\n" +
-            "<p><strong>&nbsp;</strong></p>"
-
     fun createAlertDialog(
         context: Context,
         title: String,
@@ -280,25 +254,6 @@ object Utils {
             LogUtil.DIAM_PROXY_TAG,
             "et_custom_dns: " + dialogView.etCustomDns.text.toString()
         )*/
-
-        dialogView.etCustomDns.setText(
-            DmSharedPreferences.getInstance(context)!!.getString(
-                DmPrefsKeys.SHARED_PREFERENCES_VPN_DNS,
-                DmPrefsKeys.SHARED_PREFERENCES_VPN_DNS_DEFAULT
-            )
-        )
-
-        dialogView.checkActivateUdp.isChecked =
-            DmSharedPreferences.getInstance(context)!!.getBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_VPN_UDP,
-                DmPrefsKeys.SHARED_PREFERENCES_VPN_UDP_DEFAULT
-            )
-
-        dialogView.checkUseIP.isChecked =
-            DmSharedPreferences.getInstance(context)!!.getBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_VPN_BY_IP,
-                DmPrefsKeys.SHARED_PREFERENCES_VPN_BY_IP_DEFAULT
-            )
 
         @Suppress("ConstantConditionIf")
         if (BuildConfig.IS_USE_ADS) {

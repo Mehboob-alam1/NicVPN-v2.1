@@ -73,7 +73,7 @@ public class Menu_Activity extends AppCompatActivity {
             try {
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("cert_Value/plain");
-                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Matrix VPN ");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "NicVPN ");
                 String shareMessage = "\nWe recommend you this application\n\n";
                 shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + getPackageName() + "\n\n";
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);

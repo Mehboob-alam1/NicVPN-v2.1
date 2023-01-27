@@ -32,33 +32,10 @@ object Constants {
     // Tiempo de configuracion que se muestra el auncio por defecto es 5 minutos
     const val TIME_SHOW_ADMOD_BANNER = 60000L
     const val SNI_LABEL = "sni="
+
     const val DEAFULT_HOST_NICKNAME = "MOVISTAR-PANAMA"
-
-    const val DEFAULT_HOST_NICKNAME_2 = "DIGICEL-PANAMA"
-
-    const val DEFAULT_HOST_NICKNAME_3 = "FACEBOOK-FREE"
-
-    const val DEFAULT_HOST_NICKNAME_4 = "MOVISTAR-MX1"
-
-    const val DEFAULT_HOST_NICKNAME_5 = "MOVISTAR-MX2"
-
-    const val DEFAULT_HOST_NICKNAME_6 = "WHASTAPP-P"
-
-    const val DEFAULT_HOST_NICKNAME_7 = "MOVISTAR-MUNDIAL"
-
-    const val DEFAULT_HOST_NICKNAME_8 = "FACEBOOK-P"
-
-    const val DEFAULT_HOST_NICKNAME_9 = "MOVISTAR-PERU"
-
     const val DEAFULT_HOST = "www.google.com"
-    const val DEAFULT_HOST_2 = "www.google.com"
-    const val DEAFULT_HOST_3 = "www.google.com"
-    const val DEAFULT_HOST_4 = "www.google.com"
-    const val DEAFULT_HOST_5 = "uwww.google.com"
-    const val DEAFULT_HOST_6 = "www.google.com"
-    const val DEAFULT_HOST_7 = "www.google.com"
-    const val DEAFULT_HOST_8 = "www.google.com"
-    const val DEAFULT_HOST_9 = "www.google.com"
+
     fun createAdBannerView(
         context: Context?,
         bannerKey: String,
@@ -79,28 +56,6 @@ object Constants {
 
     @SuppressLint("SdCardPath")
     const val DIR = "/data/data/com.nicadevelop.nicavpn/files"
-
-    const val ROUTE_ALL = "all"
-    const val ROUTE_CHN = "chn"
-
-    const val INTENT_PREFIX = "spgw-01"
-    const val INTENT_NAME = INTENT_PREFIX + "NAME"
-    const val INTENT_SERVER = INTENT_PREFIX + "SERV"
-    const val INTENT_PORT = INTENT_PREFIX + "PORT"
-    const val INTENT_USERNAME = INTENT_PREFIX + "UNAME"
-    const val INTENT_PASSWORD = INTENT_PREFIX + "PASSWD"
-    const val INTENT_ROUTE = INTENT_PREFIX + "ROUTE"
-    const val INTENT_DNS = INTENT_PREFIX + "DNS"
-    const val INTENT_DNS_PORT = INTENT_PREFIX + "DNSPORT"
-    const val INTENT_PER_APP = INTENT_PREFIX + "PERAPP"
-    const val INTENT_APP_BYPASS = INTENT_PREFIX + "APPBYPASS"
-    const val INTENT_APP_LIST = INTENT_PREFIX + "APPLIST"
-    const val INTENT_IPV6_PROXY = INTENT_PREFIX + "IPV6"
-    const val INTENT_UDP_GW = INTENT_PREFIX + "UDPGW"
-
-    const val PREF = "profile"
-    const val PREF_PROFILE = "profile"
-    const val PREF_LAST_PROFILE = "last_profile"
 
     const val EXT_FILE = ".dpcs"
     const val FILE_SEPARATOR = ";"
