@@ -34,7 +34,7 @@ android {
         }
     }
 
-    BlackObfuscator {
+/*    BlackObfuscator {
         enabled true
         depth 2
         obfClass = ["com.nicadevelop.nicavpn.MainActivity",
@@ -45,7 +45,7 @@ android {
                     "com.nicadevelop.nicavpn.tools.RemovePackages", "com.nicadevelop.nicavpn.tools.RemovePackages",
                     "com.nicadevelop.nicavpn.tools.LogUtil", "com.nicadevelop.nicavpn.tools.Base64",
                     "com.nicadevelop.nicavpn.tools.sharedPreferences.ConfigCert", "com.nicadevelop.nicavpn.tools.sharedPreferences.DmPrefsKeys",]
-    }
+    }*/
 
     compileSdkVersion 32
 

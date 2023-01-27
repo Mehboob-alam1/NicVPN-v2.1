@@ -2,14 +2,15 @@ package com.nicadevelop.nicavpn.Api_Fetch_Service;
 
 public class api_response {
 
-    private int server_id,ServerStatus,type,port, timer_val;
+    private int server_id, ServerStatus, type, port, timer_val;
 
-    private String HostName,city,IP,v2ray_udp,v2ray_tcp,publickey,drawable,ip_dnstt;
+    private String HostName, city, IP, v2ray_udp, v2ray_tcp, publickey, drawable, ip_dnstt;
 
 
     public void setPort(int port) {
         this.port = port;
     }
+
     public int getPort() {
         return port;
     }
@@ -18,6 +19,7 @@ public class api_response {
     public void setTimer_val(int timer_val) {
         this.timer_val = timer_val;
     }
+
     public int getTimer_val() {
         return timer_val;
     }
@@ -25,6 +27,7 @@ public class api_response {
     public void setServer_id(int server_id) {
         this.server_id = server_id;
     }
+
     public int getServer_id() {
         return server_id;
     }
@@ -32,6 +35,7 @@ public class api_response {
     public void setServerStatus(int ServerStatus) {
         this.ServerStatus = ServerStatus;
     }
+
     public int getServerStatus() {
         return ServerStatus;
     }
@@ -39,6 +43,7 @@ public class api_response {
     public void set_type(int type) {
         this.type = type;
     }
+
     public int get_type() {
         return type;
     }
@@ -46,6 +51,7 @@ public class api_response {
     public void setHostName(String HostName) {
         this.HostName = HostName;
     }
+
     public String getHostName() {
         return HostName;
     }
@@ -53,6 +59,7 @@ public class api_response {
     public void setCity(String city) {
         this.city = city;
     }
+
     public String getCity() {
         return city;
     }
@@ -60,6 +67,7 @@ public class api_response {
     public void setIP(String IP) {
         this.IP = IP;
     }
+
     public String getIP() {
         return IP;
     }
@@ -69,6 +77,7 @@ public class api_response {
 
         this.v2ray_udp = v2ray_udp;
     }
+
     public String getV2ray_udp() {
 
         return v2ray_udp;
@@ -77,6 +86,7 @@ public class api_response {
     public void setV2ray_tcp(String v2ray_tcp) {
         this.v2ray_tcp = v2ray_tcp;
     }
+
     public String getV2ray_tcp() {
         return v2ray_tcp;
     }
@@ -84,15 +94,16 @@ public class api_response {
     public void setPublickey(String publickey) {
         this.publickey = publickey;
     }
+
     public String getPublickey() {
         return publickey;
     }
 
 
-
     public void setDrawable(String drawable) {
         this.drawable = drawable;
     }
+
     public String getDrawable() {
         return drawable;
     }
@@ -100,6 +111,7 @@ public class api_response {
     public void setIp_dnstt(String ip_dnstt) {
         this.ip_dnstt = ip_dnstt;
     }
+
     public String getIp_dnstt() {
         return ip_dnstt;
     }

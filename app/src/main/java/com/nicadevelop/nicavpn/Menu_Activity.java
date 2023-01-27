@@ -22,7 +22,7 @@ import com.nicadevelop.nicavpn.R;
 public class Menu_Activity extends AppCompatActivity {
 
     ImageView back_btn;
-    TextView btn_myAccount,btn_upgradePlan,btn_tellFriends,btn_proxyApps,btn_contactUS,btn_aboutUs,btn_settings,btn_privacy;
+    TextView btn_myAccount, btn_upgradePlan, btn_tellFriends, btn_proxyApps, btn_contactUS, btn_aboutUs, btn_settings, btn_privacy;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -42,20 +42,15 @@ public class Menu_Activity extends AppCompatActivity {
         btn_privacy = findViewById(R.id.btn_privacy);
 
 
-
         btn_settings.setVisibility(View.GONE);
         btn_proxyApps.setVisibility(View.GONE);
 
 
-
-
         back_btn.setOnClickListener(v -> onBackPressed());
-        if (Constant.pay_done){
+        if (Constant.pay_done) {
             btn_upgradePlan.setVisibility(View.GONE);
 
         }
-
-
 
 
         btn_myAccount.setOnClickListener(v -> {
@@ -83,11 +78,10 @@ public class Menu_Activity extends AppCompatActivity {
             }
 
 
-
         });
 
         btn_proxyApps.setOnClickListener(v -> {
-          //  startActivity(new Intent(Menu_Activity.this, Proxy_Apps_Screen.class));
+            //  startActivity(new Intent(Menu_Activity.this, Proxy_Apps_Screen.class));
         });
 
         btn_contactUS.setOnClickListener(v -> {
@@ -103,9 +97,8 @@ public class Menu_Activity extends AppCompatActivity {
         });
 
         btn_settings.setOnClickListener(v -> {
-           // startActivity(new Intent(Menu_Activity.this, Settings.class));
+            // startActivity(new Intent(Menu_Activity.this, Settings.class));
         });
-
 
 
     }

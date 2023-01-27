@@ -20,8 +20,7 @@ public class Cache_Adds {
     private ArrayList<NativeAd> nativeAd = new ArrayList<>();
 
     public static Cache_Adds getInstance() {
-        if (instance == null)
-            instance = new Cache_Adds();
+        if (instance == null) instance = new Cache_Adds();
         return instance;
     }
 
@@ -31,19 +30,17 @@ public class Cache_Adds {
 
     private void loadAd(NativeAd.OnNativeAdLoadedListener listener) {
 
-        if(!Constant.pay_done) {
-            if (Constant.native_switch){
-                NativeAd.OnNativeAdLoadedListener adLoadedListener =
-                        unifiedNativeAd -> {
-                            if (listener != null){
-                                listener.onNativeAdLoaded(unifiedNativeAd);
-                            } else {
-                                nativeAd.add(unifiedNativeAd);
-                            }
-                        };
+        if (!Constant.pay_done) {
+            if (Constant.native_switch) {
+                NativeAd.OnNativeAdLoadedListener adLoadedListener = unifiedNativeAd -> {
+                    if (listener != null) {
+                        listener.onNativeAdLoaded(unifiedNativeAd);
+                    } else {
+                        nativeAd.add(unifiedNativeAd);
+                    }
+                };
 
                 AdListener adListener = new AdListener() {
-
 
 
                     @Override
@@ -54,21 +51,16 @@ public class Cache_Adds {
                 };
 
                 AdLoader adLoader;
-                adLoader = new AdLoader.Builder(MyApplication.appContext, adUnitId)
-                        .forNativeAd(adLoadedListener)
-                        .withAdListener(adListener)
-                        .withNativeAdOptions(new NativeAdOptions.Builder().build())
-                        .build();
+                adLoader = new AdLoader.Builder(MyApplication.appContext, adUnitId).forNativeAd(adLoadedListener).withAdListener(adListener).withNativeAdOptions(new NativeAdOptions.Builder().build()).build();
                 adLoader.loadAd(new AdRequest.Builder().build());
             }
 
-    }
+        }
     }
 
     public NativeAd getAd() {
 
-        if (nativeAd.size() > 0)
-            return nativeAd.remove(0);
+        if (nativeAd.size() > 0) return nativeAd.remove(0);
         else {
             //loadAd(null);
             return null;

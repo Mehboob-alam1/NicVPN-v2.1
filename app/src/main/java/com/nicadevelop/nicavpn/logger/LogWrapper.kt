@@ -26,10 +26,7 @@ class LogWrapper : LogNode {
      */
     @Suppress("NAME_SHADOWING")
     override fun println(
-        priority: Int,
-        tag: String?,
-        msg: String?,
-        tr: Throwable?
+        priority: Int, tag: String?, msg: String?, tr: Throwable?
     ) {
         // There actually are log methods that don't take a msg parameter.  For now,
         // if that's the case, just convert null to the empty string and move on.

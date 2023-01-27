@@ -13,7 +13,11 @@ import com.v2ray.ang.util.MmkvManager
 import com.v2ray.ang.util.Utils
 
 class TaskerReceiver : BroadcastReceiver() {
-    private val mainStorage by lazy { MMKV.mmkvWithID(MmkvManager.ID_MAIN, MMKV.MULTI_PROCESS_MODE) }
+    private val mainStorage by lazy {
+        MMKV.mmkvWithID(
+            MmkvManager.ID_MAIN, MMKV.MULTI_PROCESS_MODE
+        )
+    }
 
     override fun onReceive(context: Context, intent: Intent?) {
 

@@ -32,8 +32,7 @@ class Connection_Timer : Service() {
             e("value_intent2", "" + value);
         }
 
-        if (value == 0L)
-            value = 60000;
+        if (value == 0L) value = 60000;
 
         e("initial_start_23", "Countdown seconds remaining: $value");
 
@@ -66,12 +65,10 @@ class Connection_Timer : Service() {
     private inner class TimeTask(private var time: Long) : TimerTask() {
         override fun run() {
 
-            if (mHandler==null)
-                mHandler= Handler()
+            if (mHandler == null) mHandler = Handler()
 
             mHandler.post {
-                if (countDownTimer != null)
-                    countDownTimer!!.cancel()
+                if (countDownTimer != null) countDownTimer!!.cancel()
 
                 countDownTimer = object : CountDownTimer(time, 1000) {
                     override fun onTick(millisUntilFinished: Long) {
@@ -89,8 +86,7 @@ class Connection_Timer : Service() {
                                 "Countdown seconds remaining: " + millisUntilFinished / 1000
                             );
 
-                            if (countDownTimer != null)
-                                countDownTimer!!.cancel()
+                            if (countDownTimer != null) countDownTimer!!.cancel()
 
                             bi.putExtra("countdown", 0);
                             sendBroadcast(bi);
@@ -101,8 +97,7 @@ class Connection_Timer : Service() {
 
                     override fun onFinish() {
 
-                        if (countDownTimer != null)
-                        mHandler.removeCallbacksAndMessages(null);
+                        if (countDownTimer != null) mHandler.removeCallbacksAndMessages(null);
                         countDownTimer!!.cancel()
 
                         bi.putExtra("countdown", 0);

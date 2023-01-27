@@ -27,10 +27,8 @@ import java.util.*
 
 
 class ServerAdapter(
-    private val mContext: Context,
-    private val mServers: ArrayList<api_response>
-) :
-    RecyclerView.Adapter<ServerAdapter_ViewHolder?>() {
+    private val mContext: Context, private val mServers: ArrayList<api_response>
+) : RecyclerView.Adapter<ServerAdapter_ViewHolder?>() {
 
     var choose_Server_preference: SharedPreferences? = null
 
@@ -53,19 +51,19 @@ class ServerAdapter(
         holder.ivServer.setImageDrawable(passStr_2)
 
 
-        if (mServers[position]._type == 2){
+        if (mServers[position]._type == 2) {
             holder.ivVip.visibility = VISIBLE
-        }else{
+        } else {
             holder.ivVip.visibility = INVISIBLE
         }
 
         holder.main_server.setOnClickListener {
             choose_Server_preference = mContext.getSharedPreferences("DATA", Context.MODE_PRIVATE)
 
-            if (mServers[position]._type == 2){
+            if (mServers[position]._type == 2) {
                 val dialog = Premium_dialog(mContext as Activity, R.style.AppTheme)
                 dialog.show()
-            }else{
+            } else {
 
                 //premium servers connection start..!!
                 val api_model_serverlist = api_response()
@@ -82,7 +80,9 @@ class ServerAdapter(
                 api_model_serverlist.drawable = mServers[position].drawable
                 api_model_serverlist.ip_dnstt = mServers[position].ip_dnstt
 
-                storeValueToPreference(choose_Server_preference, "best_server_model", api_model_serverlist)
+                storeValueToPreference(
+                    choose_Server_preference, "best_server_model", api_model_serverlist
+                )
 
                 if (getBestServer_after_calculation(choose_Server_preference) != null) {
                     if (getBestServer_after_calculation(choose_Server_preference)!!.hostName != null) {
@@ -98,6 +98,7 @@ class ServerAdapter(
     override fun getItemViewType(position: Int): Int {
         return position
     }
+
     @SuppressLint("UseCompatLoadingForDrawables")
     fun getDrawable(name: String?, context: Context): Drawable? {
         return try {
@@ -108,6 +109,7 @@ class ServerAdapter(
         }
 //        return context.resources.getDrawable(resourceId)
     }
+
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
@@ -117,9 +119,7 @@ class ServerAdapter(
     }
 
     fun storeValueToPreference(
-        sharedPreferences: SharedPreferences?,
-        key: String?,
-        `object`: Any?
+        sharedPreferences: SharedPreferences?, key: String?, `object`: Any?
     ) {
         if (sharedPreferences != null) {
             val editor = sharedPreferences.edit()
@@ -185,8 +185,7 @@ class ServerAdapter(
     }
 }
 
-class ServerAdapter_ViewHolder(itemView: View) :
-    RecyclerView.ViewHolder(itemView) {
+class ServerAdapter_ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var ivServer: ImageView
     var ivVip: TextView
     var main_server: LinearLayout

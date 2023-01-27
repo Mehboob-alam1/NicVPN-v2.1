@@ -39,23 +39,20 @@ class ServerClientService : Service(), ServiceControl {
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         if (isOnForegroud) return START_NOT_STICKY
         isOnForegroud = true
-        notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notificationIntent = Intent(this, MainActivity::class.java)
         PendingIntent.getActivity(this, 0, notificationIntent, 0)
-        notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_service_running)
-            .setContentTitle(getString(R.string.app_name_full))
-            .setContentText(getString(R.string.notification_desc))
-            .setCategory(NotificationCompat.CATEGORY_SERVICE)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setOngoing(true)
+        notificationBuilder =
+            NotificationCompat.Builder(this, CHANNEL_ID).setSmallIcon(R.drawable.ic_service_running)
+                .setContentTitle(getString(R.string.app_name_full))
+                .setContentText(getString(R.string.notification_desc))
+                .setCategory(NotificationCompat.CATEGORY_SERVICE)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT).setOngoing(true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name: CharSequence = "NdCheckMate"
             val description = "NdCheckmate"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val notificationChannel =
-                NotificationChannel(CHANNEL_ID, name, importance)
+            val notificationChannel = NotificationChannel(CHANNEL_ID, name, importance)
             notificationChannel.description = description
             notificationChannel.enableVibration(false)
             val notificationManager =
@@ -68,26 +65,21 @@ class ServerClientService : Service(), ServiceControl {
     }
 
     override fun setClientServer(
-        serverAddr: String?,
-        serverPort: Int,
-        payloadConfig: String
+        serverAddr: String?, serverPort: Int, payloadConfig: String
     ) {
-        server =
-            object :
-                ClientServer(serverAddr!!, serverPort, payloadConfig) {
-                override fun onLog(log: String?) {
-                    if (notificationBuilder != null) {
-                        notificationBuilder!!.setContentText(log)
-                        notificationManager!!.notify(
-                            NOTINICATION_ID,
-                            notificationBuilder!!.build()
-                        )
-                    }
-                    if (logBox != null) {
-                        logBox!!.addLog(log!!)
-                    }
+        server = object : ClientServer(serverAddr!!, serverPort, payloadConfig) {
+            override fun onLog(log: String?) {
+                if (notificationBuilder != null) {
+                    notificationBuilder!!.setContentText(log)
+                    notificationManager!!.notify(
+                        NOTINICATION_ID, notificationBuilder!!.build()
+                    )
+                }
+                if (logBox != null) {
+                    logBox!!.addLog(log!!)
                 }
             }
+        }
         if (counter != null) {
             server!!.setByteCounter(counter)
         }

@@ -52,13 +52,8 @@ public class Application extends MultiDexApplication {
         OneSignal.setAppId(ONESIGNAL_APP_ID);
 
 
-
         Get_Settings();
         Get_Update();
-
-
-
-
 
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -67,75 +62,67 @@ public class Application extends MultiDexApplication {
                 Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
                 for (String adapterClass : statusMap.keySet()) {
                     AdapterStatus status = statusMap.get(adapterClass);
-                    Log.d("MyApp", String.format(
-                            "Adapter name: %s, Description: %s, Latency: %d",
-                            adapterClass, status.getDescription(), status.getLatency()));
+                    Log.d("MyApp", String.format("Adapter name: %s, Description: %s, Latency: %d", adapterClass, status.getDescription(), status.getLatency()));
                 }
 
                 // Start loading ads here...
 
 
-
             }
         });
 
-        }
-
-
+    }
 
 
     private void Get_Settings() {
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, Constant.SETTINGS_URL, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constant.SETTINGS_URL, null, new Response.Listener<JSONObject>() {
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
 
 
-                            Constant.Privacy_Policy = response.getString("app_privacy_policy");
+                    Constant.Privacy_Policy = response.getString("app_privacy_policy");
 
 
-                            Constant.Contact = response.getString("contact");
-                            Constant.Email = response.getString("email");
-                            Constant.Website = response.getString("website");
-                            Constant.Company = response.getString("company");
+                    Constant.Contact = response.getString("contact");
+                    Constant.Email = response.getString("email");
+                    Constant.Website = response.getString("website");
+                    Constant.Company = response.getString("company");
 
 
-                            Constant.banner_switch = response.getBoolean("banner_ad");
-                            Constant.inter_switch = response.getBoolean("interstital_ad");
-                            Constant.native_switch = response.getBoolean("admob_nathive_ad");
-                            Constant.reward_switch = response.getBoolean("reward_ad");
+                    Constant.banner_switch = response.getBoolean("banner_ad");
+                    Constant.inter_switch = response.getBoolean("interstital_ad");
+                    Constant.native_switch = response.getBoolean("admob_nathive_ad");
+                    Constant.reward_switch = response.getBoolean("reward_ad");
 
-                            Constant.admob_app_id = response.getString("publisher_id");
-                            Constant.admob_banner = response.getString("banner_ad_id");
-                            Constant.admob_inter = response.getString("interstital_ad_id");
-                            Constant.admob_native = response.getString("admob_native_ad_id");
-                            Constant.admob_native = response.getString("admob_native_ad_id");
-                            Constant.admob_reward = response.getString("reward_id");
+                    Constant.admob_app_id = response.getString("publisher_id");
+                    Constant.admob_banner = response.getString("banner_ad_id");
+                    Constant.admob_inter = response.getString("interstital_ad_id");
+                    Constant.admob_native = response.getString("admob_native_ad_id");
+                    Constant.admob_native = response.getString("admob_native_ad_id");
+                    Constant.admob_reward = response.getString("reward_id");
 
 
+                    load_reward_ad();
+                    load_rinterstitial_Ad();
+                    Constant.init_adds();
 
-                            load_reward_ad();
-                            load_rinterstitial_Ad();
-                            Constant.init_adds();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+            }
+        }, new Response.ErrorListener() {
 
-                    }
-                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                Log.d("Exception", error.toString());
 
-                        Log.d("Exception", error.toString());
-
-                    }
-                });
+            }
+        });
 
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
@@ -144,36 +131,33 @@ public class Application extends MultiDexApplication {
 
     private void Get_Update() {
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, Constant.UPDATE_URL, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constant.UPDATE_URL, null, new Response.Listener<JSONObject>() {
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            Constant.Version = response.getInt("version");
-                            Constant.Version_Name = response.getString("version_name");
-                            Constant.Link = response.getString("url");
-                            Constant.descrption = response.getString("description");
-
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Constant.Version = response.getInt("version");
+                    Constant.Version_Name = response.getString("version_name");
+                    Constant.Link = response.getString("url");
+                    Constant.descrption = response.getString("description");
 
 
+                    Constant.data_loaded = true;
 
-                            Constant.data_loaded = true;
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+            }
+        }, new Response.ErrorListener() {
 
-                    }
-                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        Log.d("Exception", error.toString());
-                    }
-                });
+                Log.d("Exception", error.toString());
+            }
+        });
 
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
@@ -181,59 +165,51 @@ public class Application extends MultiDexApplication {
     }
 
 
-
-
-
-
-
-
-
     public static void load_rinterstitial_Ad() {
 
-        if (!Constant.pay_done){
-            if(Constant.inter_switch){
+        if (!Constant.pay_done) {
+            if (Constant.inter_switch) {
                 AdRequest adRequest = new AdRequest.Builder().build();
 
-                InterstitialAd.load(MyApplication.appContext,Constant.admob_inter, adRequest,
-                        new InterstitialAdLoadCallback() {
+                InterstitialAd.load(MyApplication.appContext, Constant.admob_inter, adRequest, new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        //  Log.i(TAG, "onAdLoaded");
+                        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                             @Override
-                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                                // The mInterstitialAd reference will be null until
-                                // an ad is loaded.
-                                mInterstitialAd = interstitialAd;
-                                //  Log.i(TAG, "onAdLoaded");
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        // Called when fullscreen content is dismissed.
-                                        Log.d("TAG", "The ad was dismissed.");
-                                        load_rinterstitial_Ad();
-                                    }
-
-                                    @Override
-                                    public void onAdFailedToShowFullScreenContent(AdError adError) {
-                                        // Called when fullscreen content failed to show.
-                                        Log.d("TAG", "The ad failed to show.");
-                                    }
-
-                                    @Override
-                                    public void onAdShowedFullScreenContent() {
-                                        // Called when fullscreen content is shown.
-                                        // Make sure to set your reference to null so you don't
-                                        // show it a second time.
-                                        mInterstitialAd = null;
-                                        Log.d("TAG", "The ad was shown.");
-                                    }
-                                });
+                            public void onAdDismissedFullScreenContent() {
+                                // Called when fullscreen content is dismissed.
+                                Log.d("TAG", "The ad was dismissed.");
+                                load_rinterstitial_Ad();
                             }
 
                             @Override
-                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                                // Handle the error
-                                //   Log.i(TAG, loadAdError.getMessage());
+                            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                                // Called when fullscreen content failed to show.
+                                Log.d("TAG", "The ad failed to show.");
+                            }
+
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+                                // Called when fullscreen content is shown.
+                                // Make sure to set your reference to null so you don't
+                                // show it a second time.
                                 mInterstitialAd = null;
+                                Log.d("TAG", "The ad was shown.");
                             }
                         });
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        //   Log.i(TAG, loadAdError.getMessage());
+                        mInterstitialAd = null;
+                    }
+                });
 
 
             }
@@ -243,63 +219,61 @@ public class Application extends MultiDexApplication {
     }
 
 
-
-    public static void load_reward_ad(){
+    public static void load_reward_ad() {
         AdRequest adRequest = new AdRequest.Builder().build();
-        RewardedAd.load(MyApplication.appContext, "ca-app-pub-3940256099942544/5224354917",
-                adRequest, new RewardedAdLoadCallback() {
+        RewardedAd.load(MyApplication.appContext, "ca-app-pub-3940256099942544/5224354917", adRequest, new RewardedAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error.
+                //     Log.d(TAG, loadAdError.toString());
+                mRewardedAd = null;
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                mRewardedAd = rewardedAd;
+                // Log.d(TAG, "Ad was loaded.");
+
+
+                mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                     @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        // Handle the error.
-                   //     Log.d(TAG, loadAdError.toString());
+                    public void onAdClicked() {
+                        // Called when a click is recorded for an ad.
+                        //     Log.d(TAG, "Ad was clicked.");
+                    }
+
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        // Called when ad is dismissed.
+                        // Set the ad reference to null so you don't show the ad a second time.
+                        //       Log.d(TAG, "Ad dismissed fullscreen content.");
+                        mRewardedAd = null;
+                        load_reward_ad();
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(AdError adError) {
+                        // Called when ad fails to show.
+                        //     Log.e(TAG, "Ad failed to show fullscreen content.");
                         mRewardedAd = null;
                     }
 
                     @Override
-                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
-                        mRewardedAd = rewardedAd;
-                       // Log.d(TAG, "Ad was loaded.");
+                    public void onAdImpression() {
+                        // Called when an impression is recorded for an ad.
+                        //    Log.d(TAG, "Ad recorded an impression.");
+                    }
 
-
-                        mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                            @Override
-                            public void onAdClicked() {
-                                // Called when a click is recorded for an ad.
-                           //     Log.d(TAG, "Ad was clicked.");
-                            }
-
-                            @Override
-                            public void onAdDismissedFullScreenContent() {
-                                // Called when ad is dismissed.
-                                // Set the ad reference to null so you don't show the ad a second time.
-                         //       Log.d(TAG, "Ad dismissed fullscreen content.");
-                                mRewardedAd = null;
-                                load_reward_ad();
-                            }
-
-                            @Override
-                            public void onAdFailedToShowFullScreenContent(AdError adError) {
-                                // Called when ad fails to show.
-                           //     Log.e(TAG, "Ad failed to show fullscreen content.");
-                                mRewardedAd = null;
-                            }
-
-                            @Override
-                            public void onAdImpression() {
-                                // Called when an impression is recorded for an ad.
-                            //    Log.d(TAG, "Ad recorded an impression.");
-                            }
-
-                            @Override
-                            public void onAdShowedFullScreenContent() {
-                                // Called when ad is shown.
-                            //    Log.d(TAG, "Ad showed fullscreen content.");
-                            }
-                        });
-
-
+                    @Override
+                    public void onAdShowedFullScreenContent() {
+                        // Called when ad is shown.
+                        //    Log.d(TAG, "Ad showed fullscreen content.");
                     }
                 });
+
+
+            }
+        });
     }
 
 }

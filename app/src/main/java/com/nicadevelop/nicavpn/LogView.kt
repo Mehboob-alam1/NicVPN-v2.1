@@ -22,10 +22,8 @@ class LogView : ListView, LogNode {
     private var adapter: ArrayAdapter<Spanned>? = null
 
     internal inner class Takbo(
-        private val mLogView: LogView,
-        private val outputBuilder: java.lang.StringBuilder
-    ) :
-        Runnable {
+        private val mLogView: LogView, private val outputBuilder: java.lang.StringBuilder
+    ) : Runnable {
         override fun run() {
             mLogView.addLog(outputBuilder.toString())
         }
@@ -38,32 +36,25 @@ class LogView : ListView, LogNode {
         setAdapter(adapter)
         adapter!!.notifyDataSetChanged()
         addLog(
-            StringBuffer().append("Running on ").append(Build.BRAND).append(" ")
-                .append(Build.MODEL).append(" (").append(Build.PRODUCT).append(") ")
-                .append(Build.MANUFACTURER).append(", Android API ").append(Build.VERSION.SDK)
-                .toString()
+            StringBuffer().append("Running on ").append(Build.BRAND).append(" ").append(Build.MODEL)
+                .append(" (").append(Build.PRODUCT).append(") ").append(Build.MANUFACTURER)
+                .append(", Android API ").append(Build.VERSION.SDK).toString()
         )
         addLog("Application version: " + Utils.vb(context))
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(
-        context,
-        attrs
+        context, attrs
     ) {
     }
 
     constructor(
-        context: Context?,
-        attrs: AttributeSet?,
-        defStyle: Int
+        context: Context?, attrs: AttributeSet?, defStyle: Int
     ) : super(context, attrs, defStyle) {
     }
 
     override fun println(
-        priority: Int,
-        tag: String?,
-        msg: String?,
-        tr: Throwable?
+        priority: Int, tag: String?, msg: String?, tr: Throwable?
     ) {
         var priorityStr: String? = null
         when (priority) {
@@ -113,9 +104,7 @@ class LogView : ListView, LogNode {
      * @return The fully concatenated String as a StringBuilder
      */
     private fun appendIfNotNull(
-        source: java.lang.StringBuilder,
-        addStr: String?,
-        delimiter: String
+        source: java.lang.StringBuilder, addStr: String?, delimiter: String
     ): java.lang.StringBuilder {
         var delimiter: String? = delimiter
         if (addStr != null) {
@@ -134,15 +123,14 @@ class LogView : ListView, LogNode {
         append("\n" + s);
     }*/
     fun addLog(str: String) {
-        val dateFormat =
-            SimpleDateFormat("[HH:mm]", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("[HH:mm]", Locale.getDefault())
         if (str.contains("\n")) {
             val split = str.split("\n").toTypedArray()
             for (str2 in split) {
                 arrayList!!.add(
                     Html.fromHtml(
-                        StringBuffer().append(dateFormat.format(Date())).append(" ")
-                            .append(str2).toString()
+                        StringBuffer().append(dateFormat.format(Date())).append(" ").append(str2)
+                            .toString()
                     )
                 )
                 setSelection(count - 1)
@@ -152,8 +140,7 @@ class LogView : ListView, LogNode {
         }
         arrayList!!.add(
             Html.fromHtml(
-                StringBuffer().append(dateFormat.format(Date())).append(" ").append(str)
-                    .toString()
+                StringBuffer().append(dateFormat.format(Date())).append(" ").append(str).toString()
             )
         )
         adapter!!.notifyDataSetChanged()

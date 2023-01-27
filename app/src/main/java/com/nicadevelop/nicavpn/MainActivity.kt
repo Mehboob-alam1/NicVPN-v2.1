@@ -54,7 +54,11 @@ import kotlin.system.exitProcess
 @Obfuscate
 class MainActivity : AppCompatActivity(), ServiceConnection {
     private val TAG = MainActivity::class.java.simpleName + "."
-    private val defaultSharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(this) }
+    private val defaultSharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(
+            this
+        )
+    }
     private var brcVpnConnected: BroadcastReceiver? = null
     private var brcOSAnsADS: BroadcastReceiver? = null
     private var brcSettingDeveloperMode: BroadcastReceiver? = null
@@ -105,7 +109,6 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
          * Utils..generateSecretKey: pxSjrbpEiqDOMxiYe3VcWQ==
          */
         //Utils.generateSecretKey()
-
 
 
         HTTProcessManager.setupConfig(this)
@@ -164,8 +167,9 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
                         "mIRNetwork: EXTRA_REASON: " + extras.getString(ConnectivityManager.EXTRA_REASON)
                     )
 
-                    if (extras.getString(ConnectivityManager.EXTRA_REASON) != null
-                        && extras.getString(ConnectivityManager.EXTRA_REASON) == "agentDisconnect"
+                    if (extras.getString(ConnectivityManager.EXTRA_REASON) != null && extras.getString(
+                            ConnectivityManager.EXTRA_REASON
+                        ) == "agentDisconnect"
                     ) {
                         stopVpnProcess()
                     }
@@ -191,8 +195,7 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
 
         val mainVpnMode: RelativeLayout = findViewById(R.id.main_vpn_mode)
         btnStartVpnMode = findViewById(R.id.btnStartVpnMode)
-        @Suppress("ConstantConditionIf")
-        if (BuildConfig.IS_VPN_MODE) {
+        @Suppress("ConstantConditionIf") if (BuildConfig.IS_VPN_MODE) {
             mainVpnMode.visibility = View.VISIBLE
             mViewPager.visibility = View.GONE
 //            navigationView.visibility = View.GONE
@@ -228,10 +231,7 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
 
             if (!file.absolutePath.contains(Constants.EXT_FILE)) {
                 TastyToast.makeText(
-                    this,
-                    getString(R.string.file_invalid),
-                    Toast.LENGTH_LONG,
-                    TastyToast.ERROR
+                    this, getString(R.string.file_invalid), Toast.LENGTH_LONG, TastyToast.ERROR
                 ).show()
             } else {
                 intentImport = intent
@@ -251,10 +251,7 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
 
         if (BuildConfig.BUILD_TYPE.contentEquals("debug")) {
             StrictMode.setVmPolicy(
-                VmPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .build()
+                VmPolicy.Builder().detectAll().penaltyLog().build()
             )
         }
     }
@@ -296,8 +293,7 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
         if (requestCode == FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             data?.data?.also { documentUri ->
                 contentResolver.takePersistableUriPermission(
-                    documentUri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    documentUri, Intent.FLAG_GRANT_READ_URI_PERMISSION
                 )
                 supportFragmentManager.fragments.forEach(fun(item) {
                     item!!.onActivityResult(requestCode, resultCode, data)
@@ -480,15 +476,13 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
         val currentDate = sdf.format(Date())
         //e(LogUtil.DIAM_PROXY_TAG // activar debug, "$TAG.onOptionsItemSelected.fileId: $fileId")
 
-        val typeConfig =
-            DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
-                DmPrefsKeys.SHARED_PREFERENCES_TYPE_CONNECTION,
-                DmPrefsKeys.SHARED_PREFERENCES_TYPE_CONNECTION_DEFAULT
-            )
+        val typeConfig = DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
+            DmPrefsKeys.SHARED_PREFERENCES_TYPE_CONNECTION,
+            DmPrefsKeys.SHARED_PREFERENCES_TYPE_CONNECTION_DEFAULT
+        )
 
         val server = DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
-            DmPrefsKeys.SHARED_PREFERENCES_SERVER,
-            DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
+            DmPrefsKeys.SHARED_PREFERENCES_SERVER, DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
         )
 
         val port = DmSharedPreferences.getInstance(this@MainActivity)!!.getLong(
@@ -497,18 +491,15 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
         )
 
         val host = DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
-            DmPrefsKeys.SHARED_PREFERENCES_SNI,
-            DmPrefsKeys.SHARED_PREFERENCES_SNI_DEFAULT
+            DmPrefsKeys.SHARED_PREFERENCES_SNI, DmPrefsKeys.SHARED_PREFERENCES_SNI_DEFAULT
         )
 
         val dns = DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
-            DmPrefsKeys.SHARED_PREFERENCES_DNS,
-            DmPrefsKeys.SHARED_PREFERENCES_DNS_DEFAULT
+            DmPrefsKeys.SHARED_PREFERENCES_DNS, DmPrefsKeys.SHARED_PREFERENCES_DNS_DEFAULT
         )
 
         val ping = DmSharedPreferences.getInstance(this@MainActivity)!!.getLong(
-            DmPrefsKeys.SHARED_PREFERENCES_PING,
-            DmPrefsKeys.SHARED_PREFERENCES_PING_DEFAULT
+            DmPrefsKeys.SHARED_PREFERENCES_PING, DmPrefsKeys.SHARED_PREFERENCES_PING_DEFAULT
         )
 
         val payload = DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
@@ -516,11 +507,10 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
             DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG_DEFAULT
         )
 
-        val customMessage = DmSharedPreferences.getInstance(this@MainActivity)!!
-            .getString(
-                DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG,
-                DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG_DEFAULT
-            )
+        val customMessage = DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
+            DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG,
+            DmPrefsKeys.SHARED_PREFERENCES_FE_CUSTOM_MSG_DEFAULT
+        )
 
         val blockServer = DmSharedPreferences.getInstance(this@MainActivity)!!
             .getBoolean(DmPrefsKeys.SHARED_PREFERENCES_BLOCK_CONF_SERVER, false)
@@ -529,17 +519,18 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
         val connDnsTTHost = DmPrefsMethods.getConnectionDnsTT()
 
         // encryptado shared preferencs
-        val message = Utils.encryptValue(typeConfig) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(server) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(port) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(host) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(dns) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(ping) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(payload) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(customMessage) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(blockServer) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(dnsTTHost) + Constants.FILE_SEPARATOR +
-                Utils.encryptValue(connDnsTTHost) + Constants.FILE_SEPARATOR
+        val message =
+            Utils.encryptValue(typeConfig) + Constants.FILE_SEPARATOR + Utils.encryptValue(server) + Constants.FILE_SEPARATOR + Utils.encryptValue(
+                port
+            ) + Constants.FILE_SEPARATOR + Utils.encryptValue(host) + Constants.FILE_SEPARATOR + Utils.encryptValue(
+                dns
+            ) + Constants.FILE_SEPARATOR + Utils.encryptValue(ping) + Constants.FILE_SEPARATOR + Utils.encryptValue(
+                payload
+            ) + Constants.FILE_SEPARATOR + Utils.encryptValue(customMessage) + Constants.FILE_SEPARATOR + Utils.encryptValue(
+                blockServer
+            ) + Constants.FILE_SEPARATOR + Utils.encryptValue(dnsTTHost) + Constants.FILE_SEPARATOR + Utils.encryptValue(
+                connDnsTTHost
+            ) + Constants.FILE_SEPARATOR
 
         //e(LogUtil.DIAM_PROXY_TAG // activar debug, "$TAG.onOptionsItemSelected.message: $message")
         val encryptedValue = Utils.encryptValue(message)
@@ -561,18 +552,14 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
             Toast.makeText(this@MainActivity, messageResponse, Toast.LENGTH_LONG).show()
         }*/
         TastyToast.makeText(
-            this@MainActivity,
-            messageResponse,
-            Toast.LENGTH_LONG,
-            TastyToast.WARNING
+            this@MainActivity, messageResponse, Toast.LENGTH_LONG, TastyToast.WARNING
         ).show()
     }
 
     private fun clearPreferences() {
         DmSharedPreferences.getInstance(this@MainActivity)!!.clear()
         DmSharedPreferences.getInstance(this@MainActivity)!!.putBoolean(
-            DmPrefsKeys.SHARED_PREFERENCES_FIRST_INSTALLATION,
-            false
+            DmPrefsKeys.SHARED_PREFERENCES_FIRST_INSTALLATION, false
         )
         finish()
         overridePendingTransition(0, 0)
@@ -931,41 +918,38 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
         }
     }*/
 
-    private val onPageChangeListener: ViewPager.OnPageChangeListener = object :
-        ViewPager.OnPageChangeListener {
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-        ) {
-        } // nothing needed here
+    private val onPageChangeListener: ViewPager.OnPageChangeListener =
+        object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int, positionOffset: Float, positionOffsetPixels: Int
+            ) {
+            } // nothing needed here
 
-        override fun onPageSelected(position: Int) {
+            override fun onPageSelected(position: Int) {
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {} // nothing needed here
         }
-
-        override fun onPageScrollStateChanged(state: Int) {} // nothing needed here
-    }
 
     internal inner class SectionsPagerAdapter(fm: FragmentManager?) :
         FragmentPagerAdapter(fm!!, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
             startFragment =
-                StartFragment.newInstance(
-                    object :
-                        StartFragment.OnFragmentInteractionListener {
-                        override fun onFragmentStartInteraction() {
-                            startVpn()
-                            LogFragment.addLog(this@MainActivity.getString(R.string.sendinjectormethod))
-                            Handler().postDelayed({ HTTPtunnelIntentService.start(applicationContext)
-                            }, 500)
-                        }
+                StartFragment.newInstance(object : StartFragment.OnFragmentInteractionListener {
+                    override fun onFragmentStartInteraction() {
+                        startVpn()
+                        LogFragment.addLog(this@MainActivity.getString(R.string.sendinjectormethod))
+                        Handler().postDelayed({
+                            HTTPtunnelIntentService.start(applicationContext)
+                        }, 500)
+                    }
 
-                        override fun onFragmentStopInteraction() {
-                            LogFragment.addLog(this@MainActivity.getString(R.string.stopinjectormethod))
-                            stopTunnelService()
-                            stopVpn()
-                        }
-                    })
+                    override fun onFragmentStopInteraction() {
+                        LogFragment.addLog(this@MainActivity.getString(R.string.stopinjectormethod))
+                        stopTunnelService()
+                        stopVpn()
+                    }
+                })
             HTTPtunnelIntentService.checkStatus(this@MainActivity)
 
             if (intentImport != null) {
@@ -1016,7 +1000,7 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
     }
 
     override fun onResume() {
-        Log.d("i_am_called000" , "a")
+        Log.d("i_am_called000", "a")
         super.onResume()
         HTTPtunnelIntentService.checkStatus(this)
         if (DmSharedPreferences.getInstance(this)!!.getBoolean(
@@ -1026,21 +1010,18 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
         ) {
             stopTunnelService()
             stopService()
-            Utils.createAlertDialog(
-                this,
+            Utils.createAlertDialog(this,
                 resources.getString(R.string.dialog_new_version_title),
                 resources.getString(R.string.dialog_new_version_content),
                 true,
                 object : Utils.DialogClickListener {
                     override fun onDialogPositiveClickListener() {
                         Utils.openAppOnPlayStore(
-                            this@MainActivity,
-                            "com.nicadevelop.nicavpn"
+                            this@MainActivity, "com.nicadevelop.nicavpn"
                         )
                         finish()
                     }
-                }
-            )
+                })
         }
     }
 
@@ -1061,28 +1042,21 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
         server = serviceControl!!.clientServer
         if (server == null) {
             stopVpn()
-            val serverPort = DmSharedPreferences
-                .getInstance(this@MainActivity)!!
-                .getInt(
-                    DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT,
-                    DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT_DEFAULT.toInt()
-                )
+            val serverPort = DmSharedPreferences.getInstance(this@MainActivity)!!.getInt(
+                DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT,
+                DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT_DEFAULT.toInt()
+            )
             //e(LogUtil.DIAM_PROXY_TAG // activar debug, "$TAG: serverPort->$serverPort")
 
-            val serverAddress = DmSharedPreferences
-                .getInstance(this@MainActivity)!!
-                .getString(
-                    DmPrefsKeys.SHARED_PREFERENCES_SERVER,
-                    DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
-                )
+            val serverAddress = DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
+                DmPrefsKeys.SHARED_PREFERENCES_SERVER, DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
+            )
             //e(LogUtil.DIAM_PROXY_TAG // activar debug, "$TAG: serverAddress->$serverAddress")
 
-            val payloadConfig = DmSharedPreferences
-                .getInstance(this@MainActivity)!!
-                .getString(
-                    DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG,
-                    DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG_DEFAULT
-                )
+            val payloadConfig = DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
+                DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG,
+                DmPrefsKeys.SHARED_PREFERENCES_PAYLOAD_CONFIG_DEFAULT
+            )
             // Frida detect
             //e(LogUtil.DIAM_PROXY_TAG // activar debug, "$TAG: PayloadConfig->$payloadConfig")
 
@@ -1121,8 +1095,7 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
 
     private fun startService() {
         DmSharedPreferences.getInstance(this@MainActivity)!!.putBoolean(
-            DmPrefsKeys.SHARED_PREFERENCES_STARTED_VPN,
-            true
+            DmPrefsKeys.SHARED_PREFERENCES_STARTED_VPN, true
         )
 
         val i = Intent(this, ServerClientService::class.java)
@@ -1131,8 +1104,7 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
 
     fun stopService() {
         DmSharedPreferences.getInstance(this@MainActivity)!!.putBoolean(
-            DmPrefsKeys.SHARED_PREFERENCES_STARTED_VPN,
-            false
+            DmPrefsKeys.SHARED_PREFERENCES_STARTED_VPN, false
         )
 
         stopVpn()
@@ -1155,12 +1127,10 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
             try {
                 Utils.getLatency(
                     this@MainActivity,
-                    DmSharedPreferences
-                        .getInstance(this@MainActivity)!!
-                        .getString(
-                            DmPrefsKeys.SHARED_PREFERENCES_SERVER,
-                            DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
-                        ).toString()
+                    DmSharedPreferences.getInstance(this@MainActivity)!!.getString(
+                        DmPrefsKeys.SHARED_PREFERENCES_SERVER,
+                        DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
+                    ).toString()
                 )
             } catch (e: java.lang.Exception) {
             }

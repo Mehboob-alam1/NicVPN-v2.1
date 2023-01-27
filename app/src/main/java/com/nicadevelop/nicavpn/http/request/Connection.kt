@@ -21,8 +21,7 @@ open class Connection(
     target: String,
     config: ConnectionConfig,
     payloadConfig: String
-) :
-    Runnable {
+) : Runnable {
     private val server: InetSocketAddress
     private val target: String
     private val appSocket: Socket?
@@ -145,8 +144,7 @@ open class Connection(
 
     override fun run() {
         try {
-            val configs =
-                payloadConfig!!.split("\\[split]").toTypedArray()
+            val configs = payloadConfig!!.split("\\[split]").toTypedArray()
             for (config in configs) {
                 if (establishConnection(config)) {
                     appIn = appSocket!!.getInputStream()
@@ -217,32 +215,20 @@ open class Connection(
             .replace("[port]", "${Constants.LISTENING_ADDR_PORT}")
             .replace("[raw]", "CONNECT [host_port] HTTP/1.1")
             .replace("[netData]", "CONNECT [host_port] [protocol]") //new line
-            .replace("[crlf][crlf]", "\r\n")
-            .replace("[crlf][crlf][crlf]", "\r\n")
-            .replace("[crlf][crlf][crlf][crlf]", "\r\n")
-            .replace("[crlf]", "\r\n")
-            .replace("[cr]", "\r")
-            .replace("[cr][cr]", "\r")
-            .replace("[cr][cr][cr]", "\r")
-            .replace("[cr][cr][cr][cr]", "\r")
-            .replace("[lf]", "\n")
-            .replace("[lf][lf]", "\n")
-            .replace("[lf][lf][lf]", "\n")
-            .replace("[lf][lf][lf][lf]", "\n")
-            .replace("[lfcr]", "\n\r")
-            .replace("[lfcr][lfcr]", "\n\r")
-            .replace("[lfcr][lfcr][lfcr]", "\n\r")
-            .replace("[lfcr][lfcr][lfcr][lfcr]", "\n\r")
-            .replace("[protocol]", "HTTP/1.0")
-            .replace(
+            .replace("[crlf][crlf]", "\r\n").replace("[crlf][crlf][crlf]", "\r\n")
+            .replace("[crlf][crlf][crlf][crlf]", "\r\n").replace("[crlf]", "\r\n")
+            .replace("[cr]", "\r").replace("[cr][cr]", "\r").replace("[cr][cr][cr]", "\r")
+            .replace("[cr][cr][cr][cr]", "\r").replace("[lf]", "\n").replace("[lf][lf]", "\n")
+            .replace("[lf][lf][lf]", "\n").replace("[lf][lf][lf][lf]", "\n")
+            .replace("[lfcr]", "\n\r").replace("[lfcr][lfcr]", "\n\r")
+            .replace("[lfcr][lfcr][lfcr]", "\n\r").replace("[lfcr][lfcr][lfcr][lfcr]", "\n\r")
+            .replace("[protocol]", "HTTP/1.0").replace(
                 "[ua]",
                 "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36"
-            )
-            .replace("[method]", "CONNECT")
+            ).replace("[method]", "CONNECT")
 
             //para corregir bugs
-            .replace("\\n", "\n")
-            .replace("\\r", "\n")
+            .replace("\\n", "\n").replace("\\r", "\n")
 
         val builder = StringBuilder()
         builder.append(payloadConfig)
@@ -271,25 +257,21 @@ open class Connection(
 
     @Throws(IOException::class)
     private fun sendConnectionCreate(
-        connConfig: String,
-        out: OutputStream?
+        connConfig: String, out: OutputStream?
     ) {
         out!!.write(buildPayload(connConfig, 1, "0").toString().toByteArray())
     }
 
     @Throws(IOException::class)
     private fun sendConnectionComplete(
-        connConfig: String,
-        out: OutputStream,
-        id: String
+        connConfig: String, out: OutputStream, id: String
     ) {
         out.write(buildPayload(connConfig, 2, id).toString().toByteArray())
     }
 
     @Throws(IOException::class)
     private fun sendDataRequest(
-        connConfig: String,
-        out: OutputStream?
+        connConfig: String, out: OutputStream?
     ) {
         out!!.write(buildPayload(connConfig, 3, "0").toString().toByteArray())
     }

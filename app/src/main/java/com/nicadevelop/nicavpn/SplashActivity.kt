@@ -43,8 +43,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun resolveUserConsent() {
         val consentManager = ConsentManager.getInstance(this)
-        consentManager.requestConsentInfoUpdate(
-            AppoDealAdManager.APP_KEY,
+        consentManager.requestConsentInfoUpdate(AppoDealAdManager.APP_KEY,
             object : ConsentInfoUpdateListener {
                 override fun onConsentInfoUpdated(consent: Consent) {
                     val consentShouldShow: Consent.ShouldShow =
@@ -69,8 +68,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun showConsentForm() {
         if (consentForm == null) {
-            consentForm = ConsentForm.Builder(this)
-                .withListener(object : ConsentFormListener {
+            consentForm = ConsentForm.Builder(this).withListener(object : ConsentFormListener {
                     override fun onConsentFormLoaded() {
                         // Show ConsentManager Consent request form
                         consentForm!!.showAsActivity()
@@ -101,19 +99,20 @@ class SplashActivity : AppCompatActivity() {
         if (isNetworkAvailable(this@SplashActivity)) {
             if (!isOven_Vpn_ConnectionActive()) {
                 start_service()
-            }
-            else {
+            } else {
                 startMainActivity_move(true)
             }
-        }
-        else {
+        } else {
             if (getBestServer_after_calculation(splash_sharedPreferences) != null) {
                 if (getBestServer_after_calculation(splash_sharedPreferences)!!.hostName.isNotEmpty()) {
                     startMainActivity_move(true)
                 }
-            }
-            else {
-                Toast.makeText(this@SplashActivity , "Unable to fetch data , check internet connection", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(
+                    this@SplashActivity,
+                    "Unable to fetch data , check internet connection",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -180,7 +179,7 @@ class SplashActivity : AppCompatActivity() {
             intent.putExtra("consent", hasConsent)
             startActivity(intent)
             finish()
-        }, 1500)
+        }, 1200)
     }
 
 

@@ -9,8 +9,6 @@ interface ServiceControl {
     val clientServer: ClientServer?
 
     fun setClientServer(
-        serverAddr: String?,
-        serverPort: Int,
-        payloadConfig: String
+        serverAddr: String?, serverPort: Int, payloadConfig: String
     )
 }

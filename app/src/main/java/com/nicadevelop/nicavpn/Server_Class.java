@@ -66,9 +66,9 @@ public class Server_Class extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_window);
-        if(Application.mInterstitialAd != null){
+        if (Application.mInterstitialAd != null) {
             Application.mInterstitialAd.show(Server_Class.this);
-        }else {
+        } else {
             Application.load_rinterstitial_Ad();
         }
         Server_choose_preference = getSharedPreferences("DATA", MODE_PRIVATE);
@@ -139,8 +139,7 @@ public class Server_Class extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void parse_data(String input) {
-        if (api_responses == null)
-            api_responses = new ArrayList<>();
+        if (api_responses == null) api_responses = new ArrayList<>();
 
         api_responses.clear();
         try {

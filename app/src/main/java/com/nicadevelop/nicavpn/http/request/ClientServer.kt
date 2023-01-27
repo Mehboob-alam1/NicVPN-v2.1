@@ -17,11 +17,8 @@ import java.util.concurrent.locks.ReentrantLock
 
 @Obfuscate
 open class ClientServer(
-    serverAddr: String,
-    serverPort: Int,
-    payloadConfig: String
-) :
-    Runnable {
+    serverAddr: String, serverPort: Int, payloadConfig: String
+) : Runnable {
     @Suppress("JoinDeclarationAndAssignment")
     private val listening: InetSocketAddress
     private val target: String
@@ -30,10 +27,8 @@ open class ClientServer(
     private val serverPort: Int
     private var payloadConfig: String? = null
     private var ss: ServerSocket? = null
-    private val connections: MutableList<Connection> =
-        LinkedList<Connection>()
-    private val connectionsLock: Lock =
-        ReentrantLock()
+    private val connections: MutableList<Connection> = LinkedList<Connection>()
+    private val connectionsLock: Lock = ReentrantLock()
     private var isStopped = false
     private var counter: ByteCounter? = null
     private var config: ConnectionConfig
@@ -49,7 +44,7 @@ open class ClientServer(
     fun close() {
         if (!isStopped) {
             //handleLog("closed")
-            LogUtil.i(LogUtil.DIAM_PROXY_TAG+ "V2RAY", "ClientServer.closed")
+            LogUtil.i(LogUtil.DIAM_PROXY_TAG + "V2RAY", "ClientServer.closed")
             LogFragment.addLog(MyApplication.appContext.getString(R.string.close))//CLOSE
             isStopped = true
             if (counter != null) {
@@ -80,7 +75,7 @@ open class ClientServer(
                 acceptConnection(socket)
             }
         } catch (e: IOException) {
-            LogFragment.addLog(MyApplication.appContext.getString(R.string.error)+ "\r")//ERROR
+            LogFragment.addLog(MyApplication.appContext.getString(R.string.error) + "\r")//ERROR
         } finally {
             close()
         }
@@ -104,7 +99,7 @@ open class ClientServer(
         if (counter != null) conn.setByteCounter(counter)
         synchronized(connectionsLock) { connections.add(conn) }
         conn.start()
-        LogFragment.addLog(MyApplication.appContext.getString(R.string.connectionsize)+ "\r" + conn.id)//opening connection
+        LogFragment.addLog(MyApplication.appContext.getString(R.string.connectionsize) + "\r" + conn.id)//opening connection
 
     }
 

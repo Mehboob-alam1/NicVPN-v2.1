@@ -53,9 +53,7 @@ public class DnsService extends Service {
 
     @Override
     public void onCreate() {
-        notificationManager =
-                (NotificationManager)
-                        getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
 
@@ -110,7 +108,7 @@ public class DnsService extends Service {
         if (android.os.Build.VERSION.SDK_INT >= 31) {
             pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, FLAG_MUTABLE);
 
-        }else{
+        } else {
             pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_ONE_SHOT);
 
         }
@@ -129,20 +127,14 @@ public class DnsService extends Service {
             nbuilder.setChannelId(notificationChannel);
         }
 
-        @SuppressWarnings("deprecation")
-        Notification notification = nbuilder.getNotification();
+        @SuppressWarnings("deprecation") Notification notification = nbuilder.getNotification();
 
         startForeground(notificationId, notification);
 
 
         synchronized (mProcessLock) {
             if (type_conn.equals(MyApplication.appContext.getString(R.string.DNSTT_connection))) {
-                dnstt = new Dnstt(getBaseContext(),
-                        getDnsttResolver(), dnstt_host,
-                        public_key,
-                        host,
-                        "127.0.0.1",
-                        "2323");
+                dnstt = new Dnstt(getBaseContext(), getDnsttResolver(), dnstt_host, public_key, host, "127.0.0.1", "2323");
                 dnstt.start();
             }
             if (type_conn.equals(MyApplication.appContext.getString(R.string.fastdns_connection))) {
@@ -164,10 +156,9 @@ public class DnsService extends Service {
     }
 
     private Dnstt.Resolver getDnsttResolver() {
-        if(dnstt_conn.equals("DOT")){
+        if (dnstt_conn.equals("DOT")) {
             return Dnstt.Resolver.DOT;
-        }
-        else if(dnstt_conn.equals("DOH")){
+        } else if (dnstt_conn.equals("DOH")) {
             return Dnstt.Resolver.DOH;
         }
         return Dnstt.Resolver.UDP;

@@ -38,22 +38,22 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
-    /*    private val localDns by lazy { findPreference(AppConfig.PREF_LOCAL_DNS_ENABLED) }
+        /*    private val localDns by lazy { findPreference(AppConfig.PREF_LOCAL_DNS_ENABLED) }
 
 
 
-        private val concurrency by lazy { findPreference(AppConfig.PREF_CONCURRENCY) }
-        private val fakeDns by lazy { findPreference(AppConfig.PREF_FAKE_DNS_ENABLED) }
-        private val localDnsPort by lazy { findPreference(AppConfig.PREF_LOCAL_DNS_PORT) }
-        private val vpnDns by lazy { findPreference(AppConfig.PREF_VPN_DNS) }
-        private val sppedEnabled by lazy { findPreference(AppConfig.PREF_SPEED_ENABLED) as CheckBoxPreference }
-        private val domainStrategy by lazy { findPreference(AppConfig.PREF_ROUTING_DOMAIN_STRATEGY) as ListPreference }
-        private val routingMode by lazy { findPreference(AppConfig.PREF_ROUTING_MODE) as ListPreference }
+            private val concurrency by lazy { findPreference(AppConfig.PREF_CONCURRENCY) }
+            private val fakeDns by lazy { findPreference(AppConfig.PREF_FAKE_DNS_ENABLED) }
+            private val localDnsPort by lazy { findPreference(AppConfig.PREF_LOCAL_DNS_PORT) }
+            private val vpnDns by lazy { findPreference(AppConfig.PREF_VPN_DNS) }
+            private val sppedEnabled by lazy { findPreference(AppConfig.PREF_SPEED_ENABLED) as CheckBoxPreference }
+            private val domainStrategy by lazy { findPreference(AppConfig.PREF_ROUTING_DOMAIN_STRATEGY) as ListPreference }
+            private val routingMode by lazy { findPreference(AppConfig.PREF_ROUTING_MODE) as ListPreference }
 
-        private val forwardIpv6 by lazy { findPreference(AppConfig.PREF_FORWARD_IPV6) as CheckBoxPreference }
-        private val enableLocalDns by lazy { findPreference(AppConfig.PREF_LOCAL_DNS_ENABLED) as CheckBoxPreference }
-        private val domesticDns by lazy { findPreference(AppConfig.PREF_DOMESTIC_DNS) as EditTextPreference }
-        private val remoteDns by lazy { findPreference(AppConfig.PREF_REMOTE_DNS) as EditTextPreference }*/
+            private val forwardIpv6 by lazy { findPreference(AppConfig.PREF_FORWARD_IPV6) as CheckBoxPreference }
+            private val enableLocalDns by lazy { findPreference(AppConfig.PREF_LOCAL_DNS_ENABLED) as CheckBoxPreference }
+            private val domesticDns by lazy { findPreference(AppConfig.PREF_DOMESTIC_DNS) as EditTextPreference }
+            private val remoteDns by lazy { findPreference(AppConfig.PREF_REMOTE_DNS) as EditTextPreference }*/
 
         private fun restartProxy() {
             Utils.stopVService(requireContext())
@@ -67,106 +67,106 @@ class SettingsActivity : AppCompatActivity() {
         override fun onCreatePreferences(bundle: Bundle?, s: String?) {
             addPreferencesFromResource(R.xml.pref_settings)
 
-       /*     sppedEnabled.setOnPreferenceClickListener {
-                if (isRunning())
-                    restartProxy()
-                true
-            }*/
+            /*     sppedEnabled.setOnPreferenceClickListener {
+                     if (isRunning())
+                         restartProxy()
+                     true
+                 }*/
 
-          /*  domainStrategy.setOnPreferenceChangeListener { _, _ ->
-                if (isRunning())
-                    restartProxy()
-                true
-            }*/
-          /*  routingMode.setOnPreferenceChangeListener { _, _ ->
-                if (isRunning())
-                    restartProxy()
-                true
-            }*/
+            /*  domainStrategy.setOnPreferenceChangeListener { _, _ ->
+                  if (isRunning())
+                      restartProxy()
+                  true
+              }*/
+            /*  routingMode.setOnPreferenceChangeListener { _, _ ->
+                  if (isRunning())
+                      restartProxy()
+                  true
+              }*/
 
-         /*  forwardIpv6.setOnPreferenceClickListener {
-                if (isRunning())
-                    restartProxy()
-                true
-            }
+            /*  forwardIpv6.setOnPreferenceClickListener {
+                   if (isRunning())
+                       restartProxy()
+                   true
+               }
 
-            enableLocalDns.setOnPreferenceClickListener {
-                if (isRunning())
-                    restartProxy()
-                true
-            }
+               enableLocalDns.setOnPreferenceClickListener {
+                   if (isRunning())
+                       restartProxy()
+                   true
+               }
 
 
-            domesticDns.setOnPreferenceChangeListener { _, any ->
-                // domesticDns.summary = any as String
-                val nval = any as String
-                domesticDns.summary = if (nval == "") AppConfig.DNS_DIRECT else nval
-                if (isRunning())
-                    restartProxy()
-                true
-            }
+               domesticDns.setOnPreferenceChangeListener { _, any ->
+                   // domesticDns.summary = any as String
+                   val nval = any as String
+                   domesticDns.summary = if (nval == "") AppConfig.DNS_DIRECT else nval
+                   if (isRunning())
+                       restartProxy()
+                   true
+               }
 
-            remoteDns.setOnPreferenceChangeListener { _, any ->
-                // remoteDns.summary = any as String
-                val nval = any as String
-                remoteDns.summary = if (nval == "") AppConfig.DNS_AGENT else nval
-                if (isRunning())
-                    restartProxy()
-                true
-            }
-            localDns?.setOnPreferenceChangeListener{ _, any ->
-                updateLocalDns(any as Boolean)
-                true
-            }
-            concurrency?.setOnPreferenceChangeListener{ _, any ->
-                val nval = any as String
-                concurrency?.summary = if (TextUtils.isEmpty(nval)) "6" else nval
-                true
-            }
-            localDnsPort?.setOnPreferenceChangeListener { _, any ->
-                val nval = any as String
-                localDnsPort?.summary = if (TextUtils.isEmpty(nval)) "10807" else nval
-                true
-            }
-            vpnDns?.setOnPreferenceChangeListener { _, any ->
-                vpnDns?.summary = any as String
-                true
-            }*/
+               remoteDns.setOnPreferenceChangeListener { _, any ->
+                   // remoteDns.summary = any as String
+                   val nval = any as String
+                   remoteDns.summary = if (nval == "") AppConfig.DNS_AGENT else nval
+                   if (isRunning())
+                       restartProxy()
+                   true
+               }
+               localDns?.setOnPreferenceChangeListener{ _, any ->
+                   updateLocalDns(any as Boolean)
+                   true
+               }
+               concurrency?.setOnPreferenceChangeListener{ _, any ->
+                   val nval = any as String
+                   concurrency?.summary = if (TextUtils.isEmpty(nval)) "6" else nval
+                   true
+               }
+               localDnsPort?.setOnPreferenceChangeListener { _, any ->
+                   val nval = any as String
+                   localDnsPort?.summary = if (TextUtils.isEmpty(nval)) "10807" else nval
+                   true
+               }
+               vpnDns?.setOnPreferenceChangeListener { _, any ->
+                   vpnDns?.summary = any as String
+                   true
+               }*/
         }
 
         override fun onStart() {
             super.onStart()
-         //   val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
-          //  updateMode(defaultSharedPreferences.getString(AppConfig.PREF_MODE, "VPN"))
-         //   var remoteDnsString = defaultSharedPreferences.getString(AppConfig.PREF_REMOTE_DNS, "")
-          //  domesticDns.summary = defaultSharedPreferences.getString(AppConfig.PREF_DOMESTIC_DNS, "")
+            //   val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
+            //  updateMode(defaultSharedPreferences.getString(AppConfig.PREF_MODE, "VPN"))
+            //   var remoteDnsString = defaultSharedPreferences.getString(AppConfig.PREF_REMOTE_DNS, "")
+            //  domesticDns.summary = defaultSharedPreferences.getString(AppConfig.PREF_DOMESTIC_DNS, "")
 
-         //   if (TextUtils.isEmpty(remoteDnsString)) {
-         //       remoteDnsString = AppConfig.DNS_AGENT
-         //   }
-         /*   if ( domesticDns.summary == "") {
-                domesticDns.summary = AppConfig.DNS_DIRECT
-            }
-            remoteDns.summary = remoteDnsString
-            vpnDns?.summary = defaultSharedPreferences.getString(AppConfig.PREF_VPN_DNS, remoteDnsString)*/
+            //   if (TextUtils.isEmpty(remoteDnsString)) {
+            //       remoteDnsString = AppConfig.DNS_AGENT
+            //   }
+            /*   if ( domesticDns.summary == "") {
+                   domesticDns.summary = AppConfig.DNS_DIRECT
+               }
+               remoteDns.summary = remoteDnsString
+               vpnDns?.summary = defaultSharedPreferences.getString(AppConfig.PREF_VPN_DNS, remoteDnsString)*/
         }
 
         private fun updateMode(mode: String?) {
-         //   val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
+            //   val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
             val vpn = mode == "VPN"
-         /*   localDns?.isEnabled = vpn
-            fakeDns?.isEnabled = vpn
-            localDnsPort?.isEnabled = vpn
-            vpnDns?.isEnabled = vpn*/
+            /*   localDns?.isEnabled = vpn
+               fakeDns?.isEnabled = vpn
+               localDnsPort?.isEnabled = vpn
+               vpnDns?.isEnabled = vpn*/
             if (vpn) {
-           //     updateLocalDns(defaultSharedPreferences.getBoolean(AppConfig.PREF_LOCAL_DNS_ENABLED, false))
+                //     updateLocalDns(defaultSharedPreferences.getBoolean(AppConfig.PREF_LOCAL_DNS_ENABLED, false))
             }
         }
 
         private fun updateLocalDns(enabled: Boolean) {
-          //  fakeDns?.isEnabled = enabled
-         //   localDnsPort?.isEnabled = enabled
-         //   vpnDns?.isEnabled = !enabled
+            //  fakeDns?.isEnabled = enabled
+            //   localDnsPort?.isEnabled = enabled
+            //   vpnDns?.isEnabled = !enabled
         }
     }
 }

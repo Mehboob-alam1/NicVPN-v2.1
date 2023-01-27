@@ -14,16 +14,13 @@ import io.michaelrocks.paranoid.Obfuscate
 @Obfuscate
 object Constants {
     @kotlin.jvm.JvmField
-    var IS_RUN: Boolean= false
+    var IS_RUN: Boolean = false
     const val EXECUTABLE = "libproxycry.so"
     const val CONFIG = "config.conf"
     const val PSKSECRETS = "psksecrets.txt"
     const val PID = "pid"
-    const val DEF_CONFIG = "foreground = yes\n" +
-            "client = yes\n" +
-            "pid = [PID_KEY]\n" +
-            "[VPN]\n" +
-            "accept= 2323\n"
+    const val DEF_CONFIG =
+        "foreground = yes\n" + "client = yes\n" + "pid = [PID_KEY]\n" + "[VPN]\n" + "accept= 2323\n"
 
     // Configuracion puerto de conexion del servidor
     const val SERVER_LABEL = "connect="
@@ -37,9 +34,7 @@ object Constants {
     const val DEAFULT_HOST = "www.google.com"
 
     fun createAdBannerView(
-        context: Context?,
-        bannerKey: String,
-        view: RelativeLayout
+        context: Context?, bannerKey: String, view: RelativeLayout
     ): AdView? {
         if (context != null) {
             val adRequest: AdRequest? = Builder().build()

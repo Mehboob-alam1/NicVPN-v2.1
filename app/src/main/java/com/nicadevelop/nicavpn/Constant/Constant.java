@@ -74,8 +74,7 @@ public class Constant {
 
     public static boolean isNetworkAvailable(Context context) {
         if (context != null) {
-            ConnectivityManager connectivityManager
-                    = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             return activeNetworkInfo != null && activeNetworkInfo.isConnected();
         }
@@ -87,8 +86,7 @@ public class Constant {
         String iface = "";
         try {
             for (NetworkInterface networkInterface : Collections.list(NetworkInterface.getNetworkInterfaces())) {
-                if (networkInterface.isUp())
-                    iface = networkInterface.getName();
+                if (networkInterface.isUp()) iface = networkInterface.getName();
                 if (iface.contains("tun") || iface.contains("ppp") || iface.contains("pptp")) {
                     return true;
                 }
@@ -98,6 +96,7 @@ public class Constant {
         }
         return false;
     }
+
     public static void init_adds() {
         try {
             Cache_Adds.getInstance().init();

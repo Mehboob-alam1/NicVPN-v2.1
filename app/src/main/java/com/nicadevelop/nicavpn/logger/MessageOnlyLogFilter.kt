@@ -26,10 +26,7 @@ class MessageOnlyLogFilter : LogNode {
     constructor() {}
 
     override fun println(
-        priority: Int,
-        tag: String?,
-        msg: String?,
-        tr: Throwable?
+        priority: Int, tag: String?, msg: String?, tr: Throwable?
     ) {
         if (next != null) {
             next!!.println(Log.NONE, null, msg, null)

@@ -53,31 +53,28 @@ class MyApplication : Application() {
         // OpenVPN Start
         PRNGFixes.apply();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            createNotificationChannels();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) createNotificationChannels();
 
         val mStatus = StatusListener()
         mStatus.init(applicationContext)
 
-        if (BuildConfig.DEBUG)
-            enableStrictModes();
+        if (BuildConfig.DEBUG) enableStrictModes();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AppRestrictions.getInstance(this).checkRestrictions(this);
         }
 
         val TAG = MyApplication::class.java.simpleName
-        val defaultMap =
-            HashMap<String, Any>()
+        val defaultMap = HashMap<String, Any>()
         defaultMap["force_update"] = false
         defaultMap["force_update_debug"] = false
         defaultMap["new_version_on_playstore"] = BuildConfig.VERSION_CODE
         defaultMap["new_version_on_playstore_debug"] = BuildConfig.VERSION_CODE
 
         val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-       // firstRun = defaultSharedPreferences.getInt(PREF_LAST_VERSION, 0) != BuildConfig.VERSION_CODE
-      //  if (firstRun)
-       //     defaultSharedPreferences.edit().putInt(PREF_LAST_VERSION, BuildConfig.VERSION_CODE).apply()
+        // firstRun = defaultSharedPreferences.getInt(PREF_LAST_VERSION, 0) != BuildConfig.VERSION_CODE
+        //  if (firstRun)
+        //     defaultSharedPreferences.edit().putInt(PREF_LAST_VERSION, BuildConfig.VERSION_CODE).apply()
 
         //Logger.init().logLevel(if (BuildConfig.DEBUG) LogLevel.FULL else LogLevel.NONE)
         MMKV.initialize(this)
@@ -85,10 +82,7 @@ class MyApplication : Application() {
 
 
     private fun enableStrictModes() {
-        val policy = VmPolicy.Builder()
-            .detectAll()
-            .penaltyLog()
-            .build()
+        val policy = VmPolicy.Builder().detectAll().penaltyLog().build()
         StrictMode.setVmPolicy(policy)
     }
 
@@ -100,8 +94,7 @@ class MyApplication : Application() {
         // Background message
         var name: CharSequence = getString(R.string.channel_name_background)
         var mChannel = NotificationChannel(
-            OpenVPNService.NOTIFICATION_CHANNEL_BG_ID,
-            name, NotificationManager.IMPORTANCE_MIN
+            OpenVPNService.NOTIFICATION_CHANNEL_BG_ID, name, NotificationManager.IMPORTANCE_MIN
         )
         mChannel.description = getString(R.string.channel_description_background)
         mChannel.enableLights(false)
@@ -112,7 +105,8 @@ class MyApplication : Application() {
         name = getString(R.string.channel_name_status)
         mChannel = NotificationChannel(
             OpenVPNService.NOTIFICATION_CHANNEL_NEWSTATUS_ID,
-            name, NotificationManager.IMPORTANCE_LOW
+            name,
+            NotificationManager.IMPORTANCE_LOW
         )
         mChannel.description = getString(R.string.channel_description_status)
         mChannel.enableLights(true)
@@ -123,7 +117,8 @@ class MyApplication : Application() {
         name = getString(R.string.channel_name_userreq)
         mChannel = NotificationChannel(
             OpenVPNService.NOTIFICATION_CHANNEL_USERREQ_ID,
-            name, NotificationManager.IMPORTANCE_HIGH
+            name,
+            NotificationManager.IMPORTANCE_HIGH
         )
         mChannel.description = getString(R.string.channel_description_userreq)
         mChannel.enableVibration(true)
@@ -135,8 +130,7 @@ class MyApplication : Application() {
         // DNS Service
         name = "NicVPN"
         mChannel = NotificationChannel(
-            "com.nicadevelop.nicavpn.service",
-            name, NotificationManager.IMPORTANCE_HIGH
+            "com.nicadevelop.nicavpn.service", name, NotificationManager.IMPORTANCE_HIGH
         )
 
         mChannel.description = "NicVPN"

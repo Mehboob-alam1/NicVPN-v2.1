@@ -26,8 +26,7 @@ class LogFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         mScrollView = LinearLayout(activity)
 
@@ -51,10 +50,9 @@ class LogFragment : Fragment() {
     fun clear() {
         LogView.arrayList!!.clear()
         addLog(
-            StringBuffer().append("Running on ").append(Build.BRAND).append(" ")
-                .append(Build.MODEL).append(" (").append(Build.PRODUCT).append(") ")
-                .append(Build.MANUFACTURER).append(", Android API ").append(Build.VERSION.SDK)
-                .toString()
+            StringBuffer().append("Running on ").append(Build.BRAND).append(" ").append(Build.MODEL)
+                .append(" (").append(Build.PRODUCT).append(") ").append(Build.MANUFACTURER)
+                .append(", Android API ").append(Build.VERSION.SDK).toString()
         )
         addLog("Application version: " + Utils.vb(requireContext()))
     }

@@ -32,9 +32,10 @@ public class Ad extends AppCompatActivity {
     String destActivity = "";
     String sourceActivity = "";
     ConstraintLayout fb_adView;
-    ConstraintLayout admob_native_layout,fb_native_layout;
+    ConstraintLayout admob_native_layout, fb_native_layout;
     public static boolean isAlreadyClicked = false;
     private com.facebook.ads.NativeAdLayout nativeAdLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -52,7 +53,6 @@ public class Ad extends AppCompatActivity {
             }
             Cache_Adds.getInstance().init();
         });
-
 
 
         if (nativeAd != null) {
@@ -73,14 +73,11 @@ public class Ad extends AppCompatActivity {
     }
 
 
-
-
-
     @Override
     protected void onResume() {
         overridePendingTransition(0, 0);
         if (isAlreadyClicked) {
-            overridePendingTransition(0,0);
+            overridePendingTransition(0, 0);
             goNext();
             isAlreadyClicked = false;
         }
@@ -131,8 +128,7 @@ public class Ad extends AppCompatActivity {
         if (nativeAd.getIcon() == null) {
             adView.getIconView().setVisibility(View.GONE);
         } else {
-            ((ImageView) adView.getIconView()).setImageDrawable(
-                    nativeAd.getIcon().getDrawable());
+            ((ImageView) adView.getIconView()).setImageDrawable(nativeAd.getIcon().getDrawable());
             adView.getIconView().setVisibility(View.VISIBLE);
         }
 
@@ -184,12 +180,9 @@ public class Ad extends AppCompatActivity {
     }
 
 
-
-
     public void setIntent() {
         intent = getIntent();
-        if (intent == null)
-            return;
+        if (intent == null) return;
         sourceActivity = Objects.requireNonNull(intent.getExtras()).getString("Current_Activity");
         destActivity = Objects.requireNonNull(intent.getExtras()).getString("Destination_Activity");
     }

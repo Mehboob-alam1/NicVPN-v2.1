@@ -39,24 +39,19 @@ public class Premium extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.premium);
         initUI();
 
-        mBillingClient = BillingClient.newBuilder(this)
-                .setListener((billingResult, purchases) -> {
-                    // To be implemented in a later section.
-                    if (billingResult.getResponseCode() ==
-                            BillingClient.BillingResponseCode.OK && purchases != null) {
-                        for (Purchase purchase : purchases) {
-                            handlePurchase(purchase);
-                        }
-                    } else if (billingResult.getResponseCode() ==
-                            BillingClient.BillingResponseCode.USER_CANCELED) {
-                        // Handle an error caused by a user cancelling the purchase flow.
-                    } else {
-                        // Handle any other error codes.
-                    }
+        mBillingClient = BillingClient.newBuilder(this).setListener((billingResult, purchases) -> {
+            // To be implemented in a later section.
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases != null) {
+                for (Purchase purchase : purchases) {
+                    handlePurchase(purchase);
+                }
+            } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
+                // Handle an error caused by a user cancelling the purchase flow.
+            } else {
+                // Handle any other error codes.
+            }
 
-                })
-                .enablePendingPurchases()
-                .build();
+        }).enablePendingPurchases().build();
 
         mBillingClient.startConnection(new BillingClientStateListener() {
             @Override
@@ -86,24 +81,19 @@ public class Premium extends AppCompatActivity implements View.OnClickListener {
 
         if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
 
-            AcknowledgePurchaseResponseListener acknowledgePurchaseResponseListener =
-                    billingResult -> {
+            AcknowledgePurchaseResponseListener acknowledgePurchaseResponseListener = billingResult -> {
 
-                        // the user's purchase has been successful
-                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK)
+                // the user's purchase has been successful
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK)
 
-                            //TODO set the user's premium status to true
-                            Log.d(TAG, "successfully acknowledged product");
-                    };
+                    //TODO set the user's premium status to true
+                    Log.d(TAG, "successfully acknowledged product");
+            };
 
             if (!purchase.isAcknowledged()) {
-                AcknowledgePurchaseParams acknowledgePurchaseParams =
-                        AcknowledgePurchaseParams.newBuilder()
-                                .setPurchaseToken(purchase.getPurchaseToken())
-                                .build();
+                AcknowledgePurchaseParams acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchase.getPurchaseToken()).build();
 
-                mBillingClient.acknowledgePurchase(acknowledgePurchaseParams,
-                        acknowledgePurchaseResponseListener);
+                mBillingClient.acknowledgePurchase(acknowledgePurchaseParams, acknowledgePurchaseResponseListener);
             }
         }
     }
@@ -119,43 +109,37 @@ public class Premium extends AppCompatActivity implements View.OnClickListener {
         skuList.add("1month");
         skuList.add("1year");
 
-        SkuDetailsParams params = SkuDetailsParams.newBuilder()
-                .setSkusList(skuList)
-                .setType(BillingClient.SkuType.SUBS)
-                .build();
+        SkuDetailsParams params = SkuDetailsParams.newBuilder().setSkusList(skuList).setType(BillingClient.SkuType.SUBS).build();
 
-        mBillingClient.querySkuDetailsAsync(params,
-                (billingResult, skuDetailsList) -> {
+        mBillingClient.querySkuDetailsAsync(params, (billingResult, skuDetailsList) -> {
 
-                    if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
-                            && skuDetailsList != null) {
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
 
-                        if (!skuDetailsList.isEmpty()) {
+                if (!skuDetailsList.isEmpty()) {
 
-                            for (SkuDetails skuDetails : skuDetailsList) {
+                    for (SkuDetails skuDetails : skuDetailsList) {
 
-                                switch (skuDetails.getSku()) {
+                        switch (skuDetails.getSku()) {
 
-                                    case "1week":
-                                        weeklysub = skuDetails;
-                                        break;
+                            case "1week":
+                                weeklysub = skuDetails;
+                                break;
 
-                                    case "1month":
-                                        monthlysub = skuDetails;
-                                        break;
+                            case "1month":
+                                monthlysub = skuDetails;
+                                break;
 
-                                    case "1year":
-                                        yearlysub = skuDetails;
-                                        break;
-                                }
-                            }
+                            case "1year":
+                                yearlysub = skuDetails;
+                                break;
                         }
-                    } else {
-                        Toast.makeText(this, "Error in retrieving " +
-                                "products from store", Toast.LENGTH_SHORT).show();
                     }
+                }
+            } else {
+                Toast.makeText(this, "Error in retrieving " + "products from store", Toast.LENGTH_SHORT).show();
+            }
 
-                });
+        });
 
     }
 
@@ -168,18 +152,14 @@ public class Premium extends AppCompatActivity implements View.OnClickListener {
 
                 if (weeklysub != null) {
 
-                    BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
-                            .setSkuDetails(weeklysub)
-                            .build();
+                    BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder().setSkuDetails(weeklysub).build();
 
-                    int responseCode = mBillingClient.launchBillingFlow(this,
-                            billingFlowParams).getResponseCode();
+                    int responseCode = mBillingClient.launchBillingFlow(this, billingFlowParams).getResponseCode();
 
                     if (responseCode != BillingClient.BillingResponseCode.OK)
                         Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
 
-                } else
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
 
                 break;
 
@@ -187,18 +167,14 @@ public class Premium extends AppCompatActivity implements View.OnClickListener {
 
                 if (monthlysub != null) {
 
-                    BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
-                            .setSkuDetails(monthlysub)
-                            .build();
+                    BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder().setSkuDetails(monthlysub).build();
 
-                    int responseCode = mBillingClient.launchBillingFlow(this,
-                            billingFlowParams).getResponseCode();
+                    int responseCode = mBillingClient.launchBillingFlow(this, billingFlowParams).getResponseCode();
 
                     if (responseCode != BillingClient.BillingResponseCode.OK)
                         Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
 
-                } else
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
 
                 break;
 
@@ -206,18 +182,14 @@ public class Premium extends AppCompatActivity implements View.OnClickListener {
 
                 if (yearlysub != null) {
 
-                    BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
-                            .setSkuDetails(yearlysub)
-                            .build();
+                    BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder().setSkuDetails(yearlysub).build();
 
-                    int responseCode = mBillingClient.launchBillingFlow(this,
-                            billingFlowParams).getResponseCode();
+                    int responseCode = mBillingClient.launchBillingFlow(this, billingFlowParams).getResponseCode();
 
                     if (responseCode != BillingClient.BillingResponseCode.OK)
                         Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
 
-                } else
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
 
                 break;
 

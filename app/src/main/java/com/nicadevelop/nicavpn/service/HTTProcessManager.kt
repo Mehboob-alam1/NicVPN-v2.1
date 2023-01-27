@@ -26,56 +26,41 @@ class HTTProcessManager {
     private var stunnelProcess: Process? = null
     private var stopService = false
     private fun getCustomPing(context: Context): Boolean {
-        return DmSharedPreferences
-            .getInstance(context)!!
-            .getBoolean(
-                DmPrefsKeys.SHARED_PREFERENCES_CUSTOM_PING,
-                DmPrefsKeys.SHARED_PREFERENCES_CUSTOM_PING_DEFAULT
-            )
+        return DmSharedPreferences.getInstance(context)!!.getBoolean(
+            DmPrefsKeys.SHARED_PREFERENCES_CUSTOM_PING,
+            DmPrefsKeys.SHARED_PREFERENCES_CUSTOM_PING_DEFAULT
+        )
     }
 
     private fun getConfiguredServer(context: Context): String {
-        var configuredServer: String = DmSharedPreferences
-            .getInstance(context)!!
-            .getString(
-                DmPrefsKeys.SHARED_PREFERENCES_SERVER,
-                DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
-            ).toString() + ":" +
-                DmSharedPreferences
-                    .getInstance(context)!!
-                    .getLong(
-                        DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT,
-                        DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT_DEFAULT
-                    )
+        var configuredServer: String = DmSharedPreferences.getInstance(context)!!.getString(
+            DmPrefsKeys.SHARED_PREFERENCES_SERVER, DmPrefsKeys.SHARED_PREFERENCES_SERVER_DEFAULT
+        ).toString() + ":" + DmSharedPreferences.getInstance(context)!!.getLong(
+            DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT,
+            DmPrefsKeys.SHARED_PREFERENCES_SERVER_PORT_DEFAULT
+        )
         if (DmSharedPreferences.getInstance(context)!!.getBoolean(
                 DmPrefsKeys.SHARED_PREFERENCES_DNS_CONNECTION,
                 DmPrefsKeys.SHARED_PREFERENCES_DNS_CONNECTION_DEFAULT
             )
         ) {
             configuredServer = DmSharedPreferences.getInstance(context)!!.getString(
-                DmPrefsKeys.SHARED_PREFERENCES_DNS,
-                DmPrefsKeys.SHARED_PREFERENCES_DNS_DEFAULT
+                DmPrefsKeys.SHARED_PREFERENCES_DNS, DmPrefsKeys.SHARED_PREFERENCES_DNS_DEFAULT
             ) + "." + configuredServer
         }
         return configuredServer
     }
 
     private fun getConfiguredSni(context: Context): String? {
-        return DmSharedPreferences
-            .getInstance(context)!!
-            .getString(
-                DmPrefsKeys.SHARED_PREFERENCES_SNI,
-                DmPrefsKeys.SHARED_PREFERENCES_SNI_DEFAULT
-            )
+        return DmSharedPreferences.getInstance(context)!!.getString(
+            DmPrefsKeys.SHARED_PREFERENCES_SNI, DmPrefsKeys.SHARED_PREFERENCES_SNI_DEFAULT
+        )
     }
 
     private fun getConfiguredPing(context: Context): Long {
-        return DmSharedPreferences
-            .getInstance(context)!!
-            .getLong(
-                DmPrefsKeys.SHARED_PREFERENCES_PING,
-                DmPrefsKeys.SHARED_PREFERENCES_PING_DEFAULT
-            )
+        return DmSharedPreferences.getInstance(context)!!.getLong(
+            DmPrefsKeys.SHARED_PREFERENCES_PING, DmPrefsKeys.SHARED_PREFERENCES_PING_DEFAULT
+        )
     }
 
     internal fun start(context: HTTPtunnelIntentService) {
@@ -103,12 +88,11 @@ class HTTProcessManager {
             val workingDirectory = File(context.filesDir.path)
             stunnelProcess = Runtime.getRuntime().exec(
                 String.format(
-                    Locale.US, "%s/$EXECUTABLE %s/$CONFIG",
+                    Locale.US,
+                    "%s/$EXECUTABLE %s/$CONFIG",
                     context.applicationInfo.nativeLibraryDir,
                     context.filesDir
-                ),
-                env,
-                workingDirectory
+                ), env, workingDirectory
             )
 
             readInputStream(context, stunnelProcess!!.errorStream.source().buffer())
@@ -190,8 +174,7 @@ class HTTProcessManager {
     private fun getCustomConfig(context: Context): String {
         var customSni = getConfiguredSni(context)
         if (customSni != "") customSni = Constants.SNI_LABEL + customSni
-        if (isDnsConnection(context) || isDirectConnection(context))
-            customSni = ""
+        if (isDnsConnection(context) || isDirectConnection(context)) customSni = ""
         return (DEF_CONFIG
                 // =================================================
                 // Getting Custom Server

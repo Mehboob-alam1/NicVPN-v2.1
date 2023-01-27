@@ -16,7 +16,6 @@ public class ExampleDialog extends DialogFragment {
     public static final String TAG = "example_dialog";
 
 
-
     public static ExampleDialog display(FragmentManager fragmentManager) {
         ExampleDialog exampleDialog = new ExampleDialog();
         exampleDialog.show(fragmentManager, TAG);

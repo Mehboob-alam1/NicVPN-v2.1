@@ -63,13 +63,12 @@ class HTTPtunnelIntentService : IntentService("StunnelIntentService") {
     }
 
     private fun showNotification() {
-        val mBuilder: Builder = Builder(this, MainActivity.CHANNEL_ID)
-                .setSmallIcon(drawable.ic_service_running)
+        val mBuilder: Builder =
+            Builder(this, MainActivity.CHANNEL_ID).setSmallIcon(drawable.ic_service_running)
                 .setContentTitle(getString(string.app_name_full))
                 .setContentText(getString(string.notification_desc))
                 .setCategory(NotificationCompat.CATEGORY_SERVICE)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setOngoing(true)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT).setOngoing(true)
         // Creates an explicit intent for an Activity in your app
 
 
@@ -90,13 +89,14 @@ class HTTPtunnelIntentService : IntentService("StunnelIntentService") {
 
         stackBuilder.addNextIntent(resultIntent)
         val resultPendingIntent = stackBuilder.getPendingIntent(
-                0,
-                PendingIntent.FLAG_UPDATE_CURRENT
+            0, PendingIntent.FLAG_UPDATE_CURRENT
         )
         mBuilder.setContentIntent(resultPendingIntent)
         val serviceStopIntent = Intent(this, ServiceStopReceiver::class.java)
         serviceStopIntent.action = ACTION_STOP
-        val serviceStopIntentPending: PendingIntent? = PendingIntent.getBroadcast(this, 1, serviceStopIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val serviceStopIntentPending: PendingIntent? = PendingIntent.getBroadcast(
+            this, 1, serviceStopIntent, PendingIntent.FLAG_UPDATE_CURRENT
+        )
         //mBuilder.addAction(drawable.ic_stop, "Stop", serviceStopIntentPending)
 
         // Ensure that the service is a foreground service
@@ -106,19 +106,23 @@ class HTTPtunnelIntentService : IntentService("StunnelIntentService") {
     }
 
     private fun removeNotification() {
-        val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val mNotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         mNotificationManager?.cancel(NOTIFICATION_ID)
     }
 
     companion object {
-        private const val ACTION_STARTNOVPN = "tcp.nicadevelop.ndcheckmate.service.action.STARTNOVPN"
-        private const val ACTION_RESUMEACTIVITY = "tcp.nicadevelop.ndcheckmate.service.action.RESUMEACTIVITY"
+        private const val ACTION_STARTNOVPN =
+            "tcp.nicadevelop.ndcheckmate.service.action.STARTNOVPN"
+        private const val ACTION_RESUMEACTIVITY =
+            "tcp.nicadevelop.ndcheckmate.service.action.RESUMEACTIVITY"
         private const val NOTIFICATION_ID = 1
         const val ACTION_STOP = "tcp.nicadevelop.ndcheckmate.service.action.STOP"
         private val privateIsRunning = MutableLiveData<Boolean>()
         val isRunning: LiveData<Boolean> = privateIsRunning
         private val logDataPrivate = MutableLiveData<String>()
         val logData: LiveData<String> = logDataPrivate
+
         /**
          * Starts this service to perform action Foo with the given parameters. If
          * the service is already performing a task this action will be queued.

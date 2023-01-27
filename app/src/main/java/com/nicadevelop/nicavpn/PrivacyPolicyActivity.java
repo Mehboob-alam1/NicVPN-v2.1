@@ -39,14 +39,12 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_privacy_policy);
 
 
-
         toolbarPolicy = findViewById(R.id.toolbarpolicy);
         setSupportActionBar(toolbarPolicy);
         setTitle(getResources().getString(R.string.privacy_policy));
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         toolbarPolicy.setNavigationOnClickListener(view -> onBackPressed());
-
 
 
         progressBar_policy = findViewById(R.id.progressBar_policy);
@@ -58,7 +56,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
                 setProgress(progress * 100); //Make the bar disappear after URL is loaded
 
                 // Return the app name after finish loading
-                if(progress == 100){
+                if (progress == 100) {
                     toolbarPolicy.setTitle(R.string.privacy_policy);
                     progressBar_policy.setVisibility(View.GONE);
                 }
