@@ -175,7 +175,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun startMainActivity_move(hasConsent: Boolean) {
         Handler().postDelayed({
-            val intent = Intent(this@SplashActivity, MainActivity::class.java)
+            val intent = Intent(this@SplashActivity, IntroActivity::class.java)
             intent.putExtra("consent", hasConsent)
             startActivity(intent)
             finish()

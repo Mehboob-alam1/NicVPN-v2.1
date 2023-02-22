@@ -637,7 +637,6 @@
     <string name="privacy_policy">Privacy Policy</string>
 
 
-
     <string name="menu_item_import_config_manually_vless">Type manually[VLESS]</string>
 
     <string name="menu_item_import_config_manually_trojan">Type manually[Trojan]</string>
@@ -663,7 +662,6 @@
     <string name="menu_item_import_proxy_app">Import from Clipboard</string>
 
 
-
     <string name="title_pref_sniffing_enabled">Enable Sniffing</string>
     <string name="summary_pref_sniffing_enabled">Try sniff domain from the packet (default on)</string>
 
@@ -674,10 +672,8 @@
     <string name="summary_pref_allow_insecure">When TLS, the default allowInsecure</string>
 
 
-
     <string name="title_pref_confirm_remove">Delete configuration file confirmation</string>
     <string name="summary_pref_confirm_remove">Whether to delete the configuration file requires a second confirmation by the user</string>
-
 
 
     <string name="title_core_loglevel">Log Level</string>

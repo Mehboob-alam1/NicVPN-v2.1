@@ -4,11 +4,11 @@
     package="com.nicadevelop.nicavpn"> <!-- android:debuggable="false" -->
     <uses-sdk tools:overrideLibrary="com.blacksquircle.ui.editorkit, com.blacksquircle.ui.language.json, com.blacksquircle.ui.language.base" />
 
-
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
-        android:name="com.nicadevelop.nicavpn.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:extractNativeLibs="true"
         android:fullBackupContent="@xml/backup_descriptor"
@@ -34,41 +34,37 @@
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
         tools:replace="android:fullBackupContent"
         tools:targetApi="m">
+        <activity
+            android:name=".IntroActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
+
         <activity
-            android:name="com.nicadevelop.nicavpn.SettingsActivity"
+            android:name=".SettingsActivity"
             android:exported="false" />
-
-        <activity android:name="com.nicadevelop.nicavpn.Menu_Activity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="false">
-        </activity>
-
-
-
         <activity
-            android:name="com.nicadevelop.nicavpn.AccountActivity"
+            android:name=".Menu_Activity"
             android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
-            android:name="com.nicadevelop.nicavpn.About_Module.About"
+            android:name=".AccountActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.nicadevelop.nicavpn.PrivacyPolicyActivity"
+            android:name=".About_Module.About"
             android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-
-
-
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PrivacyPolicyActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -81,12 +77,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Server_Class"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name="com.nicadevelop.nicavpn.MainActivity"
+            android:name=".Server_Class"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true"
             android:grantUriPermissions="true"
             android:label="@string/app_name"
@@ -117,22 +113,21 @@
         </activity>
 
         <service
-            android:name="com.nicadevelop.nicavpn.service.HTTPtunnelIntentService"
+            android:name=".service.HTTPtunnelIntentService"
             android:exported="false" />
         <service
-            android:name="com.nicadevelop.nicavpn.service.ServerClientService"
+            android:name=".service.ServerClientService"
             android:exported="false" />
-
         <service
             android:name=".Api_Fetch_Service.Fetch_Service"
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <receiver android:name="com.nicadevelop.nicavpn.service.ServiceStopReceiver" />
+        <receiver android:name=".service.ServiceStopReceiver" />
         <receiver
             android:name=".broadcast.WifiBroadcastReceiver"
-            android:exported="false"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
@@ -148,8 +143,8 @@
 
         <service
             android:name="de.blinkt.openvpn.core.OpenVPNService"
-            android:permission="android.permission.BIND_VPN_SERVICE"
             android:exported="false"
+            android:permission="android.permission.BIND_VPN_SERVICE"
             android:process=":openvpn">
             <intent-filter>
                 <action android:name="android.net.VpnService" />
@@ -159,7 +154,7 @@
             android:name="de.blinkt.openvpn.core.OpenVPNStatusService"
             android:exported="false"
             android:process=":openvpn" />
-        <service android:name="com.nicadevelop.nicavpn.service.DnsService" />
+        <service android:name=".service.DnsService" />
 
         <activity
             android:name="de.blinkt.openvpn.activities.DisconnectVPN"
@@ -170,26 +165,18 @@
             android:theme="@style/Theme.MaterialComponents.Light.Dialog"
             tools:targetApi="lollipop" />
 
-
-
-
-
-        <service android:name="com.v2ray.ang.service.V2RayProxyOnlyService"
+        <service
+            android:name="com.v2ray.ang.service.V2RayProxyOnlyService"
             android:exported="false"
             android:label="@string/app_name"
-            android:process=":RunSoLibV2RayDaemon">
-        </service>
-
-        <service android:name="com.v2ray.ang.service.V2RayTestService"
-            android:exported="false"
-            android:process=":RunSoLibV2RayDaemon">
-        </service>
-
-
-
+            android:process=":RunSoLibV2RayDaemon"></service>
         <service
-            android:exported="true"
+            android:name="com.v2ray.ang.service.V2RayTestService"
+            android:exported="false"
+            android:process=":RunSoLibV2RayDaemon"></service>
+        <service
             android:name=".service.QSTileService"
+            android:exported="true"
             android:icon="@drawable/ic_stat_name"
             android:label="@string/app_tile_name"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
@@ -197,12 +184,7 @@
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
-        </service>
-        <!-- =====================Tasker===================== -->
-
-
-
-
+        </service> <!-- =====================Tasker===================== -->
         <service
             android:name="com.v2ray.ang.service.V2RayVpnService"
             android:enabled="true"
@@ -213,15 +195,15 @@
             <intent-filter>
                 <action android:name="android.net.VpnService" />
             </intent-filter>
+
             <meta-data
                 android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"
                 android:value="true" />
         </service>
-
-
-        <service android:name=".Connection_Timer"
+        <service
+            android:name=".Connection_Timer"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
 
         <receiver
             android:name=".receiver.WidgetProvider"
@@ -237,7 +219,6 @@
                 <action android:name="com.v2ray.ang.action.activity" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".receiver.TaskerReceiver"
             android:exported="true"
@@ -246,10 +227,6 @@
                 <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
             </intent-filter>
         </receiver>
-
-
-
-
     </application>
 
 </manifest>

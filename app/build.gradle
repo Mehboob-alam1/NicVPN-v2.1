@@ -12,7 +12,7 @@ android {
             keyAlias 'diamproxy'
             keyPassword 'yahoo410'
             storePassword 'yahoo410'
-            storeFile file('D:\\Code work\\Tunnel Otros Codigos\\todo\\diamproxymodulo\\diamproxy\\app\\keystore\\DiamProxy.jks')
+           // storeFile file('D:\\Code work\\Tunnel Otros Codigos\\todo\\diamproxymodulo\\diamproxy\\app\\keystore\\DiamProxy.jks')
         }
     }
     sourceSets {
@@ -47,12 +47,12 @@ android {
                     "com.nicadevelop.nicavpn.tools.sharedPreferences.ConfigCert", "com.nicadevelop.nicavpn.tools.sharedPreferences.DmPrefsKeys",]
     }*/
 
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.nicadevelop.nicavpn"
         minSdkVersion 22
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 101
         versionName "1.5"
         multiDexEnabled = true
@@ -132,6 +132,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
     implementation project(path: ':dnstunnel')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
